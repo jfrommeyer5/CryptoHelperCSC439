@@ -5,7 +5,7 @@ Team Members: "Nathan Rogers" rogersn3@mymail.nku.edu
 
 "Cody Esmeier" esmeierc2@mymail.nku.edu
 
-"Jordan Frommeyer" frommeyerj4@mymail.nku.edu
+"Jacob Frommeyer" frommeyerj4@mymail.nku.edu
 
 "Juan Ruiz" ruizj1@mymail.nku.edu
 
