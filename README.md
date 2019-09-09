@@ -17,4 +17,4 @@ Team Leader: Cody Esmeier
 
 Configuration Manager: Jacob Frommeyer
 
-Build Manager: 
+Build Manager: Duncan McClellan
