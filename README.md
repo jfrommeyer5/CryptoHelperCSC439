@@ -15,6 +15,6 @@ Team Members: "Nathan Rogers" rogersn3@mymail.nku.edu
 
 Team Leader: Cody Esmeier 
 
-Configuration Manager: 
+Configuration Manager: Jacob Frommeyer
 
-Build Manager: Jacob Frommeyer
+Build Manager: 
