@@ -23,9 +23,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     /** Creates new form CryptoHelper */
     public CryptoHelper() {
         initComponents();
-
+        System.out.println("Test");
         jTextArea10.append("GNU GENERAL PUBLIC LICENSE\n");
-        jTextArea10.append("\n");
         jTextArea10.append("Version 2, June 1991\n");
         jTextArea10.append("\n");
         jTextArea10.append("Copyright (C) 1989, 1991 Free Software Foundation, Inc.  \n");
