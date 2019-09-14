@@ -144,7 +144,7 @@ public class M94 {
 		key = orderedKey;
 	}
 
-	private static void arrangeDisks(int[] arr) {
+	public static void arrangeDisks(int[] arr) {
 		key.ensureCapacity(25);
 
 		if(arr == null) {
@@ -155,12 +155,12 @@ public class M94 {
 		}
 	}
 	
-	private static String encrypt(String msg, int line) {
+	public static String encrypt(String msg, int line) {
 		line = line%24+1;
 		return encrypt(msg)[line];
 	}
 
-	private static String[] encrypt(String msg) {
+	public static String[] encrypt(String msg) {
 		msg = msg.replaceAll("\\s", "");
 		ArrayList<ArrayList<Character>> results = new ArrayList<ArrayList<Character>>();
 		String[] response = new String[25];
