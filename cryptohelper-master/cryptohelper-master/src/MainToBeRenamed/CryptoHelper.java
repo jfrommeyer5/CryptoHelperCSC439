@@ -6,12 +6,16 @@ package MainToBeRenamed;/*
 
 
 
+import Ciphers.BiGraphs;
 import Ciphers.FrequencyCount;
+import Ciphers.RunTheAlphabet;
 import Ciphers.TermsOfTheGPL;
 
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.util.*;
 import java.util.jar.*;
@@ -38,7 +42,10 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void initComponents() {
 
         termsOfTheGPL = new TermsOfTheGPL();
-        FrequencyCount frequencyCount = new FrequencyCount(this.inputText);
+        frequencyCount = new FrequencyCount();
+        runTheAlphabet = new RunTheAlphabet();
+        biGraphs = new BiGraphs();
+
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
@@ -52,14 +59,14 @@ public class CryptoHelper extends javax.swing.JFrame {
         inputText = new javax.swing.JTextArea();
         rightHandNavPanelTab = new javax.swing.JTabbedPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+
+
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+
         jPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextArea5 = new javax.swing.JTextArea();
@@ -244,7 +251,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         jTextArea21 = new javax.swing.JTextArea();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextArea10 = new javax.swing.JTextArea();
+
 
         //right click and you get a menu --- neat
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
@@ -333,40 +340,38 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane2.setViewportView(frequencyCount.getFrequencyCountTextArea());
         frequencyCount.getFrequencyCountPanel().add(jScrollPane2, java.awt.BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Frequency Count", frequencyCount.getFrequencyCountPanel());
-        jPanel2.setLayout(new java.awt.BorderLayout());
+
+
 //end of frequency count
 
 
-        jButton2.setText("Run The Alphabet");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jPanel2.add(jButton2, java.awt.BorderLayout.SOUTH);
-
-        jTextArea3.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea3.addKeyListener(new java.awt.event.KeyAdapter() {
+        //need to figure out how to extract ALL event listeners into a class
+        runTheAlphabet.getRunTheAlphabetTextArea().addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea3.addMouseListener(new java.awt.event.MouseAdapter() {
+        runTheAlphabet.getRunTheAlphabetTextArea().addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane3.setViewportView(jTextArea3);
+        //workaround to pass inputText to FrequencyCount class
+        runTheAlphabet.getRunTheAlphabetBtn().addActionListener( new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                runTheAlphabet.setInputText(inputText);
+            }
+        });
 
-        jPanel2.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+        jScrollPane3.setViewportView(runTheAlphabet.getRunTheAlphabetTextArea());
+        runTheAlphabet.getRunTheAlphabetPanel().add(jScrollPane3, java.awt.BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getRunTheAlphabetPanel());
 
-        rightHandNavPanelTab.addTab("Run The Alphabet", jPanel2);
-
-        jPanel3.setLayout(new java.awt.BorderLayout());
-
-        jTextArea4.setFont(new java.awt.Font("Monospaced", 0, 12));
+//end run the alphabet
+//begin BiGraphs
+        //need to extract all listeners
         jTextArea4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
@@ -378,20 +383,18 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane4.setViewportView(jTextArea4);
-
-        jPanel3.add(jScrollPane4, java.awt.BorderLayout.CENTER);
-
-        jButton3.setText("Show BiGraphs");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        //workaround to pass inputText to FrequencyCount class
+        biGraphs.getBiGraphsBtn().addActionListener( new java.awt.event.ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                biGraphs.setInputText(inputText);
             }
         });
 
-        jPanel3.add(jButton3, java.awt.BorderLayout.SOUTH);
-
-        rightHandNavPanelTab.addTab("BiGraphs", jPanel3);
+        jScrollPane4.setViewportView(biGraphs.getBiGraphsTextArea());
+        biGraphs.getBiGraphsPanel().add(jScrollPane4, java.awt.BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("BiGraphs", biGraphs.getBiGraphsPanel());
+//end BiGraphs
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
@@ -1646,10 +1649,10 @@ public class CryptoHelper extends javax.swing.JFrame {
                     }
                 }
             }        
-            String temp = new String();            
+            String temp = "";
             while ((temp = br.readLine()) != null)
             {
-                String parse[] = temp.split(", ");                
+                String[] parse = temp.split(", ");
                 dictionary[parse[0].charAt(0)-65][parse[0].charAt(1)-65][parse[0].charAt(2)-65][parse[0].charAt(3)-65] = Integer.parseInt(parse[1]);
             }
         }
@@ -1664,7 +1667,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     {
         String ciphertext;
         long iteration = 0;
-        char key[];
+        char[] key;
         boolean stopToggle = false;
         
         public void stop()
@@ -1701,7 +1704,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                 
                 double bestAdj = bestScore;
                 
-                char testKey[] = new char[256];                    
+                char[] testKey = new char[256];
                 
 
                 for (int i = 0; i < 26; i++)
@@ -1774,7 +1777,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             return tally;
         }
         
-        private void smallAdj(char key[])
+        private void smallAdj(char[] key)
         {
             int rNum = (int)(Math.random() * 5);
             
@@ -1792,9 +1795,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         }
         
-        private String plaintext(String ciphertext, char key[])
+        private String plaintext(String ciphertext, char[] key)
         {
-            String returnString = new String();
+            String returnString = "";
             
             for (int x = 0; x < ciphertext.length(); x++)
             {
@@ -1803,7 +1806,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             return returnString;
         }
         
-        private void randomize(char key[])
+        private void randomize(char[] key)
         {
             ArrayList array = new ArrayList();
             
@@ -1901,7 +1904,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         String inputString = formatString(inputText);
 
         int numRows = ((Integer)jSpinner9.getValue()).intValue();
-        String sArray[] = new String[numRows];
+        String[] sArray = new String[numRows];
         
         for (int x = 0; x < numRows; x++)
         {
@@ -1939,12 +1942,12 @@ public class CryptoHelper extends javax.swing.JFrame {
             return;
         }
         
-        char array[] = new char[inputString.length()];
-        char array2[] = new char[inputString.length()];
+        char[] array = new char[inputString.length()];
+        char[] array2 = new char[inputString.length()];
         
         for (int x = 0; x < array.length; x++) array[x] = (char)(inputString.charAt(x)-'A' + 1);
         
-        System.out.println("");
+        System.out.println();
         
         for (int q = 1; q <= 26; q++)
         {
@@ -1985,7 +1988,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         String s1 = "";
         String finish = "";
         double friedman = 0.0;
-        char array[] = new char[((Integer)jSpinner8.getValue()).intValue()];
+        char[] array = new char[((Integer)jSpinner8.getValue()).intValue()];
 
         jTextArea18.setText("");
         
@@ -2003,7 +2006,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             {
                 for (int y = 0; y < 26; y++) 
                 {
-                    if(((String)jTable6.getValueAt(s1.charAt(x%s1.length())-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                    if(jTable6.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                         outputString = outputString + jTable6.getColumnName(y);
                 }
             }
@@ -2026,7 +2029,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private double calculateFriedman(String inputString)
     {
         String tempString;
-        double array[] = new double[256];
+        double[] array = new double[256];
         double friedman = 0;
         int spinnerValue = 1;
         
@@ -2064,7 +2067,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         String inputString = formatString(inputText);
         String outputString = "";
         String s1 = formatString(jTextField6);
-        char charArray[];
+        char[] charArray;
         
         if (!jCheckBox2.isSelected())
         {
@@ -2074,7 +2077,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             {
                 for (int y = 0; y < 26; y++) 
                 {
-                    if(((String)jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                    if(jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                         outputString = outputString + jTable5.getColumnName(y);
                 }
             }
@@ -2093,7 +2096,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             {
                 for (int y = 0; y < 26; y++) 
                 {
-                    if(((String)jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                    if(jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                         outputString = outputString + jTable5.getColumnName(y);
                 }
                 s1 = s1 + outputString.charAt(x);
@@ -2129,7 +2132,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         String outputString = "";
         String s1 = "";
         String tempString = "";
-        double array[] = new double[256];
+        double[] array = new double[256];
         double friedman = 0;        
         
         int js = ((Integer)jSpinner7.getValue()).intValue();
@@ -2164,7 +2167,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                     {
                         for (w = 0; w < 26; w++) 
                         {
-                            if(((String)jTable5.getValueAt(s1.charAt(t%s1.length())-'A', w)).equals((new Character(tempString.charAt(t))).toString())) 
+                            if(jTable5.getValueAt(s1.charAt(t%s1.length())-'A', w).equals((new Character(tempString.charAt(t))).toString()))
                                 outputString = outputString + jTable5.getColumnName(w);
                         }
                         s1 = s1 + outputString.charAt(t);
@@ -2217,7 +2220,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         String inputString = formatString(inputText);
         String outputString = "";
         String s1 = "";
-        double array[] = new double[256];
+        double[] array = new double[256];
         double friedman = 0;        
         
         for (int x = 0; x < ((Integer)jSpinner6.getValue()).intValue(); x++)
@@ -2231,12 +2234,12 @@ public class CryptoHelper extends javax.swing.JFrame {
         {
             for (int y = 0; y < 26; y++) 
             {
-                if(((String)jTable3.getValueAt(s1.charAt(x%s1.length()     )-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                if(jTable3.getValueAt(s1.charAt(x%s1.length()     )-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                     outputString = outputString + jTable3.getColumnName(y);
             }
         }
       
-        char charArray[] = new char[outputString.length() + ((outputString.length()-1)/5)];
+        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
         
         for (int x = 0, y = 0; x < outputString.length(); x++, y++)
         {
@@ -2262,7 +2265,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         {
             friedman += array[x]/outputString.length() * ((array[x]-1)/(outputString.length()-1));
         }        
-        jTextArea15.append("\n\nFriedman value = " + friedman);;
+        jTextArea15.append("\n\nFriedman value = " + friedman);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -2274,12 +2277,12 @@ public class CryptoHelper extends javax.swing.JFrame {
         {
             for (int y = 0; y < 26; y++) 
             {
-                if(((String)jTable2.getValueAt(s1.charAt(x%s1.length())-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                if(jTable2.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                     outputString = outputString + jTable2.getColumnName(y);
             }
         }
       
-        char charArray[] = new char[outputString.length() + ((outputString.length()-1)/5)];
+        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
         
         for (int x = 0, y = 0; x < outputString.length(); x++, y++)
         {
@@ -2297,10 +2300,10 @@ public class CryptoHelper extends javax.swing.JFrame {
         
         for (int x = 0; x < inputString.length(); x++)
         {
-            outputString = outputString + ((String)jTable1.getValueAt(s1.charAt(x%s1.length())-'A', inputString.charAt(x)-'A'));
+            outputString = outputString + jTable1.getValueAt(s1.charAt(x%s1.length())-'A', inputString.charAt(x)-'A');
         }
 
-        char charArray[] = new char[outputString.length() + ((outputString.length()-1)/5)];
+        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
         
         for (int x = 0, y = 0; x < outputString.length(); x++, y++)
         {
@@ -2357,7 +2360,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         String inputString = formatString(inputText);
         String tempString;
-        double array[] = new double[256];
+        double[] array = new double[256];
         double friedman = 0;
         int spinnerValue = ((Integer)jSpinner4.getValue()).intValue();
         
@@ -2404,7 +2407,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         String inputString = formatString(inputText);
 
         int wordLength = ((Integer)jSpinner3.getValue()).intValue();
-        String sArray[] = new String[wordLength];
+        String[] sArray = new String[wordLength];
         
         for (int x = 0; x < wordLength; x++)
         {
@@ -2430,11 +2433,11 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jTextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaKeyReleased
         if (evt.isControlDown())
         {
-            if (evt.getKeyCode()==evt.VK_F)
+            if (evt.getKeyCode()== KeyEvent.VK_F)
             {
                 performSearch((JTextArea)evt.getSource());
             }
-            else if (evt.getKeyCode()==evt.VK_G)
+            else if (evt.getKeyCode()== KeyEvent.VK_G)
             {
                 performSearchAgain((JTextArea)evt.getSource());
             }
@@ -2469,7 +2472,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }            
     }
     private void jTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaMouseClicked
-        if (evt.getButton()==evt.BUTTON3)
+        if (evt.getButton()== MouseEvent.BUTTON3)
         {
             jPopupMenu1.show((JTextArea)evt.getSource(), evt.getX(), evt.getY());
         }
@@ -2535,7 +2538,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             charArray[x] = (char)(charArray[x] + 64);
         }
         
-        char charArray2[] = new char[charArray.length + ((charArray.length-1)/5)];
+        char[] charArray2 = new char[charArray.length + ((charArray.length-1)/5)];
         
         for (int x = 0, y = 0; x < charArray.length; x++, y++)
         {
@@ -2618,7 +2621,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                 // insert code that now searches using the content of mSearchString
                 
                 counter = 0;
-                if (inputString.indexOf(mSearchString, 0)==0) counter++;
+                if (inputString.indexOf(mSearchString)==0) counter++;
                 for (int y = 0; y >= 0;)
                 {
                     if ((y = inputString.indexOf(mSearchString, y+1)) >= 0) counter++;
@@ -2652,7 +2655,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                 // insert code that now searches using the content of mSearchString
                 
                 counter = 0;
-                if (inputString.indexOf(mSearchString, 0)==0) counter++;
+                if (inputString.indexOf(mSearchString)==0) counter++;
                 for (int y = 0; y >= 0;)
                 {
                     if ((y = inputString.indexOf(mSearchString, y+1)) >= 0) counter++;
@@ -2696,7 +2699,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             charArray[x] = (char)(charArray[x] + 64);
         }
         
-        char charArray2[] = new char[charArray.length + ((charArray.length-1)/5)];
+        char[] charArray2 = new char[charArray.length + ((charArray.length-1)/5)];
         
         for (int x = 0, y = 0; x < charArray.length; x++, y++)
         {
@@ -2706,45 +2709,6 @@ public class CryptoHelper extends javax.swing.JFrame {
         
         jTextArea7.append(new String(charArray2));
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String inputString = formatString(inputText);
-        String tempString;
-        Counter counter = new Counter();
-        
-        for (int x = 0; x < inputString.length() - 1; x++)
-        {
-            tempString = inputString.substring(x, x+2);
-            if (inputString.indexOf(tempString, x)>=0)
-            {
-                if (!counter.contains(tempString))
-                {
-                    counter.add(tempString, x);
-                    for (int y = x; y >= 0;)
-                    {
-                        if ((y = inputString.indexOf(tempString, y+2)) >= 0) counter.inc(y);
-                    }
-                }
-            }
-        }
-        
-        jTextArea4.setText("");
-        
-        for (int x = 0; x < counter.length; x++)
-        {
-            jTextArea4.append(counter.sArray[x]);
-            jTextArea4.append(" = ");
-            jTextArea4.append(new Integer(counter.iArray[x]).toString());
-            jTextArea4.append(" at positions ");
-            for (int y = 0; y < counter.iArray[x]; y++)
-            {
-                jTextArea4.append("" + counter.pArray[x][y]);
-                if (y!=counter.iArray[x] - 1)
-                    jTextArea4.append(",");
-            }
-            jTextArea4.append("\n");
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         String inputString = formatString(inputText);
@@ -2786,46 +2750,26 @@ public class CryptoHelper extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String inputString = inputText.getText();
-        inputString = inputString.toLowerCase();
-        
-        jTextArea3.setText("");
-        
-        for (int x = 0; x < 25; x++)
-        {
-            for (int y = 0; y < inputString.length(); y++)
-            {
-                //jTextArea4.append(new Character((char)(inputString.charAt(y)+x)).toString());
-                if (inputString.charAt(y) >='a' && inputString.charAt(y) <= 'z')
-                {
-                    jTextArea3.append(new Character((char)((inputString.charAt(y)+x)%('z'+1)+((int)((inputString.charAt(y)+x)/('z'+1))*'a'))).toString());
-                }
-                else jTextArea3.append(" ");
-            }
-            jTextArea3.append("\n");
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CryptoHelper().setVisible(true);
             }
         });
     }
- 
+
+    //already extracted into own class. Will be removed once refactoring is complete
     private class Counter
     {
         public int length = 0;
-        
-        public String sArray[] = new String[10000];
-        public int iArray[] = new int[10000];
-        public int pArray[][] = new int[10000][100];
-    
+
+        public String[] sArray = new String[10000];
+        public int[] iArray = new int[10000];
+        public int[][] pArray = new int[10000][100];
+
         public void add(String s, int pos)
         {
             sArray[length] = s;
@@ -2949,13 +2893,15 @@ public class CryptoHelper extends javax.swing.JFrame {
     }    
 
     private String searchStr;
-    private int dictionary[][][][];
+    private int[][][][] dictionary;
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
     //private CipherService = new CipherService();
 
     private TermsOfTheGPL termsOfTheGPL;
     private FrequencyCount frequencyCount;
+    private RunTheAlphabet runTheAlphabet;
+    private BiGraphs biGraphs;
 
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -2969,11 +2915,11 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
+
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton3;
+
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -3017,7 +2963,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
+
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
@@ -3131,7 +3077,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
     private javax.swing.JTextArea inputText;
-    private javax.swing.JTextArea jTextArea10;
+
     private javax.swing.JTextArea jTextArea11;
     private javax.swing.JTextArea jTextArea12;
     private javax.swing.JTextArea jTextArea13;
@@ -3141,10 +3087,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea17;
     private javax.swing.JTextArea jTextArea18;
     private javax.swing.JTextArea jTextArea19;
-
     private javax.swing.JTextArea jTextArea20;
     private javax.swing.JTextArea jTextArea21;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
