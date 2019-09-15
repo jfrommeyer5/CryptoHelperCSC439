@@ -10,17 +10,14 @@ public class FrequencyCount{
     private JButton frequencyCountBtn;
     private JPanel frequencyCountPanel;
     private JTextArea frequencyCountTextArea;
-    //private JTabbedPane frequencyCountTabbedPane;
 
     private JTextArea inputText;
 
-    public FrequencyCount(JTextArea inputText){
+    public FrequencyCount(){
         frequencyCountBtn = new JButton();
         frequencyCountPanel = new JPanel();
         frequencyCountTextArea = new JTextArea();
-
-        this.inputText = inputText;
-
+        inputText = new JTextArea();
 
 
         frequencyCountPanel.setLayout(new BorderLayout());
