@@ -7,56 +7,18 @@ import java.awt.event.*;
 
 
 //extend BaseCipher eventually
-public class BiGraphs {
+public class BiGraphs extends BaseCipher{
 
-    private JButton biGraphsBtn;
-    private JPanel biGraphsPanel;
-    private JTextArea biGraphsTextArea;
 
-    private JTextArea inputText;
 
     public BiGraphs(){
-        biGraphsBtn = new JButton();
-        biGraphsPanel = new JPanel();
-        biGraphsTextArea = new JTextArea();
-        inputText = new JTextArea();
-
-
-        biGraphsPanel.setLayout(new BorderLayout());
-
-
-        initializeBiGraphsBtn();
-
-        biGraphsTextArea.setFont(new Font("Monospaced", 0, 12));
-        biGraphsTextArea.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                //jTextAreaKeyReleased(evt);
-            }
-        });
-        biGraphsTextArea.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-               // jTextAreaMouseClicked(evt);
-            }
-        });
-
-
-
+        super();
+        initializeActionBtn("Show BiGraphs");
     }
 
-    public void initializeBiGraphsBtn(){
-        biGraphsBtn.setText("Show BiGraphs");
-
-        biGraphsBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        biGraphsPanel.add(biGraphsBtn, BorderLayout.SOUTH);
-    }
-
-    private void jButton3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String inputString = formatString(inputText);
+    @Override
+    public void actionButtonActionPerformed(ActionEvent evt) {
+        String inputString = formatString(getInputText());
         String tempString;
         Counter counter = new Counter();
 
@@ -76,26 +38,23 @@ public class BiGraphs {
             }
         }
 
-        biGraphsTextArea.setText("");
+        getMainCipherTextArea().setText("");
 
         for (int x = 0; x < counter.length; x++)
         {
-            biGraphsTextArea.append(counter.sArray[x]);
-            biGraphsTextArea.append(" = ");
-            biGraphsTextArea.append(new Integer(counter.iArray[x]).toString());
-            biGraphsTextArea.append(" at positions ");
+            getMainCipherTextArea().append(counter.sArray[x]);
+            getMainCipherTextArea().append(" = ");
+            getMainCipherTextArea().append(new Integer(counter.iArray[x]).toString());
+            getMainCipherTextArea().append(" at positions ");
             for (int y = 0; y < counter.iArray[x]; y++)
             {
-                biGraphsTextArea.append("" + counter.pArray[x][y]);
+                getMainCipherTextArea().append("" + counter.pArray[x][y]);
                 if (y!=counter.iArray[x] - 1)
-                    biGraphsTextArea.append(",");
+                    getMainCipherTextArea().append(",");
             }
-            biGraphsTextArea.append("\n");
+            getMainCipherTextArea().append("\n");
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-
-
+    }
 
     //temporary. will be extracted into a service of methods simliar to these.
     private String formatString(JTextArea jta)
@@ -148,35 +107,4 @@ public class BiGraphs {
         return inputString;
     }
 
-    public JButton getBiGraphsBtn() {
-        return biGraphsBtn;
-    }
-
-    public void setBiGraphsBtn(JButton biGraphsBtn) {
-        this.biGraphsBtn = biGraphsBtn;
-    }
-
-    public JPanel getBiGraphsPanel() {
-        return biGraphsPanel;
-    }
-
-    public void setBiGraphsPanel(JPanel biGraphsPanel) {
-        this.biGraphsPanel = biGraphsPanel;
-    }
-
-    public JTextArea getBiGraphsTextArea() {
-        return biGraphsTextArea;
-    }
-
-    public void setBiGraphsTextArea(JTextArea biGraphsTextArea) {
-        this.biGraphsTextArea = biGraphsTextArea;
-    }
-
-    public JTextArea getInputText() {
-        return inputText;
-    }
-
-    public void setInputText(JTextArea inputText) {
-        this.inputText = inputText;
-    }
 }

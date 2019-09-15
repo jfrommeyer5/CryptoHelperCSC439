@@ -5,59 +5,20 @@ import java.awt.*;
 import java.awt.event.*;
 
 //extend BaseCipher eventually
-public class FrequencyCount{
-
-    private JButton frequencyCountBtn;
-    private JPanel frequencyCountPanel;
-    private JTextArea frequencyCountTextArea;
-
-    private JTextArea inputText;
-
+public class FrequencyCount extends BaseCipher{
     public FrequencyCount(){
-        frequencyCountBtn = new JButton();
-        frequencyCountPanel = new JPanel();
-        frequencyCountTextArea = new JTextArea();
-        inputText = new JTextArea();
-
-
-        frequencyCountPanel.setLayout(new BorderLayout());
-
-
-        initializeFrequencyCountBtn();
-
-        frequencyCountTextArea.setFont(new Font("Monospaced", 0, 12));
-        frequencyCountTextArea.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                //jTextAreaKeyReleased(evt);
-            }
-        });
-        frequencyCountTextArea.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                //jTextAreaMouseClicked(evt);
-            }
-        });
-
-
-        frequencyCountPanel.add(frequencyCountBtn, BorderLayout.SOUTH);
+        super();
+        initializeActionBtn("Perform Frequency Count");
     }
 
-    public void initializeFrequencyCountBtn(){
-        frequencyCountBtn.setText("Perform Frequency Count");
-
-        frequencyCountBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frequencyCountActionPerformed(evt);
-            }
-        });
-    }
-
-    private void frequencyCountActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String inputString = inputText.getText();
+    @Override
+    public void actionButtonActionPerformed(ActionEvent evt) {
+        String inputString = getInputText().getText();
         inputString = inputString.toUpperCase();
         int array[] = new int[26];
         String sArray[];
 
-        frequencyCountTextArea.setText("");
+        getMainCipherTextArea().setText("");
 
         for (int x = 0; x < inputString.length(); x++)
         {
@@ -94,114 +55,80 @@ public class FrequencyCount{
 
         for (int x = 0; x < 26; x++)
         {
-            frequencyCountTextArea.append(new Character((char)('A'+x)).toString());
-            frequencyCountTextArea.append(" = ");
-            frequencyCountTextArea.append(new Integer(array[x]).toString());
-            frequencyCountTextArea.append(" = ");
+            getMainCipherTextArea().append(new Character((char)('A'+x)).toString());
+            getMainCipherTextArea().append(" = ");
+            getMainCipherTextArea().append(new Integer(array[x]).toString());
+            getMainCipherTextArea().append(" = ");
             for (int y = 0; y<array[x]; y++)
-                frequencyCountTextArea.append("I");
-            if (x!=25) frequencyCountTextArea.append("\n");
+                getMainCipherTextArea().append("I");
+            if (x!=25) getMainCipherTextArea().append("\n");
         }
 
-        frequencyCountTextArea.append("\n");
+        getMainCipherTextArea().append("\n");
 
         sArray = inputString.split(" ");
 
-        frequencyCountTextArea.append("\nHere are all the 1 letter words\n");
+        getMainCipherTextArea().append("\nHere are all the 1 letter words\n");
         for (int x = 0; x < sArray.length; x++)
         {
-            if (sArray[x].length() == 1) {frequencyCountTextArea.append(sArray[x]); frequencyCountTextArea.append("\n");}
+            if (sArray[x].length() == 1) {getMainCipherTextArea().append(sArray[x]); getMainCipherTextArea().append("\n");}
         }
 
-        frequencyCountTextArea.append("\nHere are all the 2 letter words\n");
+        getMainCipherTextArea().append("\nHere are all the 2 letter words\n");
         for (int x = 0; x < sArray.length; x++)
         {
-            if (sArray[x].length() == 2) {frequencyCountTextArea.append(sArray[x]); frequencyCountTextArea.append("\n");}
+            if (sArray[x].length() == 2) {getMainCipherTextArea().append(sArray[x]); getMainCipherTextArea().append("\n");}
         }
 
-        frequencyCountTextArea.append("\nHere are all the 3 letter words\n");
+        getMainCipherTextArea().append("\nHere are all the 3 letter words\n");
         for (int x = 0; x < sArray.length; x++)
         {
-            if (sArray[x].length() == 3) {frequencyCountTextArea.append(sArray[x]); frequencyCountTextArea.append("\n");}
+            if (sArray[x].length() == 3) {getMainCipherTextArea().append(sArray[x]); getMainCipherTextArea().append("\n");}
         }
 
-        frequencyCountTextArea.append("\nHere are all the initial letters\n");
-        for (int x = 0; x < sArray.length; x++)
-        {
-            if (sArray[x].length()>0)
-                frequencyCountTextArea.append(new Character(sArray[x].charAt(0)).toString());
-        }
-        frequencyCountTextArea.append("\n");
-
-        frequencyCountTextArea.append("\nHere are all the final letters\n");
+        getMainCipherTextArea().append("\nHere are all the initial letters\n");
         for (int x = 0; x < sArray.length; x++)
         {
             if (sArray[x].length()>0)
-                frequencyCountTextArea.append(new Character(sArray[x].charAt(sArray[x].length()-1)).toString());
+                getMainCipherTextArea().append(new Character(sArray[x].charAt(0)).toString());
         }
-        frequencyCountTextArea.append("\n");
+        getMainCipherTextArea().append("\n");
 
-        frequencyCountTextArea.append("\nHere are all the doubled letters\n");
+        getMainCipherTextArea().append("\nHere are all the final letters\n");
+        for (int x = 0; x < sArray.length; x++)
+        {
+            if (sArray[x].length()>0)
+                getMainCipherTextArea().append(new Character(sArray[x].charAt(sArray[x].length()-1)).toString());
+        }
+        getMainCipherTextArea().append("\n");
+
+        getMainCipherTextArea().append("\nHere are all the doubled letters\n");
         char c = inputString.charAt(0);
         for (int x = 1; x < inputString.length(); x++)
         {
             if (inputString.charAt(x) == c)
             {
-                frequencyCountTextArea.append(new Character(c).toString());
-                frequencyCountTextArea.append(new Character(c).toString());
-                frequencyCountTextArea.append("\n");
+                getMainCipherTextArea().append(new Character(c).toString());
+                getMainCipherTextArea().append(new Character(c).toString());
+                getMainCipherTextArea().append("\n");
             }
             c = inputString.charAt(x);
         }
 
-        frequencyCountTextArea.append("\nFrequencies for English\n");
+        getMainCipherTextArea().append("\nFrequencies for English\n");
 
-        frequencyCountTextArea.append("a = 07 = IIIIIII                 n = 08 = IIIIIIII   \n");
-        frequencyCountTextArea.append("b = 01 = I                       o = 07 = IIIIIII    \n");
-        frequencyCountTextArea.append("c = 03 = III                     p = 03 = III        \n");
-        frequencyCountTextArea.append("d = 04 = IIII                    q =                 \n");
-        frequencyCountTextArea.append("e = 13 = IIIIIIIIIIIII           r = 08 = IIIIIIII   \n");
-        frequencyCountTextArea.append("f = 03 = III                     s = 06 = IIIIII     \n");
-        frequencyCountTextArea.append("g = 02 = II                      t = 09 = IIIIIIIII  \n");
-        frequencyCountTextArea.append("h = 04 = IIII                    u = 03 = III        \n");
-        frequencyCountTextArea.append("i = 07 = IIIIIII                 v = 01 = I          \n");
-        frequencyCountTextArea.append("j =                              w = 02 = II         \n");
-        frequencyCountTextArea.append("k =                              x =                 \n");
-        frequencyCountTextArea.append("l = 04 = IIII                    y = 02 = II         \n");
-        frequencyCountTextArea.append("m = 03 = III                     z =                 \n");
-
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-
-    public JButton getFrequencyCountBtn() {
-        return frequencyCountBtn;
-    }
-
-    public void setFrequencyCountBtn(JButton frequencyCountBtn) {
-        this.frequencyCountBtn = frequencyCountBtn;
-    }
-
-    public JPanel getFrequencyCountPanel() {
-        return frequencyCountPanel;
-    }
-
-    public void setFrequencyCountPanel(JPanel frequencyCountPanel) {
-        this.frequencyCountPanel = frequencyCountPanel;
-    }
-
-    public JTextArea getInputText() {
-        return inputText;
-    }
-
-    public void setInputText(JTextArea inputText) {
-        this.inputText = inputText;
-    }
-
-    public JTextArea getFrequencyCountTextArea() {
-        return frequencyCountTextArea;
-    }
-
-    public void setFrequencyCountTextArea(JTextArea frequencyCountTextArea) {
-        this.frequencyCountTextArea = frequencyCountTextArea;
+        getMainCipherTextArea().append("a = 07 = IIIIIII                 n = 08 = IIIIIIII   \n");
+        getMainCipherTextArea().append("b = 01 = I                       o = 07 = IIIIIII    \n");
+        getMainCipherTextArea().append("c = 03 = III                     p = 03 = III        \n");
+        getMainCipherTextArea().append("d = 04 = IIII                    q =                 \n");
+        getMainCipherTextArea().append("e = 13 = IIIIIIIIIIIII           r = 08 = IIIIIIII   \n");
+        getMainCipherTextArea().append("f = 03 = III                     s = 06 = IIIIII     \n");
+        getMainCipherTextArea().append("g = 02 = II                      t = 09 = IIIIIIIII  \n");
+        getMainCipherTextArea().append("h = 04 = IIII                    u = 03 = III        \n");
+        getMainCipherTextArea().append("i = 07 = IIIIIII                 v = 01 = I          \n");
+        getMainCipherTextArea().append("j =                              w = 02 = II         \n");
+        getMainCipherTextArea().append("k =                              x =                 \n");
+        getMainCipherTextArea().append("l = 04 = IIII                    y = 02 = II         \n");
+        getMainCipherTextArea().append("m = 03 = III                     z =                 \n");
     }
 }
