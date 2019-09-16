@@ -43,6 +43,7 @@ for(int i = 0; i < originalTextCharArr.length; i++) {
 					while((originalTextCharArr[i] + shiftAmt) > 122) {
 						originalTextCharArr[i] = (char) (originalTextCharArr[i] - 26);
 						}
+					originalTextCharArr[i] = (char) (originalTextCharArr[i] + shiftAmt);
 				}
 				//Perform shift if no wrap-around was needed
 				else {
@@ -65,6 +66,7 @@ for(int i = 0; i < originalTextCharArr.length; i++) {
 					while((originalTextCharArr[i] + shiftAmt) > 90) {
 						originalTextCharArr[i] = (char) (originalTextCharArr[i] - 26);
 						}
+					originalTextCharArr[i] = (char) (originalTextCharArr[i] + shiftAmt);
 				}
 				//Perform shift if no wrap-around was needed
 				else {
