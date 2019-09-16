@@ -171,20 +171,10 @@ public class M94 {
 	 * Encrypt the string.
 	 * Output the line from the cipher of the encrypted message
 	 */
-	public static String encrypt(String msg, int line) {
-		line = line%24+1;
-		return encrypt(msg)[line];
-	}
-
-	/*
-	 * Input a string.
-	 * Encrypt with the M-94 cipher based on the arranged disks.
-	 * Output an array of strings. Each string in the array is an encrypted line of the cipher
-	 */
 	public static String[] encrypt(String msg) {
 		msg = msg.replaceAll("\\W", "");
 		ArrayList<ArrayList<Character>> results = new ArrayList<ArrayList<Character>>();
-		String[] response = new String[25];
+		String[] response = new String[26];
 		int counter = 0;
 		int index = 0;
 		int filler;
@@ -200,7 +190,7 @@ public class M94 {
 			results.add(new ArrayList<Character>());
 
 		while(iter.current() != CharacterIterator.DONE) {
-			if(counter > 24) counter = 0;
+			if(counter > 25) counter = 0;
 			
 			for(int i = 0; i < 26; i++)
 				results.get(i).add(index, (char) key.get(counter).get((key.get(counter).indexOf(iter.current()) + i)%26));
@@ -262,10 +252,10 @@ public class M94 {
 			System.out.println(response[i]);
 		System.out.println();
 
-		String[] msg = new String[25];
+		String[] msg = new String[26];
 		msg = encrypt(response[r]);
 
-		String[] output = new String[25];
+		String[] output = new String[26];
 		for(int i = 0; i < output.length; i++) {
 			output[i] = String.valueOf(msg[i]);
 			System.out.println(output[i]);
