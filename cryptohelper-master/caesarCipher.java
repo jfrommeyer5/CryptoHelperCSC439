@@ -14,9 +14,11 @@ public class caesarCipher {
 		System.out.println("Please enter the text to be encrypted: ");
 		Scanner scan = new Scanner(System.in);
 //Provide input text here (Accepts strings into originalText and converts them to char array)
-		String originalText = scan.nextLine();
+		String originalText;
+		originalText = scan.nextLine();
 		char[] originalTextCharArr = originalText.toCharArray(); 
 //Provide cipher shift here (Accepts any integer)
+		System.out.println("Please enter the amount to shift the cipher: ");
 		int shiftAmt = scan.nextInt();
 		
 		char[] finalTextCharArr = caesarCipherAction(originalTextCharArr, shiftAmt);
