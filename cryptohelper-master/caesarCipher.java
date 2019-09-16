@@ -1,4 +1,4 @@
-package caesarCipher;
+package Ciphers;
 import java.util.Scanner; 
 
 /*Function to perform a caesar cipher on a string of characters.
