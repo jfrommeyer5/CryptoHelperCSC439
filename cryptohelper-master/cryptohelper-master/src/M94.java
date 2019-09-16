@@ -1,4 +1,4 @@
-package test;
+package Ciphers;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -12,6 +12,10 @@ public class M94 {
 	@SuppressWarnings("rawtypes")
 	private static ArrayList<ArrayList> key = new ArrayList<ArrayList>();
 
+	/*
+	 * Creates ArrayLists of the disks used in the M-94 cipher.
+	 * Each ArrayList corresponds with the physical disks.
+	 */
 	private static void initDisks() {
 		ArrayList<Character> B1 = new ArrayList<Character>();
 		for(char c: "ABCEIGDJFVUYMHTQKZOLRXSPWN".toCharArray()) {
@@ -139,11 +143,18 @@ public class M94 {
 		}
 		orderedKey.add(Z25);
 	}
-
+	
+	/*
+	 * Sets the key to be the disks arranged in alphabetical order.
+	 */
 	private static void arrangeDisks() {
 		key = orderedKey;
 	}
 
+	/*
+	 * Orders the disks based on user input from an integer array.
+	 * A disk can only be used 1 time.
+	 */
 	public static void arrangeDisks(int[] arr) {
 		key.ensureCapacity(25);
 
@@ -155,13 +166,23 @@ public class M94 {
 		}
 	}
 	
+	/*
+	 * Input a string and a line number.
+	 * Encrypt the string.
+	 * Output the line from the cipher of the encrypted message
+	 */
 	public static String encrypt(String msg, int line) {
 		line = line%24+1;
 		return encrypt(msg)[line];
 	}
 
+	/*
+	 * Input a string.
+	 * Encrypt with the M-94 cipher based on the arranged disks.
+	 * Output an array of strings. Each string in the array is an encrypted line of the cipher
+	 */
 	public static String[] encrypt(String msg) {
-		msg = msg.replaceAll("\\s", "");
+		msg = msg.replaceAll("\\W", "");
 		ArrayList<ArrayList<Character>> results = new ArrayList<ArrayList<Character>>();
 		String[] response = new String[25];
 		int counter = 0;
@@ -200,6 +221,9 @@ public class M94 {
 		return response;
 	}
 
+	/*
+	 * Used for Testing
+	 */
 	/*public static void main(String[] args) {
 		Random rand = new Random();
 		int r = rand.nextInt(26);
