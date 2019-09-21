@@ -1,15 +1,24 @@
-/*
- * CryptoHelper.java
+package MainToBeRenamed;/*
+ * MainToBeRenamed.CryptoHelper.java
  *
  * Created on January 11, 2005, 7:37 PM
  */
 
-package cryptohelper;
+
+
+import Ciphers.BiGraphs;
+import Ciphers.FrequencyCount;
+import Ciphers.RunTheAlphabet;
+import Ciphers.TermsOfTheGPL;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.*;
-import java.io.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import java.util.*;
 import java.util.jar.*;
 import java.util.zip.*;
@@ -20,101 +29,10 @@ import java.util.zip.*;
  */
 public class CryptoHelper extends javax.swing.JFrame {
     
-    /** Creates new form CryptoHelper */
+    /** Creates new form MainToBeRenamed.CryptoHelper */
     public CryptoHelper() {
         initComponents();
-        System.out.println("Test");
-        jTextArea10.append("GNU GENERAL PUBLIC LICENSE\n");
-        jTextArea10.append("Version 2, June 1991\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("Copyright (C) 1989, 1991 Free Software Foundation, Inc.  \n");
-        jTextArea10.append("59 Temple Place - Suite 330, Boston, MA  02111-1307, USA\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("Everyone is permitted to copy and distribute verbatim copies\n");
-        jTextArea10.append("of this license document, but changing it is not allowed.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("Preamble\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("The licenses for most software are designed to take away your freedom to share and change it. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change free software--to make sure the software is free for all its users. This General Public License applies to most of the Free Software Foundation's software and to any other program whose authors commit to using it. (Some other Free Software Foundation software is covered by the GNU Library General Public License instead.) You can apply it to your programs, too.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for this service if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs; and that you know you can do these things.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("To protect your rights, we need to make restrictions that forbid anyone to deny you these rights or to ask you to surrender the rights. These restrictions translate to certain responsibilities for you if you distribute copies of the software, or if you modify it.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("For example, if you distribute copies of such a program, whether gratis or for a fee, you must give the recipients all the rights that you have. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("We protect your rights with two steps: (1) copyright the software, and (2) offer you this license which gives you legal permission to copy, distribute and/or modify the software.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("Also, for each author's protection and ours, we want to make certain that everyone understands that there is no warranty for this free software. If the software is modified by someone else and passed on, we want its recipients to know that what they have is not the original, so that any problems introduced by others will not reflect on the original authors' reputations.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("Finally, any free program is threatened constantly by software patents. We wish to avoid the danger that redistributors of a free program will individually obtain patent licenses, in effect making the program proprietary. To prevent this, we have made it clear that any patent must be licensed for everyone's free use or not licensed at all.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("The precise terms and conditions for copying, distribution and modification follow.\n");
-        jTextArea10.append("TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("0. This License applies to any program or other work which contains a notice placed by the copyright holder saying it may be distributed under the terms of this General Public License. The \"Program\", below, refers to any such program or work, and a \"work based on the Program\" means either the Program or any derivative work under copyright law: that is to say, a work containing the Program or a portion of it, either verbatim or with modifications and/or translated into another language. (Hereinafter, translation is included without limitation in the term \"modification\".) Each licensee is addressed as \"you\".\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("Activities other than copying, distribution and modification are not covered by this License; they are outside its scope. The act of running the Program is not restricted, and the output from the Program is covered only if its contents constitute a work based on the Program (independent of having been made by running the Program). Whether that is true depends on what the Program does.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("1. You may copy and distribute verbatim copies of the Program's source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice and disclaimer of warranty; keep intact all the notices that refer to this License and to the absence of any warranty; and give any other recipients of the Program a copy of this License along with the Program.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("You may charge a fee for the physical act of transferring a copy, and you may at your option offer warranty protection in exchange for a fee.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("2. You may modify your copy or copies of the Program or any portion of it, thus forming a work based on the Program, and copy and distribute such modifications or work under the terms of Section 1 above, provided that you also meet all of these conditions:\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("    a) You must cause the modified files to carry prominent notices stating that you changed the files and the date of any change. \n");
-        jTextArea10.append("\n");
-        jTextArea10.append("    b) You must cause any work that you distribute or publish, that in whole or in part contains or is derived from the Program or any part thereof, to be licensed as a whole at no charge to all third parties under the terms of this License. \n");
-        jTextArea10.append("\n");
-        jTextArea10.append("    c) If the modified program normally reads commands interactively when run, you must cause it, when started running for such interactive use in the most ordinary way, to print or display an announcement including an appropriate copyright notice and a notice that there is no warranty (or else, saying that you provide a warranty) and that users may redistribute the program under these conditions, and telling the user how to view a copy of this License. (Exception: if the Program itself is interactive but does not normally print such an announcement, your work based on the Program is not required to print an announcement.) \n");
-        jTextArea10.append("\n");
-        jTextArea10.append("These requirements apply to the modified work as a whole. If identifiable sections of that work are not derived from the Program, and can be reasonably considered independent and separate works in themselves, then this License, and its terms, do not apply to those sections when you distribute them as separate works. But when you distribute the same sections as part of a whole which is a work based on the Program, the distribution of the whole must be on the terms of this License, whose permissions for other licensees extend to the entire whole, and thus to each and every part regardless of who wrote it.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("Thus, it is not the intent of this section to claim rights or contest your rights to work written entirely by you; rather, the intent is to exercise the right to control the distribution of derivative or collective works based on the Program.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("In addition, mere aggregation of another work not based on the Program with the Program (or with a work based on the Program) on a volume of a storage or distribution medium does not bring the other work under the scope of this License.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("3. You may copy and distribute the Program (or a work based on it, under Section 2) in object code or executable form under the terms of Sections 1 and 2 above provided that you also do one of the following:\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("    a) Accompany it with the complete corresponding machine-readable source code, which must be distributed under the terms of Sections 1 and 2 above on a medium customarily used for software interchange; or, \n");
-        jTextArea10.append("\n");
-        jTextArea10.append("    b) Accompany it with a written offer, valid for at least three years, to give any third party, for a charge no more than your cost of physically performing source distribution, a complete machine-readable copy of the corresponding source code, to be distributed under the terms of Sections 1 and 2 above on a medium customarily used for software interchange; or, \n");
-        jTextArea10.append("\n");
-        jTextArea10.append("    c) Accompany it with the information you received as to the offer to distribute corresponding source code. (This alternative is allowed only for noncommercial distribution and only if you received the program in object code or executable form with such an offer, in accord with Subsection b above.) \n");
-        jTextArea10.append("\n");
-        jTextArea10.append("The source code for a work means the preferred form of the work for making modifications to it. For an executable work, complete source code means all the source code for all modules it contains, plus any associated interface definition files, plus the scripts used to control compilation and installation of the executable. However, as a special exception, the source code distributed need not include anything that is normally distributed (in either source or binary form) with the major components (compiler, kernel, and so on) of the operating system on which the executable runs, unless that component itself accompanies the executable.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("If distribution of executable or object code is made by offering access to copy from a designated place, then offering equivalent access to copy the source code from the same place counts as distribution of the source code, even though third parties are not compelled to copy the source along with the object code.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("4. You may not copy, modify, sublicense, or distribute the Program except as expressly provided under this License. Any attempt otherwise to copy, modify, sublicense or distribute the Program is void, and will automatically terminate your rights under this License. However, parties who have received copies, or rights, from you under this License will not have their licenses terminated so long as such parties remain in full compliance.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("5. You are not required to accept this License, since you have not signed it. However, nothing else grants you permission to modify or distribute the Program or its derivative works. These actions are prohibited by law if you do not accept this License. Therefore, by modifying or distributing the Program (or any work based on the Program), you indicate your acceptance of this License to do so, and all its terms and conditions for copying, distributing or modifying the Program or works based on it.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("6. Each time you redistribute the Program (or any work based on the Program), the recipient automatically receives a license from the original licensor to copy, distribute or modify the Program subject to these terms and conditions. You may not impose any further restrictions on the recipients' exercise of the rights granted herein. You are not responsible for enforcing compliance by third parties to this License.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("7. If, as a consequence of a court judgment or allegation of patent infringement or for any other reason (not limited to patent issues), conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot distribute so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not distribute the Program at all. For example, if a patent license would not permit royalty-free redistribution of the Program by all those who receive copies directly or indirectly through you, then the only way you could satisfy both it and this License would be to refrain entirely from distribution of the Program.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("If any portion of this section is held invalid or unenforceable under any particular circumstance, the balance of the section is intended to apply and the section as a whole is intended to apply in other circumstances.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("It is not the purpose of this section to induce you to infringe any patents or other property right claims or to contest validity of any such claims; this section has the sole purpose of protecting the integrity of the free software distribution system, which is implemented by public license practices. Many people have made generous contributions to the wide range of software distributed through that system in reliance on consistent application of that system; it is up to the author/donor to decide if he or she is willing to distribute software through any other system and a licensee cannot impose that choice.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("This section is intended to make thoroughly clear what is believed to be a consequence of the rest of this License.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("8. If the distribution and/or use of the Program is restricted in certain countries either by patents or by copyrighted interfaces, the original copyright holder who places the Program under this License may add an explicit geographical distribution limitation excluding those countries, so that distribution is permitted only in or among countries not thus excluded. In such case, this License incorporates the limitation as if written in the body of this License.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("9. The Free Software Foundation may publish revised and/or new versions of the General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("Each version is given a distinguishing version number. If the Program specifies a version number of this License which applies to it and \"any later version\", you have the option of following the terms and conditions either of that version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of this License, you may choose any version ever published by the Free Software Foundation.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("10. If you wish to incorporate parts of the Program into other free programs whose distribution conditions are different, write to the author to ask for permission. For software which is copyrighted by the Free Software Foundation, write to the Free Software Foundation; we sometimes make exceptions for this. Our decision will be guided by the two goals of preserving the free status of all derivatives of our free software and of promoting the sharing and reuse of software generally.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("NO WARRANTY\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM \"AS IS\" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.\n");
-        jTextArea10.append("\n");
-        jTextArea10.append("12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.                 \n");
-        jTextArea10.append("                \n");
-        jTextArea10.append("\n");
+
     }
     
     /** This method is called from within the constructor to
@@ -124,485 +42,484 @@ public class CryptoHelper extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
-        jButton4 = new javax.swing.JButton();
-        jPanel20 = new javax.swing.JPanel();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jTextArea12 = new javax.swing.JTextArea();
-        jButton10 = new javax.swing.JButton();
-        jPanel21 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jSpinner5 = new javax.swing.JSpinner();
-        jPanel5 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jRadioButton9 = new javax.swing.JRadioButton();
-        jRadioButton10 = new javax.swing.JRadioButton();
-        jRadioButton11 = new javax.swing.JRadioButton();
-        jRadioButton12 = new javax.swing.JRadioButton();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
-        jPanel11 = new javax.swing.JPanel();
-        jPanel12 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jRadioButton13 = new javax.swing.JRadioButton();
-        jRadioButton14 = new javax.swing.JRadioButton();
-        jRadioButton15 = new javax.swing.JRadioButton();
-        jRadioButton16 = new javax.swing.JRadioButton();
-        jRadioButton17 = new javax.swing.JRadioButton();
-        jRadioButton18 = new javax.swing.JRadioButton();
-        jRadioButton19 = new javax.swing.JRadioButton();
-        jRadioButton20 = new javax.swing.JRadioButton();
-        jRadioButton21 = new javax.swing.JRadioButton();
-        jRadioButton22 = new javax.swing.JRadioButton();
-        jRadioButton23 = new javax.swing.JRadioButton();
-        jRadioButton24 = new javax.swing.JRadioButton();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jLabel5 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea8 = new javax.swing.JTextArea();
-        jPanel15 = new javax.swing.JPanel();
-        jPanel16 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTextArea9 = new javax.swing.JTextArea();
-        jButton8 = new javax.swing.JButton();
-        jPanel18 = new javax.swing.JPanel();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jSpinner4 = new javax.swing.JSpinner();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTextArea11 = new javax.swing.JTextArea();
-        jButton9 = new javax.swing.JButton();
-        jPanel22 = new javax.swing.JPanel();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel23 = new javax.swing.JPanel();
-        jPanel24 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        jTextArea13 = new javax.swing.JTextArea();
-        jButton11 = new javax.swing.JButton();
-        jPanel25 = new javax.swing.JPanel();
-        jSplitPane3 = new javax.swing.JSplitPane();
-        jScrollPane15 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jPanel26 = new javax.swing.JPanel();
-        jPanel27 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jScrollPane16 = new javax.swing.JScrollPane();
-        jTextArea14 = new javax.swing.JTextArea();
-        jButton12 = new javax.swing.JButton();
-        jPanel37 = new javax.swing.JPanel();
-        jSplitPane7 = new javax.swing.JSplitPane();
-        jScrollPane23 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
-        jPanel38 = new javax.swing.JPanel();
-        jPanel39 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jSpinner8 = new javax.swing.JSpinner();
-        jLabel16 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jScrollPane24 = new javax.swing.JScrollPane();
-        jTextArea18 = new javax.swing.JTextArea();
-        jButton16 = new javax.swing.JButton();
-        jPanel28 = new javax.swing.JPanel();
-        jSplitPane4 = new javax.swing.JSplitPane();
-        jScrollPane17 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jPanel29 = new javax.swing.JPanel();
-        jPanel30 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        jSpinner6 = new javax.swing.JSpinner();
-        jScrollPane18 = new javax.swing.JScrollPane();
-        jTextArea15 = new javax.swing.JTextArea();
-        jButton13 = new javax.swing.JButton();
-        jPanel31 = new javax.swing.JPanel();
-        jSplitPane5 = new javax.swing.JSplitPane();
-        jScrollPane19 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jPanel32 = new javax.swing.JPanel();
-        jPanel33 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jSpinner7 = new javax.swing.JSpinner();
-        jLabel13 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jScrollPane20 = new javax.swing.JScrollPane();
-        jTextArea16 = new javax.swing.JTextArea();
-        jButton14 = new javax.swing.JButton();
-        jPanel34 = new javax.swing.JPanel();
-        jSplitPane6 = new javax.swing.JSplitPane();
-        jScrollPane21 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jPanel35 = new javax.swing.JPanel();
-        jPanel36 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jScrollPane22 = new javax.swing.JScrollPane();
-        jTextArea17 = new javax.swing.JTextArea();
-        jButton15 = new javax.swing.JButton();
-        jPanel40 = new javax.swing.JPanel();
-        jButton17 = new javax.swing.JButton();
-        jScrollPane25 = new javax.swing.JScrollPane();
-        jTextArea19 = new javax.swing.JTextArea();
-        jPanel41 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jPanel42 = new javax.swing.JPanel();
-        jScrollPane26 = new javax.swing.JScrollPane();
-        jTable7 = new javax.swing.JTable();
-        jPanel43 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jSpinner9 = new javax.swing.JSpinner();
-        jPanel44 = new javax.swing.JPanel();
-        jButton18 = new javax.swing.JButton();
-        jPanel45 = new javax.swing.JPanel();
-        jPanel46 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jScrollPane27 = new javax.swing.JScrollPane();
-        jTextArea20 = new javax.swing.JTextArea();
-        jButton19 = new javax.swing.JButton();
-        jPanel47 = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
-        jLabel21 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jScrollPane28 = new javax.swing.JScrollPane();
-        jTextArea21 = new javax.swing.JTextArea();
-        jPanel17 = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jTextArea10 = new javax.swing.JTextArea();
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        termsOfTheGPL = new TermsOfTheGPL();
+        frequencyCount = new FrequencyCount();
+        runTheAlphabet = new RunTheAlphabet();
+        biGraphs = new BiGraphs();
+
+
+        buttonGroup1 = new ButtonGroup();
+        buttonGroup2 = new ButtonGroup();
+        jPopupMenu1 = new JPopupMenu();
+        jMenuItem1 = new JMenuItem();
+        jMenuItem2 = new JMenuItem();
+        jMenuItem3 = new JMenuItem();
+        jMenuItem4 = new JMenuItem();
+        jSplitPane1 = new JSplitPane();
+        jScrollPane1 = new JScrollPane();
+        inputText = new JTextArea();
+        rightHandNavPanelTab = new JTabbedPane();
+        jScrollPane2 = new JScrollPane();
+
+
+        jScrollPane3 = new JScrollPane();
+
+        jPanel3 = new JPanel();
+        jScrollPane4 = new JScrollPane();
+        jTextArea4 = new JTextArea();
+
+        jPanel4 = new JPanel();
+        jScrollPane5 = new JScrollPane();
+        jTextArea5 = new JTextArea();
+        jButton4 = new JButton();
+        jPanel20 = new JPanel();
+        jScrollPane12 = new JScrollPane();
+        jTextArea12 = new JTextArea();
+        jButton10 = new JButton();
+        jPanel21 = new JPanel();
+        jLabel8 = new JLabel();
+        jSpinner5 = new JSpinner();
+        jPanel5 = new JPanel();
+        jButton5 = new JButton();
+        jPanel6 = new JPanel();
+        jLabel1 = new JLabel();
+        jTextField1 = new JTextField();
+        jCheckBox1 = new JCheckBox();
+        jScrollPane6 = new JScrollPane();
+        jTextArea6 = new JTextArea();
+        jPanel7 = new JPanel();
+        jPanel8 = new JPanel();
+        jPanel9 = new JPanel();
+        jRadioButton1 = new JRadioButton();
+        jRadioButton2 = new JRadioButton();
+        jRadioButton3 = new JRadioButton();
+        jRadioButton4 = new JRadioButton();
+        jRadioButton5 = new JRadioButton();
+        jRadioButton6 = new JRadioButton();
+        jRadioButton7 = new JRadioButton();
+        jRadioButton8 = new JRadioButton();
+        jRadioButton9 = new JRadioButton();
+        jRadioButton10 = new JRadioButton();
+        jRadioButton11 = new JRadioButton();
+        jRadioButton12 = new JRadioButton();
+        jPanel10 = new JPanel();
+        jLabel3 = new JLabel();
+        jSpinner1 = new JSpinner();
+        jLabel2 = new JLabel();
+        jButton6 = new JButton();
+        jScrollPane7 = new JScrollPane();
+        jTextArea7 = new JTextArea();
+        jPanel11 = new JPanel();
+        jPanel12 = new JPanel();
+        jPanel13 = new JPanel();
+        jRadioButton13 = new JRadioButton();
+        jRadioButton14 = new JRadioButton();
+        jRadioButton15 = new JRadioButton();
+        jRadioButton16 = new JRadioButton();
+        jRadioButton17 = new JRadioButton();
+        jRadioButton18 = new JRadioButton();
+        jRadioButton19 = new JRadioButton();
+        jRadioButton20 = new JRadioButton();
+        jRadioButton21 = new JRadioButton();
+        jRadioButton22 = new JRadioButton();
+        jRadioButton23 = new JRadioButton();
+        jRadioButton24 = new JRadioButton();
+        jPanel14 = new JPanel();
+        jLabel4 = new JLabel();
+        jSpinner2 = new JSpinner();
+        jLabel5 = new JLabel();
+        jButton7 = new JButton();
+        jScrollPane8 = new JScrollPane();
+        jTextArea8 = new JTextArea();
+        jPanel15 = new JPanel();
+        jPanel16 = new JPanel();
+        jLabel6 = new JLabel();
+        jSpinner3 = new JSpinner();
+        jScrollPane9 = new JScrollPane();
+        jTextArea9 = new JTextArea();
+        jButton8 = new JButton();
+        jPanel18 = new JPanel();
+        jPanel19 = new JPanel();
+        jLabel7 = new JLabel();
+        jSpinner4 = new JSpinner();
+        jScrollPane11 = new JScrollPane();
+        jTextArea11 = new JTextArea();
+        jButton9 = new JButton();
+        jPanel22 = new JPanel();
+        jSplitPane2 = new JSplitPane();
+        jScrollPane14 = new JScrollPane();
+        jTable1 = new JTable();
+        jPanel23 = new JPanel();
+        jPanel24 = new JPanel();
+        jLabel9 = new JLabel();
+        jTextField2 = new JTextField();
+        jScrollPane13 = new JScrollPane();
+        jTextArea13 = new JTextArea();
+        jButton11 = new JButton();
+        jPanel25 = new JPanel();
+        jSplitPane3 = new JSplitPane();
+        jScrollPane15 = new JScrollPane();
+        jTable2 = new JTable();
+        jPanel26 = new JPanel();
+        jPanel27 = new JPanel();
+        jLabel10 = new JLabel();
+        jTextField3 = new JTextField();
+        jScrollPane16 = new JScrollPane();
+        jTextArea14 = new JTextArea();
+        jButton12 = new JButton();
+        jPanel37 = new JPanel();
+        jSplitPane7 = new JSplitPane();
+        jScrollPane23 = new JScrollPane();
+        jTable6 = new JTable();
+        jPanel38 = new JPanel();
+        jPanel39 = new JPanel();
+        jLabel15 = new JLabel();
+        jSpinner8 = new JSpinner();
+        jLabel16 = new JLabel();
+        jTextField7 = new JTextField();
+        jScrollPane24 = new JScrollPane();
+        jTextArea18 = new JTextArea();
+        jButton16 = new JButton();
+        jPanel28 = new JPanel();
+        jSplitPane4 = new JSplitPane();
+        jScrollPane17 = new JScrollPane();
+        jTable3 = new JTable();
+        jPanel29 = new JPanel();
+        jPanel30 = new JPanel();
+        jLabel11 = new JLabel();
+        jSpinner6 = new JSpinner();
+        jScrollPane18 = new JScrollPane();
+        jTextArea15 = new JTextArea();
+        jButton13 = new JButton();
+        jPanel31 = new JPanel();
+        jSplitPane5 = new JSplitPane();
+        jScrollPane19 = new JScrollPane();
+        jTable4 = new JTable();
+        jPanel32 = new JPanel();
+        jPanel33 = new JPanel();
+        jLabel12 = new JLabel();
+        jSpinner7 = new JSpinner();
+        jLabel13 = new JLabel();
+        jTextField4 = new JTextField();
+        jTextField5 = new JTextField();
+        jScrollPane20 = new JScrollPane();
+        jTextArea16 = new JTextArea();
+        jButton14 = new JButton();
+        jPanel34 = new JPanel();
+        jSplitPane6 = new JSplitPane();
+        jScrollPane21 = new JScrollPane();
+        jTable5 = new JTable();
+        jPanel35 = new JPanel();
+        jPanel36 = new JPanel();
+        jLabel14 = new JLabel();
+        jTextField6 = new JTextField();
+        jCheckBox2 = new JCheckBox();
+        jScrollPane22 = new JScrollPane();
+        jTextArea17 = new JTextArea();
+        jButton15 = new JButton();
+        jPanel40 = new JPanel();
+        jButton17 = new JButton();
+        jScrollPane25 = new JScrollPane();
+        jTextArea19 = new JTextArea();
+        jPanel41 = new JPanel();
+        jLabel18 = new JLabel();
+        jTextField8 = new JTextField();
+        jPanel42 = new JPanel();
+        jScrollPane26 = new JScrollPane();
+        jTable7 = new JTable();
+        jPanel43 = new JPanel();
+        jLabel17 = new JLabel();
+        jSpinner9 = new JSpinner();
+        jPanel44 = new JPanel();
+        jButton18 = new JButton();
+        jPanel45 = new JPanel();
+        jPanel46 = new JPanel();
+        jLabel19 = new JLabel();
+        jTextField9 = new JTextField();
+        jLabel20 = new JLabel();
+        jTextField10 = new JTextField();
+        jScrollPane27 = new JScrollPane();
+        jTextArea20 = new JTextArea();
+        jButton19 = new JButton();
+        jPanel47 = new JPanel();
+        jToolBar1 = new JToolBar();
+        jLabel21 = new JLabel();
+        jTextField11 = new JTextField();
+        jButton21 = new JButton();
+        jButton22 = new JButton();
+        jButton20 = new JButton();
+        jScrollPane28 = new JScrollPane();
+        jTextArea21 = new JTextArea();
+        jPanel17 = new JPanel();
+        jScrollPane10 = new JScrollPane();
+
+
+        //right click and you get a menu --- neat
+        jMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
         jMenuItem1.setText("Copy");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItem1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
 
         jPopupMenu1.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
         jMenuItem2.setText("Paste");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItem2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
 
         jPopupMenu1.add(jMenuItem2);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
         jMenuItem3.setText("Find from Cursor's Position");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItem3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
 
         jPopupMenu1.add(jMenuItem3);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
         jMenuItem4.setText("Find Again");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItem4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
             }
         });
 
         jPopupMenu1.add(jMenuItem4);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MainToBeRenamed.CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
         jSplitPane1.setDividerLocation(50);
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        inputText.setFont(new Font("Monospaced", 0, 12));
+        inputText.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        inputText.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane1.setViewportView(jTextArea1);
+        jScrollPane1.setViewportView(inputText);
 
         jSplitPane1.setTopComponent(jScrollPane1);
 
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        rightHandNavPanelTab.setTabPlacement(JTabbedPane.RIGHT);
+//begin frequency count
 
-        jButton1.setText("Perform Frequency Count");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jPanel1.add(jButton1, java.awt.BorderLayout.SOUTH);
-
-        jTextArea2.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        //need to figure out how to extract ALL event listeners into a class
+        frequencyCount.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        frequencyCount.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane2.setViewportView(jTextArea2);
-
-        jPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
-
-        jTabbedPane1.addTab("Frequency Count", jPanel1);
-
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jButton2.setText("Run The Alphabet");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        //workaround to pass inputText to FrequencyCount class
+        frequencyCount.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frequencyCount.setInputText(inputText);
             }
         });
 
-        jPanel2.add(jButton2, java.awt.BorderLayout.SOUTH);
+        jScrollPane2.setViewportView(frequencyCount.getMainCipherTextArea());
+        frequencyCount.getMainCipherPanel().add(jScrollPane2, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Frequency Count", frequencyCount.getMainCipherPanel());
 
-        jTextArea3.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+
+//end of frequency count
+
+
+        //need to figure out how to extract ALL event listeners into a class
+        runTheAlphabet.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        runTheAlphabet.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane3.setViewportView(jTextArea3);
+        //workaround to pass inputText to FrequencyCount class
+        runTheAlphabet.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                runTheAlphabet.setInputText(inputText);
+            }
+        });
 
-        jPanel2.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+        jScrollPane3.setViewportView(runTheAlphabet.getMainCipherTextArea());
+        runTheAlphabet.getMainCipherPanel().add(jScrollPane3, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getMainCipherPanel());
 
-        jTabbedPane1.addTab("Run The Alphabet", jPanel2);
-
-        jPanel3.setLayout(new java.awt.BorderLayout());
-
-        jTextArea4.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+//end run the alphabet
+//begin BiGraphs
+        //need to extract all listeners
+        jTextArea4.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea4.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane4.setViewportView(jTextArea4);
-
-        jPanel3.add(jScrollPane4, java.awt.BorderLayout.CENTER);
-
-        jButton3.setText("Show BiGraphs");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+        //workaround to pass inputText to FrequencyCount class
+        biGraphs.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                biGraphs.setInputText(inputText);
             }
         });
 
-        jPanel3.add(jButton3, java.awt.BorderLayout.SOUTH);
+        jScrollPane4.setViewportView(biGraphs.getMainCipherTextArea());
+        biGraphs.getMainCipherPanel().add(jScrollPane4, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("BiGraphs", biGraphs.getMainCipherPanel());
+//end BiGraphs
 
-        jTabbedPane1.addTab("BiGraphs", jPanel3);
+        jPanel4.setLayout(new BorderLayout());
 
-        jPanel4.setLayout(new java.awt.BorderLayout());
-
-        jTextArea5.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea5.setFont(new Font("Monospaced", 0, 12));
+        jTextArea5.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea5.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane5.setViewportView(jTextArea5);
 
-        jPanel4.add(jScrollPane5, java.awt.BorderLayout.CENTER);
+        jPanel4.add(jScrollPane5, BorderLayout.CENTER);
 
         jButton4.setText("Show TriGraphs");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jPanel4.add(jButton4, java.awt.BorderLayout.SOUTH);
+        jPanel4.add(jButton4, BorderLayout.SOUTH);
 
-        jTabbedPane1.addTab("TriGraphs", jPanel4);
+        rightHandNavPanelTab.addTab("TriGraphs", jPanel4);
 
-        jPanel20.setLayout(new java.awt.BorderLayout());
+        jPanel20.setLayout(new BorderLayout());
 
-        jTextArea12.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea12.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea12.setFont(new Font("Monospaced", 0, 12));
+        jTextArea12.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea12.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane12.setViewportView(jTextArea12);
 
-        jPanel20.add(jScrollPane12, java.awt.BorderLayout.CENTER);
+        jPanel20.add(jScrollPane12, BorderLayout.CENTER);
 
         jButton10.setText("Show NGraphs");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton10.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
 
-        jPanel20.add(jButton10, java.awt.BorderLayout.SOUTH);
+        jPanel20.add(jButton10, BorderLayout.SOUTH);
 
         jLabel8.setText("Length of NGraph");
         jPanel21.add(jLabel8);
 
-        jSpinner5.setPreferredSize(new java.awt.Dimension(50, 20));
+        jSpinner5.setPreferredSize(new Dimension(50, 20));
         jSpinner5.setValue(new Integer(1));
-        jSpinner5.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        jSpinner5.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 jSpinner3StateChanged(evt);
             }
         });
 
         jPanel21.add(jSpinner5);
 
-        jPanel20.add(jPanel21, java.awt.BorderLayout.NORTH);
+        jPanel20.add(jPanel21, BorderLayout.NORTH);
 
-        jTabbedPane1.addTab("NGraphs", jPanel20);
+        rightHandNavPanelTab.addTab("NGraphs", jPanel20);
 
-        jPanel5.setLayout(new java.awt.BorderLayout());
+        jPanel5.setLayout(new BorderLayout());
 
         jButton5.setText("Execute");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jPanel5.add(jButton5, java.awt.BorderLayout.SOUTH);
+        jPanel5.add(jButton5, BorderLayout.SOUTH);
 
-        jPanel6.setLayout(new java.awt.BorderLayout());
+        jPanel6.setLayout(new BorderLayout());
 
         jLabel1.setText("Enter Keyword");
-        jPanel6.add(jLabel1, java.awt.BorderLayout.WEST);
+        jPanel6.add(jLabel1, BorderLayout.WEST);
 
-        jTextField1.setFont(new java.awt.Font("Monospaced", 0, 12));
+        jTextField1.setFont(new Font("Monospaced", 0, 12));
         jTextField1.setText("the");
-        jPanel6.add(jTextField1, java.awt.BorderLayout.CENTER);
+        jPanel6.add(jTextField1, BorderLayout.CENTER);
 
         jCheckBox1.setText("Shift first");
-        jPanel6.add(jCheckBox1, java.awt.BorderLayout.EAST);
+        jPanel6.add(jCheckBox1, BorderLayout.EAST);
 
-        jPanel5.add(jPanel6, java.awt.BorderLayout.NORTH);
+        jPanel5.add(jPanel6, BorderLayout.NORTH);
 
-        jTextArea6.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea6.setFont(new Font("Monospaced", 0, 12));
+        jTextArea6.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea6.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane6.setViewportView(jTextArea6);
 
-        jPanel5.add(jScrollPane6, java.awt.BorderLayout.CENTER);
+        jPanel5.add(jScrollPane6, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Affine Known Plaintext Attack", jPanel5);
+        rightHandNavPanelTab.addTab("Affine Known Plaintext Attack", jPanel5);
 
-        jPanel7.setLayout(new java.awt.BorderLayout());
+        jPanel7.setLayout(new BorderLayout());
 
-        jPanel8.setLayout(new java.awt.BorderLayout());
+        jPanel8.setLayout(new BorderLayout());
 
-        jPanel8.setPreferredSize(new java.awt.Dimension(689, 75));
-        jPanel9.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel8.setPreferredSize(new Dimension(689, 75));
+        jPanel9.setLayout(new GridLayout(1, 0));
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setSelected(true);
@@ -653,61 +570,61 @@ public class CryptoHelper extends javax.swing.JFrame {
         jRadioButton12.setText("25");
         jPanel9.add(jRadioButton12);
 
-        jPanel8.add(jPanel9, java.awt.BorderLayout.CENTER);
+        jPanel8.add(jPanel9, BorderLayout.CENTER);
 
         jLabel3.setText("Additive Shift");
         jPanel10.add(jLabel3);
 
-        jSpinner1.setPreferredSize(new java.awt.Dimension(50, 20));
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        jSpinner1.setPreferredSize(new Dimension(50, 20));
+        jSpinner1.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 jSpinner1StateChanged(evt);
             }
         });
 
         jPanel10.add(jSpinner1);
 
-        jPanel8.add(jPanel10, java.awt.BorderLayout.SOUTH);
+        jPanel8.add(jPanel10, BorderLayout.SOUTH);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel2.setText("Multiplicative shift");
-        jPanel8.add(jLabel2, java.awt.BorderLayout.NORTH);
+        jPanel8.add(jLabel2, BorderLayout.NORTH);
 
-        jPanel7.add(jPanel8, java.awt.BorderLayout.NORTH);
+        jPanel7.add(jPanel8, BorderLayout.NORTH);
 
         jButton6.setText("Encipher");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
 
-        jPanel7.add(jButton6, java.awt.BorderLayout.SOUTH);
+        jPanel7.add(jButton6, BorderLayout.SOUTH);
 
-        jTextArea7.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea7.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea7.setFont(new Font("Monospaced", 0, 12));
+        jTextArea7.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea7.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane7.setViewportView(jTextArea7);
 
-        jPanel7.add(jScrollPane7, java.awt.BorderLayout.CENTER);
+        jPanel7.add(jScrollPane7, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Affine Encipher", jPanel7);
+        rightHandNavPanelTab.addTab("Affine Encipher", jPanel7);
 
-        jPanel11.setLayout(new java.awt.BorderLayout());
+        jPanel11.setLayout(new BorderLayout());
 
-        jPanel12.setLayout(new java.awt.BorderLayout());
+        jPanel12.setLayout(new BorderLayout());
 
-        jPanel12.setPreferredSize(new java.awt.Dimension(689, 75));
-        jPanel13.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel12.setPreferredSize(new Dimension(689, 75));
+        jPanel13.setLayout(new GridLayout(1, 0));
 
         buttonGroup2.add(jRadioButton13);
         jRadioButton13.setSelected(true);
@@ -758,148 +675,148 @@ public class CryptoHelper extends javax.swing.JFrame {
         jRadioButton24.setText("25");
         jPanel13.add(jRadioButton24);
 
-        jPanel12.add(jPanel13, java.awt.BorderLayout.CENTER);
+        jPanel12.add(jPanel13, BorderLayout.CENTER);
 
         jLabel4.setText("Additive Shift");
         jPanel14.add(jLabel4);
 
-        jSpinner2.setPreferredSize(new java.awt.Dimension(50, 20));
-        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        jSpinner2.setPreferredSize(new Dimension(50, 20));
+        jSpinner2.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 jSpinner2StateChanged(evt);
             }
         });
 
         jPanel14.add(jSpinner2);
 
-        jPanel12.add(jPanel14, java.awt.BorderLayout.SOUTH);
+        jPanel12.add(jPanel14, BorderLayout.SOUTH);
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel5.setText("Multiplicative shift");
-        jPanel12.add(jLabel5, java.awt.BorderLayout.NORTH);
+        jPanel12.add(jLabel5, BorderLayout.NORTH);
 
-        jPanel11.add(jPanel12, java.awt.BorderLayout.NORTH);
+        jPanel11.add(jPanel12, BorderLayout.NORTH);
 
         jButton7.setText("Decipher");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
 
-        jPanel11.add(jButton7, java.awt.BorderLayout.SOUTH);
+        jPanel11.add(jButton7, BorderLayout.SOUTH);
 
-        jTextArea8.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea8.setFont(new Font("Monospaced", 0, 12));
+        jTextArea8.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea8.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane8.setViewportView(jTextArea8);
 
-        jPanel11.add(jScrollPane8, java.awt.BorderLayout.CENTER);
+        jPanel11.add(jScrollPane8, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Affine Decipher", jPanel11);
+        rightHandNavPanelTab.addTab("Affine Decipher", jPanel11);
 
-        jPanel15.setLayout(new java.awt.BorderLayout());
+        jPanel15.setLayout(new BorderLayout());
 
         jLabel6.setText("Enter Wordlength");
         jPanel16.add(jLabel6);
 
-        jSpinner3.setPreferredSize(new java.awt.Dimension(50, 20));
+        jSpinner3.setPreferredSize(new Dimension(50, 20));
         jSpinner3.setValue(new Integer(1));
-        jSpinner3.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        jSpinner3.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 jSpinner3StateChanged(evt);
             }
         });
 
         jPanel16.add(jSpinner3);
 
-        jPanel15.add(jPanel16, java.awt.BorderLayout.NORTH);
+        jPanel15.add(jPanel16, BorderLayout.NORTH);
 
-        jTextArea9.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea9.setFont(new Font("Monospaced", 0, 12));
+        jTextArea9.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea9.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane9.setViewportView(jTextArea9);
 
-        jPanel15.add(jScrollPane9, java.awt.BorderLayout.CENTER);
+        jPanel15.add(jScrollPane9, BorderLayout.CENTER);
 
         jButton8.setText("Split off the alphabets");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton8.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
 
-        jPanel15.add(jButton8, java.awt.BorderLayout.SOUTH);
+        jPanel15.add(jButton8, BorderLayout.SOUTH);
 
-        jTabbedPane1.addTab("Split Off Alphabets", jPanel15);
+        rightHandNavPanelTab.addTab("Split Off Alphabets", jPanel15);
 
-        jPanel18.setLayout(new java.awt.BorderLayout());
+        jPanel18.setLayout(new BorderLayout());
 
         jLabel7.setText("Keyword Size");
         jPanel19.add(jLabel7);
 
-        jSpinner4.setPreferredSize(new java.awt.Dimension(50, 20));
+        jSpinner4.setPreferredSize(new Dimension(50, 20));
         jSpinner4.setValue(new Integer(1));
-        jSpinner4.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        jSpinner4.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 jSpinner3StateChanged(evt);
             }
         });
 
         jPanel19.add(jSpinner4);
 
-        jPanel18.add(jPanel19, java.awt.BorderLayout.NORTH);
+        jPanel18.add(jPanel19, BorderLayout.NORTH);
 
-        jTextArea11.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea11.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea11.setFont(new Font("Monospaced", 0, 12));
+        jTextArea11.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea11.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane11.setViewportView(jTextArea11);
 
-        jPanel18.add(jScrollPane11, java.awt.BorderLayout.CENTER);
+        jPanel18.add(jScrollPane11, BorderLayout.CENTER);
 
         jButton9.setText("Calculate");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton9.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
 
-        jPanel18.add(jButton9, java.awt.BorderLayout.SOUTH);
+        jPanel18.add(jButton9, BorderLayout.SOUTH);
 
-        jTabbedPane1.addTab("Poly/Mono Calculator", jPanel18);
+        rightHandNavPanelTab.addTab("Poly/Mono Calculator", jPanel18);
 
-        jPanel22.setLayout(new java.awt.BorderLayout());
+        jPanel22.setLayout(new BorderLayout());
 
         jSplitPane2.setDividerLocation(300);
-        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jSplitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jTable1.setModel(new DefaultTableModel(
             new Object [][] {
                 {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
                 {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
@@ -933,7 +850,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
@@ -952,55 +869,55 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jSplitPane2.setTopComponent(jScrollPane14);
 
-        jPanel23.setLayout(new java.awt.BorderLayout());
+        jPanel23.setLayout(new BorderLayout());
 
         jPanel23.setOpaque(false);
-        jPanel24.setLayout(new java.awt.BorderLayout());
+        jPanel24.setLayout(new BorderLayout());
 
         jLabel9.setText("Keyword");
-        jPanel24.add(jLabel9, java.awt.BorderLayout.WEST);
+        jPanel24.add(jLabel9, BorderLayout.WEST);
 
-        jTextField2.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jPanel24.add(jTextField2, java.awt.BorderLayout.CENTER);
+        jTextField2.setFont(new Font("Monospaced", 0, 12));
+        jPanel24.add(jTextField2, BorderLayout.CENTER);
 
-        jPanel23.add(jPanel24, java.awt.BorderLayout.NORTH);
+        jPanel23.add(jPanel24, BorderLayout.NORTH);
 
-        jTextArea13.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea13.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea13.setFont(new Font("Monospaced", 0, 12));
+        jTextArea13.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea13.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane13.setViewportView(jTextArea13);
 
-        jPanel23.add(jScrollPane13, java.awt.BorderLayout.CENTER);
+        jPanel23.add(jScrollPane13, BorderLayout.CENTER);
 
         jButton11.setText("Encipher");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton11.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
 
-        jPanel23.add(jButton11, java.awt.BorderLayout.SOUTH);
+        jPanel23.add(jButton11, BorderLayout.SOUTH);
 
         jSplitPane2.setBottomComponent(jPanel23);
 
-        jPanel22.add(jSplitPane2, java.awt.BorderLayout.CENTER);
+        jPanel22.add(jSplitPane2, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Viginere Encipher", jPanel22);
+        rightHandNavPanelTab.addTab("Viginere Encipher", jPanel22);
 
-        jPanel25.setLayout(new java.awt.BorderLayout());
+        jPanel25.setLayout(new BorderLayout());
 
         jSplitPane3.setDividerLocation(300);
-        jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jSplitPane3.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jTable2.setModel(new DefaultTableModel(
             new Object [][] {
                 {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
                 {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
@@ -1034,7 +951,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
@@ -1053,55 +970,55 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jSplitPane3.setTopComponent(jScrollPane15);
 
-        jPanel26.setLayout(new java.awt.BorderLayout());
+        jPanel26.setLayout(new BorderLayout());
 
         jPanel26.setOpaque(false);
-        jPanel27.setLayout(new java.awt.BorderLayout());
+        jPanel27.setLayout(new BorderLayout());
 
         jLabel10.setText("Keyword");
-        jPanel27.add(jLabel10, java.awt.BorderLayout.WEST);
+        jPanel27.add(jLabel10, BorderLayout.WEST);
 
-        jTextField3.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jPanel27.add(jTextField3, java.awt.BorderLayout.CENTER);
+        jTextField3.setFont(new Font("Monospaced", 0, 12));
+        jPanel27.add(jTextField3, BorderLayout.CENTER);
 
-        jPanel26.add(jPanel27, java.awt.BorderLayout.NORTH);
+        jPanel26.add(jPanel27, BorderLayout.NORTH);
 
-        jTextArea14.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea14.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea14.setFont(new Font("Monospaced", 0, 12));
+        jTextArea14.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea14.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane16.setViewportView(jTextArea14);
 
-        jPanel26.add(jScrollPane16, java.awt.BorderLayout.CENTER);
+        jPanel26.add(jScrollPane16, BorderLayout.CENTER);
 
         jButton12.setText("Decipher");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton12.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
 
-        jPanel26.add(jButton12, java.awt.BorderLayout.SOUTH);
+        jPanel26.add(jButton12, BorderLayout.SOUTH);
 
         jSplitPane3.setBottomComponent(jPanel26);
 
-        jPanel25.add(jSplitPane3, java.awt.BorderLayout.CENTER);
+        jPanel25.add(jSplitPane3, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Viginere Decipher", jPanel25);
+        rightHandNavPanelTab.addTab("Viginere Decipher", jPanel25);
 
-        jPanel37.setLayout(new java.awt.BorderLayout());
+        jPanel37.setLayout(new BorderLayout());
 
         jSplitPane7.setDividerLocation(300);
-        jSplitPane7.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        jSplitPane7.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jTable6.setModel(new DefaultTableModel(
             new Object [][] {
                 {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
                 {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
@@ -1135,7 +1052,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
@@ -1154,13 +1071,13 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jSplitPane7.setTopComponent(jScrollPane23);
 
-        jPanel38.setLayout(new java.awt.BorderLayout());
+        jPanel38.setLayout(new BorderLayout());
 
         jPanel38.setOpaque(false);
         jLabel15.setText("Keyword Length");
         jPanel39.add(jLabel15);
 
-        jSpinner8.setPreferredSize(new java.awt.Dimension(50, 20));
+        jSpinner8.setPreferredSize(new Dimension(50, 20));
         jPanel39.add(jSpinner8);
 
         jLabel16.setText("Friedman cutoff");
@@ -1169,44 +1086,44 @@ public class CryptoHelper extends javax.swing.JFrame {
         jTextField7.setText(".060");
         jPanel39.add(jTextField7);
 
-        jPanel38.add(jPanel39, java.awt.BorderLayout.NORTH);
+        jPanel38.add(jPanel39, BorderLayout.NORTH);
 
-        jTextArea18.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea18.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea18.setFont(new Font("Monospaced", 0, 12));
+        jTextArea18.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea18.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea18.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane24.setViewportView(jTextArea18);
 
-        jPanel38.add(jScrollPane24, java.awt.BorderLayout.CENTER);
+        jPanel38.add(jScrollPane24, BorderLayout.CENTER);
 
         jButton16.setText("Go");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton16.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton16ActionPerformed(evt);
             }
         });
 
-        jPanel38.add(jButton16, java.awt.BorderLayout.SOUTH);
+        jPanel38.add(jButton16, BorderLayout.SOUTH);
 
         jSplitPane7.setBottomComponent(jPanel38);
 
-        jPanel37.add(jSplitPane7, java.awt.BorderLayout.CENTER);
+        jPanel37.add(jSplitPane7, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Viginere Brute Force", jPanel37);
+        rightHandNavPanelTab.addTab("Viginere Brute Force", jPanel37);
 
-        jPanel28.setLayout(new java.awt.BorderLayout());
+        jPanel28.setLayout(new BorderLayout());
 
         jSplitPane4.setDividerLocation(300);
-        jSplitPane4.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jSplitPane4.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jTable3.setModel(new DefaultTableModel(
             new Object [][] {
                 {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
                 {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
@@ -1240,7 +1157,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
@@ -1259,59 +1176,59 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jSplitPane4.setTopComponent(jScrollPane17);
 
-        jPanel29.setLayout(new java.awt.BorderLayout());
+        jPanel29.setLayout(new BorderLayout());
 
         jPanel29.setOpaque(false);
         jLabel11.setText("Keyword Length");
         jPanel30.add(jLabel11);
 
-        jSpinner6.setPreferredSize(new java.awt.Dimension(50, 20));
-        jSpinner6.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        jSpinner6.setPreferredSize(new Dimension(50, 20));
+        jSpinner6.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 jSpinner6StateChanged(evt);
             }
         });
 
         jPanel30.add(jSpinner6);
 
-        jPanel29.add(jPanel30, java.awt.BorderLayout.NORTH);
+        jPanel29.add(jPanel30, BorderLayout.NORTH);
 
-        jTextArea15.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea15.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea15.setFont(new Font("Monospaced", 0, 12));
+        jTextArea15.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea15.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane18.setViewportView(jTextArea15);
 
-        jPanel29.add(jScrollPane18, java.awt.BorderLayout.CENTER);
+        jPanel29.add(jScrollPane18, BorderLayout.CENTER);
 
         jButton13.setText("Perform Attack");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton13.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
 
-        jPanel29.add(jButton13, java.awt.BorderLayout.SOUTH);
+        jPanel29.add(jButton13, BorderLayout.SOUTH);
 
         jSplitPane4.setBottomComponent(jPanel29);
 
-        jPanel28.add(jSplitPane4, java.awt.BorderLayout.CENTER);
+        jPanel28.add(jSplitPane4, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("AutoKey Cyphertext Attack", jPanel28);
+        rightHandNavPanelTab.addTab("AutoKey Cyphertext Attack", jPanel28);
 
-        jPanel31.setLayout(new java.awt.BorderLayout());
+        jPanel31.setLayout(new BorderLayout());
 
         jSplitPane5.setDividerLocation(300);
-        jSplitPane5.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jSplitPane5.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jTable4.setModel(new DefaultTableModel(
             new Object [][] {
                 {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
                 {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
@@ -1345,7 +1262,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
@@ -1364,16 +1281,16 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jSplitPane5.setTopComponent(jScrollPane19);
 
-        jPanel32.setLayout(new java.awt.BorderLayout());
+        jPanel32.setLayout(new BorderLayout());
 
         jPanel32.setOpaque(false);
         jLabel12.setText("Max Keyword Length");
         jPanel33.add(jLabel12);
 
-        jSpinner7.setPreferredSize(new java.awt.Dimension(50, 20));
+        jSpinner7.setPreferredSize(new Dimension(50, 20));
         jSpinner7.setValue(new Integer(1));
-        jSpinner7.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        jSpinner7.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 jSpinner7StateChanged(evt);
             }
         });
@@ -1384,51 +1301,51 @@ public class CryptoHelper extends javax.swing.JFrame {
         jPanel33.add(jLabel13);
 
         jTextField4.setText("0.055");
-        jTextField4.setPreferredSize(new java.awt.Dimension(50, 19));
+        jTextField4.setPreferredSize(new Dimension(50, 19));
         jPanel33.add(jTextField4);
 
         jTextField5.setText("2.0");
-        jTextField5.setPreferredSize(new java.awt.Dimension(50, 19));
+        jTextField5.setPreferredSize(new Dimension(50, 19));
         jPanel33.add(jTextField5);
 
-        jPanel32.add(jPanel33, java.awt.BorderLayout.NORTH);
+        jPanel32.add(jPanel33, BorderLayout.NORTH);
 
-        jTextArea16.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea16.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea16.setFont(new Font("Monospaced", 0, 12));
+        jTextArea16.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea16.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane20.setViewportView(jTextArea16);
 
-        jPanel32.add(jScrollPane20, java.awt.BorderLayout.CENTER);
+        jPanel32.add(jScrollPane20, BorderLayout.CENTER);
 
         jButton14.setText("Perform Attack");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton14.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton14ActionPerformed(evt);
             }
         });
 
-        jPanel32.add(jButton14, java.awt.BorderLayout.SOUTH);
+        jPanel32.add(jButton14, BorderLayout.SOUTH);
 
         jSplitPane5.setBottomComponent(jPanel32);
 
-        jPanel31.add(jSplitPane5, java.awt.BorderLayout.CENTER);
+        jPanel31.add(jSplitPane5, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("AutoKey Plaintext Attack", jPanel31);
+        rightHandNavPanelTab.addTab("AutoKey Plaintext Attack", jPanel31);
 
-        jPanel34.setLayout(new java.awt.BorderLayout());
+        jPanel34.setLayout(new BorderLayout());
 
         jSplitPane6.setDividerLocation(300);
-        jSplitPane6.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        jSplitPane6.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jTable5.setModel(new DefaultTableModel(
             new Object [][] {
                 {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
                 {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
@@ -1462,7 +1379,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
@@ -1481,82 +1398,82 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jSplitPane6.setTopComponent(jScrollPane21);
 
-        jPanel35.setLayout(new java.awt.BorderLayout());
+        jPanel35.setLayout(new BorderLayout());
 
         jPanel35.setOpaque(false);
-        jPanel36.setLayout(new java.awt.BorderLayout());
+        jPanel36.setLayout(new BorderLayout());
 
         jLabel14.setText("Keyword");
-        jPanel36.add(jLabel14, java.awt.BorderLayout.WEST);
+        jPanel36.add(jLabel14, BorderLayout.WEST);
 
-        jTextField6.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jPanel36.add(jTextField6, java.awt.BorderLayout.CENTER);
+        jTextField6.setFont(new Font("Monospaced", 0, 12));
+        jPanel36.add(jTextField6, BorderLayout.CENTER);
 
         jCheckBox2.setText("PlainText");
-        jPanel36.add(jCheckBox2, java.awt.BorderLayout.EAST);
+        jPanel36.add(jCheckBox2, BorderLayout.EAST);
 
-        jPanel35.add(jPanel36, java.awt.BorderLayout.NORTH);
+        jPanel35.add(jPanel36, BorderLayout.NORTH);
 
-        jTextArea17.setFont(new java.awt.Font("Monospaced", 0, 12));
+        jTextArea17.setFont(new Font("Monospaced", 0, 12));
         jScrollPane22.setViewportView(jTextArea17);
 
-        jPanel35.add(jScrollPane22, java.awt.BorderLayout.CENTER);
+        jPanel35.add(jScrollPane22, BorderLayout.CENTER);
 
         jButton15.setText("Decipher");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton15.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton15ActionPerformed(evt);
             }
         });
 
-        jPanel35.add(jButton15, java.awt.BorderLayout.SOUTH);
+        jPanel35.add(jButton15, BorderLayout.SOUTH);
 
         jSplitPane6.setBottomComponent(jPanel35);
 
-        jPanel34.add(jSplitPane6, java.awt.BorderLayout.CENTER);
+        jPanel34.add(jSplitPane6, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("AutoKey Decipher", jPanel34);
+        rightHandNavPanelTab.addTab("AutoKey Decipher", jPanel34);
 
-        jPanel40.setLayout(new java.awt.BorderLayout());
+        jPanel40.setLayout(new BorderLayout());
 
         jButton17.setText("Go");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton17.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton17ActionPerformed(evt);
             }
         });
 
-        jPanel40.add(jButton17, java.awt.BorderLayout.SOUTH);
+        jPanel40.add(jButton17, BorderLayout.SOUTH);
 
-        jTextArea19.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea19.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea19.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea19.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane25.setViewportView(jTextArea19);
 
-        jPanel40.add(jScrollPane25, java.awt.BorderLayout.CENTER);
+        jPanel40.add(jScrollPane25, BorderLayout.CENTER);
 
         jLabel18.setText("Friedman cutoff");
         jPanel41.add(jLabel18);
 
         jTextField8.setText("0.060");
-        jTextField8.setPreferredSize(new java.awt.Dimension(50, 19));
+        jTextField8.setPreferredSize(new Dimension(50, 19));
         jPanel41.add(jTextField8);
 
-        jPanel40.add(jPanel41, java.awt.BorderLayout.NORTH);
+        jPanel40.add(jPanel41, BorderLayout.NORTH);
 
-        jTabbedPane1.addTab("Hill Brute Force", jPanel40);
+        rightHandNavPanelTab.addTab("Hill Brute Force", jPanel40);
 
-        jPanel42.setLayout(new java.awt.BorderLayout());
+        jPanel42.setLayout(new BorderLayout());
 
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+        jTable7.setModel(new DefaultTableModel(
             new Object [][] {
 
             },
@@ -1566,84 +1483,84 @@ public class CryptoHelper extends javax.swing.JFrame {
         ));
         jScrollPane26.setViewportView(jTable7);
 
-        jPanel42.add(jScrollPane26, java.awt.BorderLayout.CENTER);
+        jPanel42.add(jScrollPane26, BorderLayout.CENTER);
 
         jLabel17.setText("Number of Rows");
         jPanel43.add(jLabel17);
 
-        jSpinner9.setPreferredSize(new java.awt.Dimension(50, 20));
+        jSpinner9.setPreferredSize(new Dimension(50, 20));
         jSpinner9.setValue(new Integer(1));
-        jSpinner9.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        jSpinner9.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent evt) {
                 jSpinner3StateChanged(evt);
             }
         });
 
         jPanel43.add(jSpinner9);
 
-        jPanel42.add(jPanel43, java.awt.BorderLayout.NORTH);
+        jPanel42.add(jPanel43, BorderLayout.NORTH);
 
-        jPanel44.setLayout(new java.awt.BorderLayout());
+        jPanel44.setLayout(new BorderLayout());
 
         jButton18.setText("Go");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton18.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton18ActionPerformed(evt);
             }
         });
 
-        jPanel44.add(jButton18, java.awt.BorderLayout.CENTER);
+        jPanel44.add(jButton18, BorderLayout.CENTER);
 
-        jPanel42.add(jPanel44, java.awt.BorderLayout.SOUTH);
+        jPanel42.add(jPanel44, BorderLayout.SOUTH);
 
-        jTabbedPane1.addTab("Column Transposition Worksheet", jPanel42);
+        rightHandNavPanelTab.addTab("Column Transposition Worksheet", jPanel42);
 
-        jPanel45.setLayout(new java.awt.BorderLayout());
+        jPanel45.setLayout(new BorderLayout());
 
         jLabel19.setText("Inverse of");
         jPanel46.add(jLabel19);
 
-        jTextField9.setPreferredSize(new java.awt.Dimension(100, 20));
+        jTextField9.setPreferredSize(new Dimension(100, 20));
         jPanel46.add(jTextField9);
 
         jLabel20.setText("Mod");
         jPanel46.add(jLabel20);
 
-        jTextField10.setPreferredSize(new java.awt.Dimension(100, 20));
+        jTextField10.setPreferredSize(new Dimension(100, 20));
         jPanel46.add(jTextField10);
 
-        jPanel45.add(jPanel46, java.awt.BorderLayout.NORTH);
+        jPanel45.add(jPanel46, BorderLayout.NORTH);
 
-        jTextArea20.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea20.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea20.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea20.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane27.setViewportView(jTextArea20);
 
-        jPanel45.add(jScrollPane27, java.awt.BorderLayout.CENTER);
+        jPanel45.add(jScrollPane27, BorderLayout.CENTER);
 
         jButton19.setText("Go");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton19.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton19ActionPerformed(evt);
             }
         });
 
-        jPanel45.add(jButton19, java.awt.BorderLayout.SOUTH);
+        jPanel45.add(jButton19, BorderLayout.SOUTH);
 
-        jTabbedPane1.addTab("GCD and Inverse", jPanel45);
+        rightHandNavPanelTab.addTab("GCD and Inverse", jPanel45);
 
-        jPanel47.setLayout(new java.awt.BorderLayout());
+        jPanel47.setLayout(new BorderLayout());
 
-        jPanel47.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
+        jPanel47.addComponentListener(new ComponentAdapter() {
+            public void componentShown(ComponentEvent evt) {
                 jPanel47ComponentShown(evt);
             }
         });
@@ -1659,57 +1576,54 @@ public class CryptoHelper extends javax.swing.JFrame {
         jButton22.setText("Generate");
         jToolBar1.add(jButton22);
 
-        jPanel47.add(jToolBar1, java.awt.BorderLayout.NORTH);
+        jPanel47.add(jToolBar1, BorderLayout.NORTH);
 
         jButton20.setText("Go");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton20.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButton20ActionPerformed(evt);
             }
         });
 
-        jPanel47.add(jButton20, java.awt.BorderLayout.SOUTH);
+        jPanel47.add(jButton20, BorderLayout.SOUTH);
 
-        jTextArea21.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        jTextArea21.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea21.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jTextArea21.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
         jScrollPane28.setViewportView(jTextArea21);
 
-        jPanel47.add(jScrollPane28, java.awt.BorderLayout.CENTER);
+        jPanel47.add(jScrollPane28, BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Substitution Solver", jPanel47);
+        rightHandNavPanelTab.addTab("Substitution Solver", jPanel47);
 
-        jPanel17.setLayout(new java.awt.BorderLayout());
+        jPanel17.setLayout(new BorderLayout());
 
-        jPanel17.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
+        jPanel17.addComponentListener(new ComponentAdapter() {
+            public void componentShown(ComponentEvent evt) {
                 jPanel17ComponentShown(evt);
             }
         });
 
-        jTextArea10.setEditable(false);
-        jTextArea10.setFont(new java.awt.Font("Monospaced", 0, 12));
-        jTextArea10.setLineWrap(true);
-        jTextArea10.setWrapStyleWord(true);
-        jScrollPane10.setViewportView(jTextArea10);
 
-        jPanel17.add(jScrollPane10, java.awt.BorderLayout.CENTER);
+        jScrollPane10.setViewportView(termsOfTheGPL.getTermsOfTheGPLTextArea());
 
-        jTabbedPane1.addTab("Terms of the GPL", jPanel17);
+        jPanel17.add(jScrollPane10, BorderLayout.CENTER);
 
-        jSplitPane1.setBottomComponent(jTabbedPane1);
+        rightHandNavPanelTab.addTab("Terms of the GPL", jPanel17);
 
-        getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
+        jSplitPane1.setBottomComponent(rightHandNavPanelTab);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        getContentPane().add(jSplitPane1, BorderLayout.CENTER);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-800)/2, (screenSize.height-600)/2, 800, 600);
     }
     // </editor-fold>//GEN-END:initComponents
@@ -1717,7 +1631,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jPanel47ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel47ComponentShown
         try
         {            
-            JarFile jf = new JarFile("CryptoHelper.jar");
+            JarFile jf = new JarFile("MainToBeRenamed.CryptoHelper.jar");
             
             ZipEntry ze = jf.getEntry("english.wow");
             
@@ -1737,10 +1651,10 @@ public class CryptoHelper extends javax.swing.JFrame {
                     }
                 }
             }        
-            String temp = new String();            
+            String temp = "";
             while ((temp = br.readLine()) != null)
             {
-                String parse[] = temp.split(", ");                
+                String[] parse = temp.split(", ");
                 dictionary[parse[0].charAt(0)-65][parse[0].charAt(1)-65][parse[0].charAt(2)-65][parse[0].charAt(3)-65] = Integer.parseInt(parse[1]);
             }
         }
@@ -1755,7 +1669,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     {
         String ciphertext;
         long iteration = 0;
-        char key[];
+        char[] key;
         boolean stopToggle = false;
         
         public void stop()
@@ -1792,7 +1706,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                 
                 double bestAdj = bestScore;
                 
-                char testKey[] = new char[256];                    
+                char[] testKey = new char[256];
                 
 
                 for (int i = 0; i < 26; i++)
@@ -1865,7 +1779,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             return tally;
         }
         
-        private void smallAdj(char key[])
+        private void smallAdj(char[] key)
         {
             int rNum = (int)(Math.random() * 5);
             
@@ -1883,9 +1797,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         }
         
-        private String plaintext(String ciphertext, char key[])
+        private String plaintext(String ciphertext, char[] key)
         {
-            String returnString = new String();
+            String returnString = "";
             
             for (int x = 0; x < ciphertext.length(); x++)
             {
@@ -1894,7 +1808,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             return returnString;
         }
         
-        private void randomize(char key[])
+        private void randomize(char[] key)
         {
             ArrayList array = new ArrayList();
             
@@ -1919,7 +1833,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         if (jButton20Toggle == false)
         {
-            String inputString = formatString(jTextArea1);
+            String inputString = formatString(inputText);
             substitutionSolver = new SubstitutionSolver(inputString);
             substitutionThread = new Thread(substitutionSolver);
             substitutionThread.start();
@@ -1989,10 +1903,10 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         jTextArea9.setText("");
         
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
 
         int numRows = ((Integer)jSpinner9.getValue()).intValue();
-        String sArray[] = new String[numRows];
+        String[] sArray = new String[numRows];
         
         for (int x = 0; x < numRows; x++)
         {
@@ -2018,7 +1932,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String outputString = "";
         double friedman = 0.0;
         
@@ -2030,12 +1944,12 @@ public class CryptoHelper extends javax.swing.JFrame {
             return;
         }
         
-        char array[] = new char[inputString.length()];
-        char array2[] = new char[inputString.length()];
+        char[] array = new char[inputString.length()];
+        char[] array2 = new char[inputString.length()];
         
         for (int x = 0; x < array.length; x++) array[x] = (char)(inputString.charAt(x)-'A' + 1);
         
-        System.out.println("");
+        System.out.println();
         
         for (int q = 1; q <= 26; q++)
         {
@@ -2071,12 +1985,12 @@ public class CryptoHelper extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String outputString = "";
         String s1 = "";
         String finish = "";
         double friedman = 0.0;
-        char array[] = new char[((Integer)jSpinner8.getValue()).intValue()];
+        char[] array = new char[((Integer)jSpinner8.getValue()).intValue()];
 
         jTextArea18.setText("");
         
@@ -2094,7 +2008,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             {
                 for (int y = 0; y < 26; y++) 
                 {
-                    if(((String)jTable6.getValueAt(s1.charAt(x%s1.length())-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                    if(jTable6.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                         outputString = outputString + jTable6.getColumnName(y);
                 }
             }
@@ -2117,7 +2031,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private double calculateFriedman(String inputString)
     {
         String tempString;
-        double array[] = new double[256];
+        double[] array = new double[256];
         double friedman = 0;
         int spinnerValue = 1;
         
@@ -2152,10 +2066,10 @@ public class CryptoHelper extends javax.swing.JFrame {
     }
     
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String outputString = "";
         String s1 = formatString(jTextField6);
-        char charArray[];
+        char[] charArray;
         
         if (!jCheckBox2.isSelected())
         {
@@ -2165,7 +2079,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             {
                 for (int y = 0; y < 26; y++) 
                 {
-                    if(((String)jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                    if(jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                         outputString = outputString + jTable5.getColumnName(y);
                 }
             }
@@ -2184,7 +2098,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             {
                 for (int y = 0; y < 26; y++) 
                 {
-                    if(((String)jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                    if(jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                         outputString = outputString + jTable5.getColumnName(y);
                 }
                 s1 = s1 + outputString.charAt(x);
@@ -2216,11 +2130,11 @@ public class CryptoHelper extends javax.swing.JFrame {
  * 0 key length = 5 fieldman rating 0.55
  */
 
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String outputString = "";
         String s1 = "";
         String tempString = "";
-        double array[] = new double[256];
+        double[] array = new double[256];
         double friedman = 0;        
         
         int js = ((Integer)jSpinner7.getValue()).intValue();
@@ -2255,7 +2169,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                     {
                         for (w = 0; w < 26; w++) 
                         {
-                            if(((String)jTable5.getValueAt(s1.charAt(t%s1.length())-'A', w)).equals((new Character(tempString.charAt(t))).toString())) 
+                            if(jTable5.getValueAt(s1.charAt(t%s1.length())-'A', w).equals((new Character(tempString.charAt(t))).toString()))
                                 outputString = outputString + jTable5.getColumnName(w);
                         }
                         s1 = s1 + outputString.charAt(t);
@@ -2305,10 +2219,10 @@ public class CryptoHelper extends javax.swing.JFrame {
     }//GEN-LAST:event_jSpinner6StateChanged
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String outputString = "";
         String s1 = "";
-        double array[] = new double[256];
+        double[] array = new double[256];
         double friedman = 0;        
         
         for (int x = 0; x < ((Integer)jSpinner6.getValue()).intValue(); x++)
@@ -2322,12 +2236,12 @@ public class CryptoHelper extends javax.swing.JFrame {
         {
             for (int y = 0; y < 26; y++) 
             {
-                if(((String)jTable3.getValueAt(s1.charAt(x%s1.length()     )-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                if(jTable3.getValueAt(s1.charAt(x%s1.length()     )-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                     outputString = outputString + jTable3.getColumnName(y);
             }
         }
       
-        char charArray[] = new char[outputString.length() + ((outputString.length()-1)/5)];
+        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
         
         for (int x = 0, y = 0; x < outputString.length(); x++, y++)
         {
@@ -2353,11 +2267,11 @@ public class CryptoHelper extends javax.swing.JFrame {
         {
             friedman += array[x]/outputString.length() * ((array[x]-1)/(outputString.length()-1));
         }        
-        jTextArea15.append("\n\nFriedman value = " + friedman);;
+        jTextArea15.append("\n\nFriedman value = " + friedman);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String outputString = "";
         String s1 = formatString(jTextField3);
 
@@ -2365,12 +2279,12 @@ public class CryptoHelper extends javax.swing.JFrame {
         {
             for (int y = 0; y < 26; y++) 
             {
-                if(((String)jTable2.getValueAt(s1.charAt(x%s1.length())-'A', y)).equals((new Character(inputString.charAt(x))).toString())) 
+                if(jTable2.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
                     outputString = outputString + jTable2.getColumnName(y);
             }
         }
       
-        char charArray[] = new char[outputString.length() + ((outputString.length()-1)/5)];
+        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
         
         for (int x = 0, y = 0; x < outputString.length(); x++, y++)
         {
@@ -2382,16 +2296,16 @@ public class CryptoHelper extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String outputString = "";
         String s1 = formatString(jTextField2);
         
         for (int x = 0; x < inputString.length(); x++)
         {
-            outputString = outputString + ((String)jTable1.getValueAt(s1.charAt(x%s1.length())-'A', inputString.charAt(x)-'A'));
+            outputString = outputString + jTable1.getValueAt(s1.charAt(x%s1.length())-'A', inputString.charAt(x)-'A');
         }
 
-        char charArray[] = new char[outputString.length() + ((outputString.length()-1)/5)];
+        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
         
         for (int x = 0, y = 0; x < outputString.length(); x++, y++)
         {
@@ -2404,7 +2318,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
 
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         int js = ((Integer)jSpinner5.getValue()).intValue();
 
         String tempString;
@@ -2446,9 +2360,9 @@ public class CryptoHelper extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String tempString;
-        double array[] = new double[256];
+        double[] array = new double[256];
         double friedman = 0;
         int spinnerValue = ((Integer)jSpinner4.getValue()).intValue();
         
@@ -2492,10 +2406,10 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         jTextArea9.setText("");
         
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
 
         int wordLength = ((Integer)jSpinner3.getValue()).intValue();
-        String sArray[] = new String[wordLength];
+        String[] sArray = new String[wordLength];
         
         for (int x = 0; x < wordLength; x++)
         {
@@ -2521,11 +2435,11 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jTextAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaKeyReleased
         if (evt.isControlDown())
         {
-            if (evt.getKeyCode()==evt.VK_F)
+            if (evt.getKeyCode()== KeyEvent.VK_F)
             {
                 performSearch((JTextArea)evt.getSource());
             }
-            else if (evt.getKeyCode()==evt.VK_G)
+            else if (evt.getKeyCode()== KeyEvent.VK_G)
             {
                 performSearchAgain((JTextArea)evt.getSource());
             }
@@ -2560,7 +2474,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }            
     }
     private void jTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaMouseClicked
-        if (evt.getButton()==evt.BUTTON3)
+        if (evt.getButton()== MouseEvent.BUTTON3)
         {
             jPopupMenu1.show((JTextArea)evt.getSource(), evt.getX(), evt.getY());
         }
@@ -2598,7 +2512,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         int m = 0;
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         
         jTextArea8.setText("");
         
@@ -2626,7 +2540,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             charArray[x] = (char)(charArray[x] + 64);
         }
         
-        char charArray2[] = new char[charArray.length + ((charArray.length-1)/5)];
+        char[] charArray2 = new char[charArray.length + ((charArray.length-1)/5)];
         
         for (int x = 0, y = 0; x < charArray.length; x++, y++)
         {
@@ -2649,7 +2563,7 @@ public class CryptoHelper extends javax.swing.JFrame {
  *
  *make some tally bars in places where it would be useful to get information at a glance.
  */
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         String searchString = formatString(jTextField1);
         
         jTextArea6.setText("The following are all the possible combinations of \"" + searchString + "\"\n");
@@ -2709,7 +2623,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                 // insert code that now searches using the content of mSearchString
                 
                 counter = 0;
-                if (inputString.indexOf(mSearchString, 0)==0) counter++;
+                if (inputString.indexOf(mSearchString)==0) counter++;
                 for (int y = 0; y >= 0;)
                 {
                     if ((y = inputString.indexOf(mSearchString, y+1)) >= 0) counter++;
@@ -2743,7 +2657,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                 // insert code that now searches using the content of mSearchString
                 
                 counter = 0;
-                if (inputString.indexOf(mSearchString, 0)==0) counter++;
+                if (inputString.indexOf(mSearchString)==0) counter++;
                 for (int y = 0; y >= 0;)
                 {
                     if ((y = inputString.indexOf(mSearchString, y+1)) >= 0) counter++;
@@ -2759,7 +2673,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         int m = 0;
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
         
         jTextArea7.setText("");
         
@@ -2787,7 +2701,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             charArray[x] = (char)(charArray[x] + 64);
         }
         
-        char charArray2[] = new char[charArray.length + ((charArray.length-1)/5)];
+        char[] charArray2 = new char[charArray.length + ((charArray.length-1)/5)];
         
         for (int x = 0, y = 0; x < charArray.length; x++, y++)
         {
@@ -2798,47 +2712,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         jTextArea7.append(new String(charArray2));
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String inputString = formatString(jTextArea1);
-        String tempString;
-        Counter counter = new Counter();
-        
-        for (int x = 0; x < inputString.length() - 1; x++)
-        {
-            tempString = inputString.substring(x, x+2);
-            if (inputString.indexOf(tempString, x)>=0)
-            {
-                if (!counter.contains(tempString))
-                {
-                    counter.add(tempString, x);
-                    for (int y = x; y >= 0;)
-                    {
-                        if ((y = inputString.indexOf(tempString, y+2)) >= 0) counter.inc(y);
-                    }
-                }
-            }
-        }
-        
-        jTextArea4.setText("");
-        
-        for (int x = 0; x < counter.length; x++)
-        {
-            jTextArea4.append(counter.sArray[x]);
-            jTextArea4.append(" = ");
-            jTextArea4.append(new Integer(counter.iArray[x]).toString());
-            jTextArea4.append(" at positions ");
-            for (int y = 0; y < counter.iArray[x]; y++)
-            {
-                jTextArea4.append("" + counter.pArray[x][y]);
-                if (y!=counter.iArray[x] - 1)
-                    jTextArea4.append(",");
-            }
-            jTextArea4.append("\n");
-        }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String inputString = formatString(jTextArea1);
+        String inputString = formatString(inputText);
 
         String tempString;
         Counter counter = new Counter();
@@ -2877,167 +2752,26 @@ public class CryptoHelper extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String inputString = jTextArea1.getText();
-        inputString = inputString.toLowerCase();
-        
-        jTextArea3.setText("");
-        
-        for (int x = 0; x < 25; x++)
-        {
-            for (int y = 0; y < inputString.length(); y++)
-            {
-                //jTextArea4.append(new Character((char)(inputString.charAt(y)+x)).toString());
-                if (inputString.charAt(y) >='a' && inputString.charAt(y) <= 'z')
-                {
-                    jTextArea3.append(new Character((char)((inputString.charAt(y)+x)%('z'+1)+((int)((inputString.charAt(y)+x)/('z'+1))*'a'))).toString());
-                }
-                else jTextArea3.append(" ");
-            }
-            jTextArea3.append("\n");
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String inputString = jTextArea1.getText();
-        inputString = inputString.toUpperCase();
-        int array[] = new int[26];
-        String sArray[];
-        
-        jTextArea2.setText("");
-        
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            switch (inputString.charAt(x))
-            {
-                case 'A': array[0]++; break;
-                case 'B': array[1]++; break;
-                case 'C': array[2]++; break;
-                case 'D': array[3]++; break;
-                case 'E': array[4]++; break;
-                case 'F': array[5]++; break;
-                case 'G': array[6]++; break;
-                case 'H': array[7]++; break;
-                case 'I': array[8]++; break;
-                case 'J': array[9]++; break;
-                case 'K': array[10]++; break;
-                case 'L': array[11]++; break;
-                case 'M': array[12]++; break;
-                case 'N': array[13]++; break;
-                case 'O': array[14]++; break;
-                case 'P': array[15]++; break;
-                case 'Q': array[16]++; break;
-                case 'R': array[17]++; break;
-                case 'S': array[18]++; break;
-                case 'T': array[19]++; break;
-                case 'U': array[20]++; break;
-                case 'V': array[21]++; break;
-                case 'W': array[22]++; break;
-                case 'X': array[23]++; break;
-                case 'Y': array[24]++; break;
-                case 'Z': array[25]++; break;               
-            }
-        }
-        
-        for (int x = 0; x < 26; x++)
-        {
-            jTextArea2.append(new Character((char)('A'+x)).toString());
-            jTextArea2.append(" = ");
-            jTextArea2.append(new Integer(array[x]).toString());
-            jTextArea2.append(" = ");
-            for (int y = 0; y<array[x]; y++)
-                jTextArea2.append("I");
-            if (x!=25) jTextArea2.append("\n");
-        }
-        
-        jTextArea2.append("\n");
-
-        sArray = inputString.split(" ");
-        
-        jTextArea2.append("\nHere are all the 1 letter words\n");
-        for (int x = 0; x < sArray.length; x++)
-        {
-            if (sArray[x].length() == 1) {jTextArea2.append(sArray[x]); jTextArea2.append("\n");}
-        }
-        
-        jTextArea2.append("\nHere are all the 2 letter words\n");
-        for (int x = 0; x < sArray.length; x++)
-        {
-            if (sArray[x].length() == 2) {jTextArea2.append(sArray[x]); jTextArea2.append("\n");}
-        }
-        
-        jTextArea2.append("\nHere are all the 3 letter words\n");
-        for (int x = 0; x < sArray.length; x++)
-        {
-            if (sArray[x].length() == 3) {jTextArea2.append(sArray[x]); jTextArea2.append("\n");}
-        }
-  
-        jTextArea2.append("\nHere are all the initial letters\n");
-        for (int x = 0; x < sArray.length; x++)
-        {
-            if (sArray[x].length()>0)
-                jTextArea2.append(new Character(sArray[x].charAt(0)).toString());
-        }
-        jTextArea2.append("\n");
-        
-        jTextArea2.append("\nHere are all the final letters\n");
-        for (int x = 0; x < sArray.length; x++)
-        {
-            if (sArray[x].length()>0)
-                jTextArea2.append(new Character(sArray[x].charAt(sArray[x].length()-1)).toString());
-        }
-        jTextArea2.append("\n");
-        
-        jTextArea2.append("\nHere are all the doubled letters\n");
-        char c = inputString.charAt(0);
-        for (int x = 1; x < inputString.length(); x++)
-        {
-            if (inputString.charAt(x) == c) 
-            {
-                jTextArea2.append(new Character(c).toString());
-                jTextArea2.append(new Character(c).toString());
-                jTextArea2.append("\n");
-            }
-            c = inputString.charAt(x);
-        }
-        
-        jTextArea2.append("\nFrequencies for English\n");
-        
-        jTextArea2.append("a = 07 = IIIIIII                 n = 08 = IIIIIIII   \n");
-        jTextArea2.append("b = 01 = I                       o = 07 = IIIIIII    \n");
-        jTextArea2.append("c = 03 = III                     p = 03 = III        \n");
-        jTextArea2.append("d = 04 = IIII                    q =                 \n");
-        jTextArea2.append("e = 13 = IIIIIIIIIIIII           r = 08 = IIIIIIII   \n");
-        jTextArea2.append("f = 03 = III                     s = 06 = IIIIII     \n");
-        jTextArea2.append("g = 02 = II                      t = 09 = IIIIIIIII  \n");
-        jTextArea2.append("h = 04 = IIII                    u = 03 = III        \n");
-        jTextArea2.append("i = 07 = IIIIIII                 v = 01 = I          \n");
-        jTextArea2.append("j =                              w = 02 = II         \n");
-        jTextArea2.append("k =                              x =                 \n");
-        jTextArea2.append("l = 04 = IIII                    y = 02 = II         \n");
-        jTextArea2.append("m = 03 = III                     z =                 \n");
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CryptoHelper().setVisible(true);
             }
         });
     }
- 
+
+    //already extracted into own class. Will be removed once refactoring is complete
     private class Counter
     {
         public int length = 0;
-        
-        public String sArray[] = new String[10000];
-        public int iArray[] = new int[10000];
-        public int pArray[][] = new int[10000][100];
-    
+
+        public String[] sArray = new String[10000];
+        public int[] iArray = new int[10000];
+        public int[][] pArray = new int[10000][100];
+
         public void add(String s, int pos)
         {
             sArray[length] = s;
@@ -3161,11 +2895,18 @@ public class CryptoHelper extends javax.swing.JFrame {
     }    
 
     private String searchStr;
-    private int dictionary[][][][];
+    private int[][][][] dictionary;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
+    //private CipherService = new CipherService();
+
+    private TermsOfTheGPL termsOfTheGPL;
+    private FrequencyCount frequencyCount;
+    private RunTheAlphabet runTheAlphabet;
+    private BiGraphs biGraphs;
+
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -3176,11 +2917,11 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
+
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton3;
+
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -3214,7 +2955,6 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -3225,7 +2965,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel2;
+
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
@@ -3330,7 +3070,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane5;
     private javax.swing.JSplitPane jSplitPane6;
     private javax.swing.JSplitPane jSplitPane7;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane rightHandNavPanelTab;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
@@ -3338,8 +3078,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
     private javax.swing.JTable jTable7;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea10;
+    private javax.swing.JTextArea inputText;
+
     private javax.swing.JTextArea jTextArea11;
     private javax.swing.JTextArea jTextArea12;
     private javax.swing.JTextArea jTextArea13;
@@ -3349,10 +3089,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea17;
     private javax.swing.JTextArea jTextArea18;
     private javax.swing.JTextArea jTextArea19;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea20;
     private javax.swing.JTextArea jTextArea21;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
