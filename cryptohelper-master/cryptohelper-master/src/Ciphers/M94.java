@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 public class M94 extends BaseCipher{
 	@SuppressWarnings("rawtypes")
@@ -153,7 +151,6 @@ public class M94 extends BaseCipher{
 	/*
 	 * Sets the key to be the disks arranged in alphabetical order.
 	 */
-	@SuppressWarnings("unused")
 	private static void arrangeDisks() {
 		key = orderedKey;
 	}
@@ -233,10 +230,9 @@ public class M94 extends BaseCipher{
 		String lines[] = input.split("\\r?\\n");
 		String order = lines[0];
 		input = lines[1].toUpperCase();
-		
-		System.out.println("order: " + order + "\ninput: " + input);
+
 		initDisks();
-		
+
 		int arr[];
 		if(order.length() == 0) {
 			arr = null;
@@ -247,17 +243,42 @@ public class M94 extends BaseCipher{
 			for(int i = 0; i < items.length; i++)
 				arr[i] = Integer.parseInt(items[i]);
 		}
-		
+
 		arrangeDisks(arr);
 
 		getMainCipherTextArea().setText("");
-		
+
 		String[] m94 = encrypt(input);
-		
+
 		for(int i = 0; i < m94.length; i++) {
+			m94[i] = standardize(m94[i], input);
 			getMainCipherTextArea().append(m94[i]);
 			getMainCipherTextArea().append("\n");
 		}
+		/*
+		 * 25 1 24 2 23 3 22 4 21 5 20 6 19 7 18 8 17 9 16 10 15 11 14 12 13
+		 * JQDJB VBHFS LLZJ PBN MX. EAAIP RCHTE VBW LXN PPKT. DNDAG PBMSI VDH WOCWUI JXP BONF EQM.
+		 */
+	}
+
+	private String standardize(String string, String input) {
+		char[] in = input.toCharArray();
+		String output;
+		ArrayList<Character> outputArr = new ArrayList<Character>();
+		for(char c: string.toCharArray())
+			outputArr.add(c);
+
+		for(int i = 0; i < input.length(); i++)
+			if(!(in[i] >= 'A' && in[i] <= 'Z'))
+				outputArr.add(i, in[i]);
 		
+		outputArr.add(input.length(), " ".toCharArray()[0]);
+
+		StringBuilder sb = new StringBuilder();
+		for(Character ch: outputArr)
+			sb.append(ch);
+		output = sb.toString();
+
+		return output;
 	}
 }
