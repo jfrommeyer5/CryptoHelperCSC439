@@ -108,4 +108,12 @@ public abstract class BaseCipher {
     public void setCipherService(CipherService cipherService) {
         this.cipherService = cipherService;
     }
+
+    public JScrollPane getjScrollPane() {
+        return jScrollPane;
+    }
+
+    public void setjScrollPane(JScrollPane jScrollPane) {
+        this.jScrollPane = jScrollPane;
+    }
 }
