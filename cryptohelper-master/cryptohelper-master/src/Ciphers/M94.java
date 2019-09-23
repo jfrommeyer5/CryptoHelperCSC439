@@ -1,16 +1,20 @@
 package Ciphers;
 
+import java.awt.event.ActionEvent;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
-public class M94 {
+public class M94 extends BaseCipher{
 	@SuppressWarnings("rawtypes")
 	private static ArrayList<ArrayList> orderedKey = new ArrayList<ArrayList>();
 	@SuppressWarnings("rawtypes")
 	private static ArrayList<ArrayList> key = new ArrayList<ArrayList>();
+
+	public M94() {
+		super();
+		initializeActionBtn("M-94");
+	}
 
 	/*
 	 * Creates ArrayLists of the disks used in the M-94 cipher.
@@ -143,7 +147,7 @@ public class M94 {
 		}
 		orderedKey.add(Z25);
 	}
-	
+
 	/*
 	 * Sets the key to be the disks arranged in alphabetical order.
 	 */
@@ -155,17 +159,17 @@ public class M94 {
 	 * Orders the disks based on user input from an integer array.
 	 * A disk can only be used 1 time.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void arrangeDisks(int[] arr) {
-		key.ensureCapacity(25);
-
-		if(arr == null) {
-			arrangeDisks();
-		} else {
+		if(arr != null) {
+			key = (ArrayList<ArrayList>) orderedKey.clone();
 			for(int i = 0; i < arr.length; i++)
-				key.add(arr[i], orderedKey.get(i));
+				key.set(arr[i]-1, orderedKey.get(i));
+		} else {
+			arrangeDisks();
 		}
 	}
-	
+
 	/*
 	 * Input a string and a line number.
 	 * Encrypt the string.
@@ -184,24 +188,23 @@ public class M94 {
 	public static String[] encrypt(String msg) {
 		msg = msg.replaceAll("\\W", "");
 		ArrayList<ArrayList<Character>> results = new ArrayList<ArrayList<Character>>();
-		String[] response = new String[25];
+		String[] response = new String[26];
 		int counter = 0;
 		int index = 0;
 		int filler;
 
-		if((filler = 25 - msg.length()%25) != 25 || msg.length() == 0) {
+		if((filler = 25 - msg.length()%25) != 25 || msg.length() == 0)
 			for(int i = 0; i < filler; i++)
 				msg += 'A';
-		}
 
 		CharacterIterator iter = new StringCharacterIterator(msg);
 
-		for(int i = 0; i < 26; i++)
+		for(int i = 0; i < msg.length()+1; i++)
 			results.add(new ArrayList<Character>());
 
 		while(iter.current() != CharacterIterator.DONE) {
 			if(counter > 24) counter = 0;
-			
+
 			for(int i = 0; i < 26; i++)
 				results.get(i).add(index, (char) key.get(counter).get((key.get(counter).indexOf(iter.current()) + i)%26));
 
@@ -210,65 +213,72 @@ public class M94 {
 
 			iter.next();
 		}
-		
+
 		for(int i = 0; i < response.length; i++) {
 			StringBuilder sb = new StringBuilder();
-				for(Character ch: results.get(i))
-					sb.append(ch);
+			for(Character ch: results.get(i))
+				sb.append(ch);
 			response[i] = sb.toString();
 		}
 
 		return response;
 	}
 
-	/*
-	 * Used for Testing
-	 */
-	/*public static void main(String[] args) {
-		Random rand = new Random();
-		int r = rand.nextInt(26);
-		int[] arr;
+	@Override
+	public void actionButtonActionPerformed(ActionEvent evt) {
+		String input = getInputText().getText();
+		String lines[] = input.split("\\r?\\n");
+		String order = lines[0];
+		input = lines[1].toUpperCase();
 
 		initDisks();
 
-		@SuppressWarnings("resource")
-		Scanner in = new Scanner(System.in);
-
-		System.out.println("Input disk order (1-25):");
-		String order = in.nextLine();
-		System.out.println();
-
+		int arr[];
 		if(order.length() == 0) {
 			arr = null;
 		} else {
 			String[] items = order.split("\\s");
 			arr = new int[items.length];
 
-			for(int i = 0; i < items.length; i++) {
+			for(int i = 0; i < items.length; i++)
 				arr[i] = Integer.parseInt(items[i]);
-			}
 		}
 
 		arrangeDisks(arr);
 
-		System.out.println("Input a message:");
-		String input = in.nextLine();
-		input = input.toUpperCase();
-		System.out.println();
+		getMainCipherTextArea().setText("");
 
-		String[] response = encrypt(input);
-		System.out.println(encrypt(input, r) + "\n");
-		for(int i = 0; i < response.length; i++)
-			System.out.println(response[i]);
-		System.out.println();
+		String[] m94 = encrypt(input);
 
-		String[] msg = new String[25];
-		msg = encrypt(response[r]);
-
-		String[] output = new String[25];
-		for(int i = 0; i < output.length; i++) {
-			output[i] = String.valueOf(msg[i]);
-			System.out.println(output[i]);
+		for(int i = 0; i < m94.length; i++) {
+			m94[i] = standardize(m94[i], input);
+			getMainCipherTextArea().append(m94[i]);
+			getMainCipherTextArea().append("\n");
 		}
-	}*/
+		/*
+		 * 25 1 24 2 23 3 22 4 21 5 20 6 19 7 18 8 17 9 16 10 15 11 14 12 13
+		 * JQDJB VBHFS LLZJ PBN MX. EAAIP RCHTE VBW LXN PPKT. DNDAG PBMSI VDH WOCWUI JXP BONF EQM.
+		 */
+	}
+
+	private String standardize(String string, String input) {
+		char[] in = input.toCharArray();
+		String output;
+		ArrayList<Character> outputArr = new ArrayList<Character>();
+		for(char c: string.toCharArray())
+			outputArr.add(c);
+
+		for(int i = 0; i < input.length(); i++)
+			if(!(in[i] >= 'A' && in[i] <= 'Z'))
+				outputArr.add(i, in[i]);
+		
+		outputArr.add(input.length(), " ".toCharArray()[0]);
+
+		StringBuilder sb = new StringBuilder();
+		for(Character ch: outputArr)
+			sb.append(ch);
+		output = sb.toString();
+
+		return output;
+	}
 }
