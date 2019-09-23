@@ -251,7 +251,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
 
         jScrollPane1.setViewportView(inputText);
-
+/*
         jbuttonOpenFile.setText("Open File!");
         jbuttonOpenFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +264,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
 
         jScrollPane1.setColumnHeaderView(jbuttonOpenFile);
-
+*/
 
         jSplitPane1.setTopComponent(jScrollPane1);
 
@@ -2077,8 +2077,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
     private encryptKW encryptkw;
     private decryptKW decryptkw;
-    private javax.swing.JScrollPane jScrollPane29;
-    private javax.swing.JScrollPane jScrollPane30;
+    private javax.swing.JScrollPane jScrollPane31;
+    private javax.swing.JScrollPane jScrollPane32;
     private TriGraphs triGraphs;
     private NGraphs nGraphs;
     private AffineKnownPlaintextAttack affineKnownPlaintextAttack;
