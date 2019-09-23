@@ -1,5 +1,8 @@
 package Ciphers;
 
+import ServiceImpl.CipherServiceImpl;
+import Services.CipherService;
+
 import javax.swing.*;
 import javax.swing.text.Caret;
 import java.awt.*;
@@ -10,15 +13,21 @@ public abstract class BaseCipher {
     private JButton actionButton;
     private JPanel mainCipherPanel;
     private JTextArea mainCipherTextArea;
+    private JScrollPane jScrollPane;
 
     private JTextArea inputText;
+
+    private CipherService cipherService;
 
 
     public BaseCipher(){
         actionButton = new JButton();
         mainCipherPanel = new JPanel();
         mainCipherTextArea = new JTextArea();
+        jScrollPane = new JScrollPane();
         inputText = new JTextArea();
+
+        cipherService = new CipherServiceImpl();
 
         mainCipherPanel.setLayout(new BorderLayout());
 
@@ -36,7 +45,11 @@ public abstract class BaseCipher {
             }
         });
 
+        jScrollPane.setViewportView(mainCipherTextArea);
+        mainCipherPanel.add(jScrollPane, BorderLayout.CENTER);
+
         mainCipherPanel.add(actionButton, BorderLayout.SOUTH);
+
 
     }
 
@@ -86,5 +99,21 @@ public abstract class BaseCipher {
 
     public void setInputText(JTextArea inputText) {
         this.inputText = inputText;
+    }
+
+    public CipherService getCipherService() {
+        return cipherService;
+    }
+
+    public void setCipherService(CipherService cipherService) {
+        this.cipherService = cipherService;
+    }
+
+    public JScrollPane getjScrollPane() {
+        return jScrollPane;
+    }
+
+    public void setjScrollPane(JScrollPane jScrollPane) {
+        this.jScrollPane = jScrollPane;
     }
 }
