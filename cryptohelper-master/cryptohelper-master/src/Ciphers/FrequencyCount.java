@@ -1,10 +1,7 @@
 package Ciphers;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
-//extend BaseCipher eventually
 public class FrequencyCount extends BaseCipher{
     public FrequencyCount(){
         super();

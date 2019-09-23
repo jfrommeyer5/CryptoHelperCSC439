@@ -1,23 +1,24 @@
 package Ciphers;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 
-public class BiGraphs extends BaseCipher{
+public class TriGraphs extends BaseCipher {
 
-    public BiGraphs(){
+    public TriGraphs(){
         super();
-        initializeActionBtn("Show BiGraphs");
+        initializeActionBtn("Show TriGraphs");
     }
 
     @Override
     public void actionButtonActionPerformed(ActionEvent evt) {
         String inputString = getCipherService().formatString(getInputText());
+
         String tempString;
         Counter counter = new Counter();
 
-        for (int x = 0; x < inputString.length() - 1; x++)
+        for (int x = 0; x < inputString.length() - 2; x++)
         {
-            tempString = inputString.substring(x, x+2);
+            tempString = inputString.substring(x, x+3);
             if (inputString.indexOf(tempString, x)>=0)
             {
                 if (!counter.contains(tempString))
@@ -25,7 +26,7 @@ public class BiGraphs extends BaseCipher{
                     counter.add(tempString, x);
                     for (int y = x; y >= 0;)
                     {
-                        if ((y = inputString.indexOf(tempString, y+2)) >= 0) counter.inc(y);
+                        if ((y = inputString.indexOf(tempString, y+3)) >= 0) counter.inc(y);
                     }
                 }
             }
@@ -48,4 +49,5 @@ public class BiGraphs extends BaseCipher{
             getMainCipherTextArea().append("\n");
         }
     }
+
 }
