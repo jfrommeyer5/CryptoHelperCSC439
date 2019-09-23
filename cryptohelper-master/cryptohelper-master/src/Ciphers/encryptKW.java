@@ -1,21 +1,54 @@
-import java.util.*;
-/**
- * This program will take in a keyword and a message, the 
- * keyword will be used to generate the new alphabet and then 
- * the message will be encrypted using the new alphabet.
- * The format of output is five letter blocks with no 
- * punctuation marks.
- * @author Juan Ruiz
- *
- */
-public class encryptKW {
+package Ciphers;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+
+public class encryptKW extends BaseCipher{
+
+	private JPanel topPanel;
+	private JTextField keywordArea;
+	private JLabel keywordInput;
+
+	public encryptKW(){
+		super();
+		topPanel = new JPanel();
+		keywordArea = new JTextField();
+		keywordInput = new JLabel();
+
+		topPanel.setLayout(new BorderLayout());
+		keywordInput.setText("Keyword");
+		
+		topPanel.add(keywordInput, BorderLayout.WEST);
+		keywordArea.setFont(new Font("Monospaced", 0, 12));
+		
+		topPanel.add(keywordArea, BorderLayout.CENTER);
+		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
+		
+		initializeActionBtn("Encipher");
+	}
+	
+	@Override
+	public void actionButtonActionPerformed(ActionEvent evt){
+		String msg = getInputText().getText();
+		String key = keywordArea.getText();
+		getMainCipherTextArea().setText("");
+		
+		char[] keyIn = key.toCharArray();
+		
+		String enc = encoder(keyIn);
+		
+		String encryptedText = encipher(msg, enc);
+		
+		getMainCipherTextArea().append(encryptedText);
+	}
 	/**
 	 * This first method will take the keyword and 
 	 * use it to make the new alphabet that will be used.
 	 * @param key
 	 * @return
 	 */
-	public static String encoder(char[] key){
+	public String encoder(char[] key){
 		
 		//this will be where the new alphabet is stored
 		String encoded = ""; 
@@ -59,7 +92,7 @@ public class encryptKW {
 	 * @param encoded
 	 * @return
 	 */
-	public static String encipher(String msg, String encoded){
+	public String encipher(String msg, String encoded){
 		String cipher = ""; 
 		int count = 0;//count is used to keep track of when a space is needed
 		
@@ -97,26 +130,4 @@ public class encryptKW {
 		
 		
 	}
-	/**
-	 * This will serve to get input from user and 
-	 * to help show how the message looked like before and
-	 * after the encryption.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		
-		Scanner input = new Scanner(System.in);
-		System.out.println("Please input your keyword: ");
-		String key = input.nextLine();
-		
-		String enc = encoder(key.toCharArray());
-		
-		System.out.println("Please input the message to encipher: ");
-		String msg = input.nextLine();
-		
-		System.out.println("Message before encipher: "+ msg);
-		System.out.println("Message after encipher: " + encipher(msg, enc));
-		
-	}
-
 }
