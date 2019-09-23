@@ -84,7 +84,7 @@ public class AffineEncipherDecipher extends BaseCipher {
 
         getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 
-
+        //neeed to have constructor for a encipher and decipher button. or change the text in the main class.
         initializeActionBtn("Encipher");
 
     }

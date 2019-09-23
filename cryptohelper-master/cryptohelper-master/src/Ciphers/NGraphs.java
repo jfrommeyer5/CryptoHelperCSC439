@@ -44,7 +44,6 @@ public class NGraphs extends BaseCipher{
         if (((Integer)js.getValue()).intValue() < 1) js.setValue(new Integer(1));
     }
 
-
     @Override
     public void actionButtonActionPerformed(ActionEvent evt) {
         String inputString = getCipherService().formatString(getInputText());
@@ -85,5 +84,12 @@ public class NGraphs extends BaseCipher{
             }
             getMainCipherTextArea().append("\n");
         }
+    }
+    public JSpinner getjSpinner() {
+        return jSpinner;
+    }
+
+    public void setjSpinner(JSpinner jSpinner) {
+        this.jSpinner = jSpinner;
     }
 }

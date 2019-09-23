@@ -8,4 +8,6 @@ public interface CipherService {
 
     String formatString(JTextArea jta);
     String formatString(JTextField jtf);
+
+    JTable buildTable();
 }
