@@ -6,10 +6,7 @@ package MainToBeRenamed;/*
 
 
 
-import Ciphers.BiGraphs;
-import Ciphers.FrequencyCount;
-import Ciphers.RunTheAlphabet;
-import Ciphers.TermsOfTheGPL;
+import Ciphers.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -47,10 +44,12 @@ public class CryptoHelper extends javax.swing.JFrame {
         frequencyCount = new FrequencyCount();
         runTheAlphabet = new RunTheAlphabet();
         biGraphs = new BiGraphs();
+        triGraphs = new TriGraphs();
+        nGraphs = new NGraphs();
+        affineKnownPlaintextAttack = new AffineKnownPlaintextAttack();
+        affineEncipher = new AffineEncipherDecipher();
+        affineDecipher = new AffineEncipherDecipher();
 
-
-        buttonGroup1 = new ButtonGroup();
-        buttonGroup2 = new ButtonGroup();
         jPopupMenu1 = new JPopupMenu();
         jMenuItem1 = new JMenuItem();
         jMenuItem2 = new JMenuItem();
@@ -60,77 +59,6 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane1 = new JScrollPane();
         inputText = new JTextArea();
         rightHandNavPanelTab = new JTabbedPane();
-        jScrollPane2 = new JScrollPane();
-
-
-        jScrollPane3 = new JScrollPane();
-
-        jPanel3 = new JPanel();
-        jScrollPane4 = new JScrollPane();
-        jTextArea4 = new JTextArea();
-
-        jPanel4 = new JPanel();
-        jScrollPane5 = new JScrollPane();
-        jTextArea5 = new JTextArea();
-        jButton4 = new JButton();
-        jPanel20 = new JPanel();
-        jScrollPane12 = new JScrollPane();
-        jTextArea12 = new JTextArea();
-        jButton10 = new JButton();
-        jPanel21 = new JPanel();
-        jLabel8 = new JLabel();
-        jSpinner5 = new JSpinner();
-        jPanel5 = new JPanel();
-        jButton5 = new JButton();
-        jPanel6 = new JPanel();
-        jLabel1 = new JLabel();
-        jTextField1 = new JTextField();
-        jCheckBox1 = new JCheckBox();
-        jScrollPane6 = new JScrollPane();
-        jTextArea6 = new JTextArea();
-        jPanel7 = new JPanel();
-        jPanel8 = new JPanel();
-        jPanel9 = new JPanel();
-        jRadioButton1 = new JRadioButton();
-        jRadioButton2 = new JRadioButton();
-        jRadioButton3 = new JRadioButton();
-        jRadioButton4 = new JRadioButton();
-        jRadioButton5 = new JRadioButton();
-        jRadioButton6 = new JRadioButton();
-        jRadioButton7 = new JRadioButton();
-        jRadioButton8 = new JRadioButton();
-        jRadioButton9 = new JRadioButton();
-        jRadioButton10 = new JRadioButton();
-        jRadioButton11 = new JRadioButton();
-        jRadioButton12 = new JRadioButton();
-        jPanel10 = new JPanel();
-        jLabel3 = new JLabel();
-        jSpinner1 = new JSpinner();
-        jLabel2 = new JLabel();
-        jButton6 = new JButton();
-        jScrollPane7 = new JScrollPane();
-        jTextArea7 = new JTextArea();
-        jPanel11 = new JPanel();
-        jPanel12 = new JPanel();
-        jPanel13 = new JPanel();
-        jRadioButton13 = new JRadioButton();
-        jRadioButton14 = new JRadioButton();
-        jRadioButton15 = new JRadioButton();
-        jRadioButton16 = new JRadioButton();
-        jRadioButton17 = new JRadioButton();
-        jRadioButton18 = new JRadioButton();
-        jRadioButton19 = new JRadioButton();
-        jRadioButton20 = new JRadioButton();
-        jRadioButton21 = new JRadioButton();
-        jRadioButton22 = new JRadioButton();
-        jRadioButton23 = new JRadioButton();
-        jRadioButton24 = new JRadioButton();
-        jPanel14 = new JPanel();
-        jLabel4 = new JLabel();
-        jSpinner2 = new JSpinner();
-        jLabel5 = new JLabel();
-        jButton7 = new JButton();
-        jScrollPane8 = new JScrollPane();
         jTextArea8 = new JTextArea();
         jPanel15 = new JPanel();
         jPanel16 = new JPanel();
@@ -339,8 +267,6 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(frequencyCount.getMainCipherTextArea());
-        frequencyCount.getMainCipherPanel().add(jScrollPane2, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Frequency Count", frequencyCount.getMainCipherPanel());
 
 
@@ -367,19 +293,17 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane3.setViewportView(runTheAlphabet.getMainCipherTextArea());
-        runTheAlphabet.getMainCipherPanel().add(jScrollPane3, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getMainCipherPanel());
 
 //end run the alphabet
 //begin BiGraphs
         //need to extract all listeners
-        jTextArea4.addKeyListener(new KeyAdapter() {
+        biGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea4.addMouseListener(new MouseAdapter() {
+        biGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
@@ -393,336 +317,120 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane4.setViewportView(biGraphs.getMainCipherTextArea());
-        biGraphs.getMainCipherPanel().add(jScrollPane4, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("BiGraphs", biGraphs.getMainCipherPanel());
 //end BiGraphs
+// begin TriGraphs
 
-        jPanel4.setLayout(new BorderLayout());
-
-        jTextArea5.setFont(new Font("Monospaced", 0, 12));
-        jTextArea5.addKeyListener(new KeyAdapter() {
+        triGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea5.addMouseListener(new MouseAdapter() {
+        triGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane5.setViewportView(jTextArea5);
-
-        jPanel4.add(jScrollPane5, BorderLayout.CENTER);
-
-        jButton4.setText("Show TriGraphs");
-        jButton4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        //workaround to pass inputText to FrequencyCount class
+        triGraphs.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                triGraphs.setInputText(inputText);
             }
         });
 
-        jPanel4.add(jButton4, BorderLayout.SOUTH);
-
-        rightHandNavPanelTab.addTab("TriGraphs", jPanel4);
-
-        jPanel20.setLayout(new BorderLayout());
-
-        jTextArea12.setFont(new Font("Monospaced", 0, 12));
-        jTextArea12.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("TriGraphs", triGraphs.getMainCipherPanel());
+//end of TriGraphs
+//begin NGraphs
+        nGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea12.addMouseListener(new MouseAdapter() {
+        nGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane12.setViewportView(jTextArea12);
-
-        jPanel20.add(jScrollPane12, BorderLayout.CENTER);
-
-        jButton10.setText("Show NGraphs");
-        jButton10.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+        //workaround to pass inputText to FrequencyCount class
+        nGraphs.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nGraphs.setInputText(inputText);
             }
         });
 
-        jPanel20.add(jButton10, BorderLayout.SOUTH);
-
-        jLabel8.setText("Length of NGraph");
-        jPanel21.add(jLabel8);
-
-        jSpinner5.setPreferredSize(new Dimension(50, 20));
-        jSpinner5.setValue(new Integer(1));
-        jSpinner5.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner3StateChanged(evt);
-            }
-        });
-
-        jPanel21.add(jSpinner5);
-
-        jPanel20.add(jPanel21, BorderLayout.NORTH);
-
-        rightHandNavPanelTab.addTab("NGraphs", jPanel20);
-
-        jPanel5.setLayout(new BorderLayout());
-
-        jButton5.setText("Execute");
-        jButton5.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jPanel5.add(jButton5, BorderLayout.SOUTH);
-
-        jPanel6.setLayout(new BorderLayout());
-
-        jLabel1.setText("Enter Keyword");
-        jPanel6.add(jLabel1, BorderLayout.WEST);
-
-        jTextField1.setFont(new Font("Monospaced", 0, 12));
-        jTextField1.setText("the");
-        jPanel6.add(jTextField1, BorderLayout.CENTER);
-
-        jCheckBox1.setText("Shift first");
-        jPanel6.add(jCheckBox1, BorderLayout.EAST);
-
-        jPanel5.add(jPanel6, BorderLayout.NORTH);
-
-        jTextArea6.setFont(new Font("Monospaced", 0, 12));
-        jTextArea6.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("NGraphs", nGraphs.getMainCipherPanel());
+//end of NGraphs
+//begin affineKnown
+        affineKnownPlaintextAttack.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea6.addMouseListener(new MouseAdapter() {
+        affineKnownPlaintextAttack.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane6.setViewportView(jTextArea6);
-
-        jPanel5.add(jScrollPane6, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Affine Known Plaintext Attack", jPanel5);
-
-        jPanel7.setLayout(new BorderLayout());
-
-        jPanel8.setLayout(new BorderLayout());
-
-        jPanel8.setPreferredSize(new Dimension(689, 75));
-        jPanel9.setLayout(new GridLayout(1, 0));
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("1");
-        jPanel9.add(jRadioButton1);
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("3");
-        jPanel9.add(jRadioButton2);
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("5");
-        jPanel9.add(jRadioButton3);
-
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("7");
-        jPanel9.add(jRadioButton4);
-
-        buttonGroup1.add(jRadioButton5);
-        jRadioButton5.setText("9");
-        jPanel9.add(jRadioButton5);
-
-        buttonGroup1.add(jRadioButton6);
-        jRadioButton6.setText("11");
-        jPanel9.add(jRadioButton6);
-
-        buttonGroup1.add(jRadioButton7);
-        jRadioButton7.setText("15");
-        jPanel9.add(jRadioButton7);
-
-        buttonGroup1.add(jRadioButton8);
-        jRadioButton8.setText("17");
-        jPanel9.add(jRadioButton8);
-
-        buttonGroup1.add(jRadioButton9);
-        jRadioButton9.setText("19");
-        jPanel9.add(jRadioButton9);
-
-        buttonGroup1.add(jRadioButton10);
-        jRadioButton10.setText("21");
-        jPanel9.add(jRadioButton10);
-
-        buttonGroup1.add(jRadioButton11);
-        jRadioButton11.setText("23");
-        jPanel9.add(jRadioButton11);
-
-        buttonGroup1.add(jRadioButton12);
-        jRadioButton12.setText("25");
-        jPanel9.add(jRadioButton12);
-
-        jPanel8.add(jPanel9, BorderLayout.CENTER);
-
-        jLabel3.setText("Additive Shift");
-        jPanel10.add(jLabel3);
-
-        jSpinner1.setPreferredSize(new Dimension(50, 20));
-        jSpinner1.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
+        affineKnownPlaintextAttack.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                affineKnownPlaintextAttack.setInputText(inputText);
             }
         });
 
-        jPanel10.add(jSpinner1);
-
-        jPanel8.add(jPanel10, BorderLayout.SOUTH);
-
-        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel2.setText("Multiplicative shift");
-        jPanel8.add(jLabel2, BorderLayout.NORTH);
-
-        jPanel7.add(jPanel8, BorderLayout.NORTH);
-
-        jButton6.setText("Encipher");
-        jButton6.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jPanel7.add(jButton6, BorderLayout.SOUTH);
-
-        jTextArea7.setFont(new Font("Monospaced", 0, 12));
-        jTextArea7.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("Affine Known Plaintext Attack", affineKnownPlaintextAttack.getMainCipherPanel());
+//end of affineKnown
+//begin affineEncipher
+        affineEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea7.addMouseListener(new MouseAdapter() {
+        affineEncipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane7.setViewportView(jTextArea7);
-
-        jPanel7.add(jScrollPane7, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Affine Encipher", jPanel7);
-
-        jPanel11.setLayout(new BorderLayout());
-
-        jPanel12.setLayout(new BorderLayout());
-
-        jPanel12.setPreferredSize(new Dimension(689, 75));
-        jPanel13.setLayout(new GridLayout(1, 0));
-
-        buttonGroup2.add(jRadioButton13);
-        jRadioButton13.setSelected(true);
-        jRadioButton13.setText("1");
-        jPanel13.add(jRadioButton13);
-
-        buttonGroup2.add(jRadioButton14);
-        jRadioButton14.setText("3");
-        jPanel13.add(jRadioButton14);
-
-        buttonGroup2.add(jRadioButton15);
-        jRadioButton15.setText("5");
-        jPanel13.add(jRadioButton15);
-
-        buttonGroup2.add(jRadioButton16);
-        jRadioButton16.setText("7");
-        jPanel13.add(jRadioButton16);
-
-        buttonGroup2.add(jRadioButton17);
-        jRadioButton17.setText("9");
-        jPanel13.add(jRadioButton17);
-
-        buttonGroup2.add(jRadioButton18);
-        jRadioButton18.setText("11");
-        jPanel13.add(jRadioButton18);
-
-        buttonGroup2.add(jRadioButton19);
-        jRadioButton19.setText("15");
-        jPanel13.add(jRadioButton19);
-
-        buttonGroup2.add(jRadioButton20);
-        jRadioButton20.setText("17");
-        jPanel13.add(jRadioButton20);
-
-        buttonGroup2.add(jRadioButton21);
-        jRadioButton21.setText("19");
-        jPanel13.add(jRadioButton21);
-
-        buttonGroup2.add(jRadioButton22);
-        jRadioButton22.setText("21");
-        jPanel13.add(jRadioButton22);
-
-        buttonGroup2.add(jRadioButton23);
-        jRadioButton23.setText("23");
-        jPanel13.add(jRadioButton23);
-
-        buttonGroup2.add(jRadioButton24);
-        jRadioButton24.setText("25");
-        jPanel13.add(jRadioButton24);
-
-        jPanel12.add(jPanel13, BorderLayout.CENTER);
-
-        jLabel4.setText("Additive Shift");
-        jPanel14.add(jLabel4);
-
-        jSpinner2.setPreferredSize(new Dimension(50, 20));
-        jSpinner2.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner2StateChanged(evt);
+        affineEncipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                affineEncipher.setInputText(inputText);
             }
         });
 
-        jPanel14.add(jSpinner2);
+        rightHandNavPanelTab.addTab("Affine Encipher", affineEncipher.getMainCipherPanel());
+        //end AffineEncipher
+        //begin AffineDecipher
 
-        jPanel12.add(jPanel14, BorderLayout.SOUTH);
 
-        jLabel5.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel5.setText("Multiplicative shift");
-        jPanel12.add(jLabel5, BorderLayout.NORTH);
-
-        jPanel11.add(jPanel12, BorderLayout.NORTH);
-
-        jButton7.setText("Decipher");
-        jButton7.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jPanel11.add(jButton7, BorderLayout.SOUTH);
-
-        jTextArea8.setFont(new Font("Monospaced", 0, 12));
-        jTextArea8.addKeyListener(new KeyAdapter() {
+        affineDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea8.addMouseListener(new MouseAdapter() {
+        affineDecipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane8.setViewportView(jTextArea8);
+        affineDecipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                affineDecipher.setInputText(inputText);
+            }
+        });
 
-        jPanel11.add(jScrollPane8, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Affine Decipher", affineDecipher.getMainCipherPanel());
 
-        rightHandNavPanelTab.addTab("Affine Decipher", jPanel11);
+        //end affineDecipher
+        //begin Split Off Alphabets
 
         jPanel15.setLayout(new BorderLayout());
 
@@ -2316,48 +2024,6 @@ public class CryptoHelper extends javax.swing.JFrame {
         jTextArea13.setText(new String(charArray));        
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-
-        String inputString = formatString(inputText);
-        int js = ((Integer)jSpinner5.getValue()).intValue();
-
-        String tempString;
-        Counter counter = new Counter();
-        
-        for (int x = 0; x < inputString.length() - (js - 1); x++)
-        {
-            tempString = inputString.substring(x, x+js);
-            if (inputString.indexOf(tempString, x)>=0)
-            {
-                if (!counter.contains(tempString))
-                {
-                    counter.add(tempString, x);
-                    for (int y = x; y >= 0;)
-                    {
-                        if ((y = inputString.indexOf(tempString, y+js)) >= 0) counter.inc(y);
-                    }
-                }
-            }
-        }
-        
-        jTextArea12.setText("");
-        
-        for (int x = 0; x < counter.length; x++)
-        {
-            jTextArea12.append(counter.sArray[x]);
-            jTextArea12.append(" = ");
-            jTextArea12.append(new Integer(counter.iArray[x]).toString());
-            jTextArea12.append(" at positions ");
-            for (int y = 0; y < counter.iArray[x]; y++)
-            {
-                jTextArea12.append("" + counter.pArray[x][y]);
-                if (y!=counter.iArray[x] - 1)
-                    jTextArea12.append(",");
-            }
-            jTextArea12.append("\n");
-        }        
-        
-    }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         String inputString = formatString(inputText);
@@ -2495,262 +2161,6 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ((JTextArea)((JPopupMenu)((JMenuItem)evt.getSource()).getParent()).getInvoker()).copy();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        JSpinner js = (JSpinner)evt.getSource();
-        
-        if (((Integer)js.getValue()).intValue() < 0) js.setValue(new Integer(0));
-        if (((Integer)js.getValue()).intValue() > 25) js.setValue(new Integer(25));        
-    }//GEN-LAST:event_jSpinner1StateChanged
-
-    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
-        JSpinner js = (JSpinner)evt.getSource();
-        
-        if (((Integer)js.getValue()).intValue() < 0) js.setValue(new Integer(0));
-        if (((Integer)js.getValue()).intValue() > 25) js.setValue(new Integer(25));        
-    }//GEN-LAST:event_jSpinner2StateChanged
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        int m = 0;
-        String inputString = formatString(inputText);
-        
-        jTextArea8.setText("");
-        
-        char[] charArray = inputString.toCharArray();
-
-        if (jRadioButton13.isSelected()) m = 1;
-        else if (jRadioButton14.isSelected()) m = 9;
-        else if (jRadioButton15.isSelected()) m = 21;
-        else if (jRadioButton16.isSelected()) m = 15;
-        else if (jRadioButton17.isSelected()) m = 3;
-        else if (jRadioButton18.isSelected()) m = 19;
-        else if (jRadioButton19.isSelected()) m = 7;
-        else if (jRadioButton20.isSelected()) m = 23;
-        else if (jRadioButton21.isSelected()) m = 11;
-        else if (jRadioButton22.isSelected()) m = 5;
-        else if (jRadioButton23.isSelected()) m = 17;
-        else if (jRadioButton24.isSelected()) m = 25;
-        
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            charArray[x] = (char)(charArray[x] - 64);
-            charArray[x] = (char)((charArray[x] + (26-((Integer)(jSpinner2.getValue())).intValue()))%26);
-            charArray[x] = (char)((charArray[x] * m)%26);
-            if (charArray[x] == 0) charArray[x] = (char)26;
-            charArray[x] = (char)(charArray[x] + 64);
-        }
-        
-        char[] charArray2 = new char[charArray.length + ((charArray.length-1)/5)];
-        
-        for (int x = 0, y = 0; x < charArray.length; x++, y++)
-        {
-            charArray2[y] = charArray[x];
-            if ((x+1)%5 == 0 && (x+1)!= charArray.length) charArray2[++y] = ' ';
-        }
-        
-        jTextArea8.append(new String(charArray2));
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-/*
- *Write an affine solver that will look for occurences of all 312 combinations of a known piece of plaintext all the occurences & display the keys that were used
- *{
- *take out spaces
- *outer if that will detect whether the checkbox was checked & take the appropriate action.
- *two for loops to iterate through the combinations
- *inner for loop will use same ago used for trigraph in regards finding occurences
- *}
- *
- *make some tally bars in places where it would be useful to get information at a glance.
- */
-        String inputString = formatString(inputText);
-        String searchString = formatString(jTextField1);
-        
-        jTextArea6.setText("The following are all the possible combinations of \"" + searchString + "\"\n");
-        jTextArea6.append("which are contained in the cyphertext message and the affine\n");
-        jTextArea6.append("keys used to encrypt them.\n\n");
-        
-        if (!jCheckBox1.isSelected())
-        {
-            searchCeasar(1, inputString, searchString);
-            searchCeasar(3, inputString, searchString);
-            searchCeasar(5, inputString, searchString);
-            searchCeasar(7, inputString, searchString);
-            searchCeasar(9, inputString, searchString);
-            searchCeasar(11, inputString, searchString);
-            searchCeasar(15, inputString, searchString);
-            searchCeasar(17, inputString, searchString);
-            searchCeasar(19, inputString, searchString);
-            searchCeasar(21, inputString, searchString);
-            searchCeasar(23, inputString, searchString);
-            searchCeasar(25, inputString, searchString);
-        }
-        else
-        {
-            searchCeasarReverse(1, inputString, searchString);
-            searchCeasarReverse(3, inputString, searchString);
-            searchCeasarReverse(5, inputString, searchString);
-            searchCeasarReverse(7, inputString, searchString);
-            searchCeasarReverse(9, inputString, searchString);
-            searchCeasarReverse(11, inputString, searchString);
-            searchCeasarReverse(15, inputString, searchString);
-            searchCeasarReverse(17, inputString, searchString);
-            searchCeasarReverse(19, inputString, searchString);
-            searchCeasarReverse(21, inputString, searchString);
-            searchCeasarReverse(23, inputString, searchString);
-            searchCeasarReverse(25, inputString, searchString);            
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void searchCeasar(int m, String inputString, String searchString)
-    {
-        int counter;
-        String mSearchString;
-        char[] charArray;
-        
-            for (int x = 0; x < 25; x++)
-            {
-                charArray = searchString.toCharArray(); 
-                for (int y = 0; y < charArray.length; y++) 
-                {
-                    charArray[y] = (char)(charArray[y] - 64);
-                    charArray[y] = (char)((charArray[y] * m)%26);
-                    charArray[y] = (char)((charArray[y] + x)%26);
-                    if (charArray[y] == 0) charArray[y] = (char)26;
-                    charArray[y] = (char)(charArray[y] + 64);                    
-                }
-                mSearchString = new String(charArray);
-                // insert code that now searches using the content of mSearchString
-                
-                counter = 0;
-                if (inputString.indexOf(mSearchString)==0) counter++;
-                for (int y = 0; y >= 0;)
-                {
-                    if ((y = inputString.indexOf(mSearchString, y+1)) >= 0) counter++;
-                }  
-                if (counter > 0)
-                {
-                    jTextArea6.append(mSearchString + " appears " + counter + " times with a ");
-                    jTextArea6.append("multiplicative key = " + m + " and an additive key = " + x);
-                    jTextArea6.append("\n");
-                }
-            }
-    }
-
-    private void searchCeasarReverse(int m, String inputString, String searchString)
-    {
-        int counter;
-        String mSearchString;
-        char[] charArray;
-            for (int x = 0; x < 25; x++)
-            {
-                charArray = searchString.toCharArray(); 
-                for (int y = 0; y < charArray.length; y++) 
-                {
-                    charArray[y] = (char)(charArray[y] - 64);
-                    charArray[y] = (char)((charArray[y] + x)%26);
-                    charArray[y] = (char)((charArray[y] * m)%26);
-                    if (charArray[y] == 0) charArray[y] = (char)26;
-                    charArray[y] = (char)(charArray[y] + 64);                    
-                }
-                mSearchString = new String(charArray);
-                // insert code that now searches using the content of mSearchString
-                
-                counter = 0;
-                if (inputString.indexOf(mSearchString)==0) counter++;
-                for (int y = 0; y >= 0;)
-                {
-                    if ((y = inputString.indexOf(mSearchString, y+1)) >= 0) counter++;
-                }                
-                if (counter > 0)
-                {
-                    jTextArea6.append(mSearchString + " appears " + counter + " times with a ");
-                    jTextArea6.append("multiplicative key = " + m + " and an additive key = " + x);
-                    jTextArea6.append("\n");
-                }
-            }
-    }
-    
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        int m = 0;
-        String inputString = formatString(inputText);
-        
-        jTextArea7.setText("");
-        
-        char[] charArray = inputString.toCharArray();
-
-        if (jRadioButton1.isSelected()) m = 1;
-        else if (jRadioButton2.isSelected()) m = 3;
-        else if (jRadioButton3.isSelected()) m = 5;
-        else if (jRadioButton4.isSelected()) m = 7;
-        else if (jRadioButton5.isSelected()) m = 9;
-        else if (jRadioButton6.isSelected()) m = 11;
-        else if (jRadioButton7.isSelected()) m = 15;
-        else if (jRadioButton8.isSelected()) m = 17;
-        else if (jRadioButton9.isSelected()) m = 19;
-        else if (jRadioButton10.isSelected()) m = 21;
-        else if (jRadioButton11.isSelected()) m = 23;
-        else if (jRadioButton12.isSelected()) m = 25;
-        
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            charArray[x] = (char)(charArray[x] - 64);
-            charArray[x] = (char)((charArray[x] * m)%26);
-            charArray[x] = (char)((charArray[x] + ((Integer)(jSpinner1.getValue())).intValue())%26);
-            if (charArray[x] == 0) charArray[x] = (char)26;
-            charArray[x] = (char)(charArray[x] + 64);
-        }
-        
-        char[] charArray2 = new char[charArray.length + ((charArray.length-1)/5)];
-        
-        for (int x = 0, y = 0; x < charArray.length; x++, y++)
-        {
-            charArray2[y] = charArray[x];
-            if ((x+1)%5 == 0 && (x+1)!= charArray.length) charArray2[++y] = ' ';
-        }
-        
-        jTextArea7.append(new String(charArray2));
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String inputString = formatString(inputText);
-
-        String tempString;
-        Counter counter = new Counter();
-        
-        for (int x = 0; x < inputString.length() - 2; x++)
-        {
-            tempString = inputString.substring(x, x+3);
-            if (inputString.indexOf(tempString, x)>=0)
-            {
-                if (!counter.contains(tempString))
-                {
-                    counter.add(tempString, x);
-                    for (int y = x; y >= 0;)
-                    {
-                        if ((y = inputString.indexOf(tempString, y+3)) >= 0) counter.inc(y);
-                    }
-                }
-            }
-        }
-        
-        jTextArea5.setText("");
-        
-        for (int x = 0; x < counter.length; x++)
-        {
-            jTextArea5.append(counter.sArray[x]);
-            jTextArea5.append(" = ");
-            jTextArea5.append(new Integer(counter.iArray[x]).toString());
-            jTextArea5.append(" at positions ");
-            for (int y = 0; y < counter.iArray[x]; y++)
-            {
-                jTextArea5.append("" + counter.pArray[x][y]);
-                if (y!=counter.iArray[x] - 1)
-                    jTextArea5.append(",");
-            }
-            jTextArea5.append("\n");
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2904,10 +2314,12 @@ public class CryptoHelper extends javax.swing.JFrame {
     private FrequencyCount frequencyCount;
     private RunTheAlphabet runTheAlphabet;
     private BiGraphs biGraphs;
+    private TriGraphs triGraphs;
+    private NGraphs nGraphs;
+    private AffineKnownPlaintextAttack affineKnownPlaintextAttack;
+    private AffineEncipherDecipher affineEncipher;
+    private AffineEncipherDecipher affineDecipher;
 
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
@@ -2922,15 +2334,10 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
 
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel1;
+
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2941,33 +2348,23 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
 
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
+
+
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
@@ -2976,7 +2373,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
+
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
@@ -2987,7 +2384,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
     private javax.swing.JPanel jPanel39;
-    private javax.swing.JPanel jPanel4;
+
     private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel42;
@@ -2996,40 +2393,13 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel45;
     private javax.swing.JPanel jPanel46;
     private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
-    private javax.swing.JRadioButton jRadioButton13;
-    private javax.swing.JRadioButton jRadioButton14;
-    private javax.swing.JRadioButton jRadioButton15;
-    private javax.swing.JRadioButton jRadioButton16;
-    private javax.swing.JRadioButton jRadioButton17;
-    private javax.swing.JRadioButton jRadioButton18;
-    private javax.swing.JRadioButton jRadioButton19;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton20;
-    private javax.swing.JRadioButton jRadioButton21;
-    private javax.swing.JRadioButton jRadioButton22;
-    private javax.swing.JRadioButton jRadioButton23;
-    private javax.swing.JRadioButton jRadioButton24;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
+
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
+
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
@@ -3037,7 +2407,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane19;
-    private javax.swing.JScrollPane jScrollPane2;
+
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
@@ -3047,18 +2417,12 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane28;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
+
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
+
     private javax.swing.JSpinner jSpinner6;
     private javax.swing.JSpinner jSpinner7;
     private javax.swing.JSpinner jSpinner8;
@@ -3081,7 +2445,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JTextArea inputText;
 
     private javax.swing.JTextArea jTextArea11;
-    private javax.swing.JTextArea jTextArea12;
+
     private javax.swing.JTextArea jTextArea13;
     private javax.swing.JTextArea jTextArea14;
     private javax.swing.JTextArea jTextArea15;
@@ -3091,13 +2455,10 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea19;
     private javax.swing.JTextArea jTextArea20;
     private javax.swing.JTextArea jTextArea21;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
+
     private javax.swing.JTextArea jTextArea8;
     private javax.swing.JTextArea jTextArea9;
-    private javax.swing.JTextField jTextField1;
+
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
