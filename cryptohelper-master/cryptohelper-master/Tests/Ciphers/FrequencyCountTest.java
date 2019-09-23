@@ -84,7 +84,7 @@ class FrequencyCountTest {
                 "m = 03 = III                     z =                 \n");
 
 
-        assertEquals(testJTextArea.toString(), testFrequencyCount.getMainCipherTextArea().toString());
+        assertEquals(testJTextArea.getText(), testFrequencyCount.getMainCipherTextArea().getText());
 
     }
 

@@ -44,6 +44,6 @@ class BiGraphsTest {
                 "IT = 1 at positions 17\n" +
                 "TY = 1 at positions 18\n");
 
-        assertEquals(testJTextArea.toString(), biGraphs.getMainCipherTextArea().toString());
+        assertEquals(testJTextArea.getText(), biGraphs.getMainCipherTextArea().getText());
     }
 }

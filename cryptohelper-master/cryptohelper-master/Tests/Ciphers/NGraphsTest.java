@@ -43,8 +43,8 @@ class NGraphsTest {
                 "ONAL = 1 at positions 13\n" +
                 "NALI = 1 at positions 14\n" +
                 "ALIT = 1 at positions 15\n" +
-                "LITY = 1 at positions 16");
+                "LITY = 1 at positions 16\n");
 
-        assertEquals(testJTextArea.toString(), nGraphs.getMainCipherTextArea().toString());
+        assertEquals(testJTextArea.getText(), nGraphs.getMainCipherTextArea().getText());
     }
 }
