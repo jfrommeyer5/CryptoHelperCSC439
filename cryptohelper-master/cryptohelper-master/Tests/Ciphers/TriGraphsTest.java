@@ -42,8 +42,8 @@ class TriGraphsTest {
                 "NAL = 1 at positions 14\n" +
                 "ALI = 1 at positions 15\n" +
                 "LIT = 1 at positions 16\n" +
-                "ITY = 1 at positions 17");
+                "ITY = 1 at positions 17\n");
 
-        assertEquals(testJTextArea.toString(), triGraphs.getMainCipherTextArea().toString());
+        assertEquals(testJTextArea.getText(), triGraphs.getMainCipherTextArea().getText());
     }
 }

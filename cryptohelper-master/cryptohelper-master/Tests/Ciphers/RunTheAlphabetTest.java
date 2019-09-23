@@ -49,8 +49,8 @@ class RunTheAlphabetTest {
                 "oznodib apixodjivgdot\n" +
                 "paopejc bqjypekjwhepu\n" +
                 "qbpqfkd crkzqflkxifqv\n" +
-                "rcqrgle dslargmlyjgrw");
+                "rcqrgle dslargmlyjgrw\n");
 
-        assertEquals(testJTextArea.toString(), runTheAlphabet.getMainCipherTextArea().toString());
+        assertEquals(testJTextArea.getText(), runTheAlphabet.getMainCipherTextArea().getText());
     }
 }
