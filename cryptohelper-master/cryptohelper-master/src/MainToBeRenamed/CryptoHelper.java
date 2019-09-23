@@ -10,6 +10,9 @@ import Ciphers.BiGraphs;
 import Ciphers.FrequencyCount;
 import Ciphers.RunTheAlphabet;
 import Ciphers.TermsOfTheGPL;
+import Ciphers.decryptKW;
+import Ciphers.encryptKW;
+
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -47,8 +50,11 @@ public class CryptoHelper extends javax.swing.JFrame {
         frequencyCount = new FrequencyCount();
         runTheAlphabet = new RunTheAlphabet();
         biGraphs = new BiGraphs();
+        encryptkw = new encryptKW();
+        decryptkw = new decryptKW();
 
-
+        jScrollPane29 = new JScrollPane();
+        jScrollPane30 = new JScrollPane();
         buttonGroup1 = new ButtonGroup();
         buttonGroup2 = new ButtonGroup();
         jPopupMenu1 = new JPopupMenu();
@@ -372,6 +378,50 @@ public class CryptoHelper extends javax.swing.JFrame {
         rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getMainCipherPanel());
 
 //end run the alphabet
+      //begin of encryptkw
+        encryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        encryptkw.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        encryptkw.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		encryptkw.setInputText(inputText);
+        	}
+        });
+        
+        jScrollPane29.setViewportView(encryptkw.getMainCipherTextArea());
+        encryptkw.getMainCipherPanel().add(jScrollPane29, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Encrypt Keyword", encryptkw.getMainCipherPanel());
+//end of encryptkw
+      //begin decryptkw
+        decryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        decryptkw.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        decryptkw.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		decryptkw.setInputText(inputText);
+        	}
+        });
+        
+        jScrollPane30.setViewportView(decryptkw.getMainCipherTextArea());
+        decryptkw.getMainCipherPanel().add(jScrollPane30, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Decrypt Keyword", decryptkw.getMainCipherPanel());
+//end of decrypt kw
 //begin BiGraphs
         //need to extract all listeners
         jTextArea4.addKeyListener(new KeyAdapter() {
@@ -2904,6 +2954,11 @@ public class CryptoHelper extends javax.swing.JFrame {
     private FrequencyCount frequencyCount;
     private RunTheAlphabet runTheAlphabet;
     private BiGraphs biGraphs;
+    private encryptKW encryptkw;
+    private decryptKW decryptkw;
+    private javax.swing.JScrollPane jScrollPane29;
+    private javax.swing.JScrollPane jScrollPane30;
+
 
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
