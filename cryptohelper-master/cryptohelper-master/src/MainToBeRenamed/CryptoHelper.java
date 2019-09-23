@@ -19,6 +19,8 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.jar.*;
 import java.util.zip.*;
@@ -91,6 +93,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         jPanel7 = new JPanel();
         jPanel8 = new JPanel();
         jPanel9 = new JPanel();
+        jbuttonOpenFile = new JButton();
         jRadioButton1 = new JRadioButton();
         jRadioButton2 = new JRadioButton();
         jRadioButton3 = new JRadioButton();
@@ -298,7 +301,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("MainToBeRenamed.CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
-        jSplitPane1.setDividerLocation(50);
+        jSplitPane1.setDividerLocation(80);
         jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         inputText.setFont(new Font("Monospaced", 0, 12));
         inputText.addKeyListener(new KeyAdapter() {
@@ -313,6 +316,20 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
 
         jScrollPane1.setViewportView(inputText);
+
+        jbuttonOpenFile.setText("Open File!");
+        jbuttonOpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    jButttonOpenFileActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        jScrollPane1.setColumnHeaderView(jbuttonOpenFile);
+
 
         jSplitPane1.setTopComponent(jScrollPane1);
 
@@ -2064,7 +2081,35 @@ public class CryptoHelper extends javax.swing.JFrame {
         }        
         return friedman;
     }
-    
+
+    private void jButttonOpenFileActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
+
+
+        final JFileChooser fc = new JFileChooser();
+
+//In response to a button click:
+        int returnVal = fc.showOpenDialog(null);
+
+        String inputFile = fc.getSelectedFile().getPath();
+
+        String intmandun = " ";
+
+        try {
+            intmandun = new String(Files.readAllBytes(Paths.get(inputFile)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        String lines = Files.readAllLines(Paths.get(inputFile));
+//        String intman = lines;
+        String inputString = intmandun;
+        inputText.setText(inputString);
+
+
+
+    }
+
+
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         String inputString = formatString(inputText);
         String outputString = "";
@@ -2907,6 +2952,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+
+    private javax.swing.JButton jbuttonOpenFile;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
