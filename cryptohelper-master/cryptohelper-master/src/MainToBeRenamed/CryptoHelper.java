@@ -6,10 +6,7 @@ package MainToBeRenamed;/*
 
 
 
-import Ciphers.BiGraphs;
-import Ciphers.FrequencyCount;
-import Ciphers.RunTheAlphabet;
-import Ciphers.TermsOfTheGPL;
+import Ciphers.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -47,6 +44,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         frequencyCount = new FrequencyCount();
         runTheAlphabet = new RunTheAlphabet();
         biGraphs = new BiGraphs();
+        pigLatinEncipher = new encryptPL();
+        pigLatinDecipher = new decryptPL();
 
 
         buttonGroup1 = new ButtonGroup();
@@ -253,6 +252,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         jTextArea21 = new JTextArea();
         jPanel17 = new JPanel();
         jScrollPane10 = new JScrollPane();
+        jScrollPane29 = new JScrollPane();
+        jScrollPane30 = new JScrollPane();
 
 
         //right click and you get a menu --- neat
@@ -372,6 +373,50 @@ public class CryptoHelper extends javax.swing.JFrame {
         rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getMainCipherPanel());
 
 //end run the alphabet
+//begin encrypt pig latin
+        pigLatinEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt) {
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        pigLatinEncipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        pigLatinEncipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		pigLatinEncipher.setInputText(inputText);
+        	}
+        });
+
+        jScrollPane29.setViewportView(pigLatinEncipher.getMainCipherTextArea());
+        pigLatinEncipher.getMainCipherPanel().add(jScrollPane29, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Encrypt Pig Latin", pigLatinEncipher.getMainCipherPanel());
+//end encrypt pig latin
+//begin decrypt pig latin
+        pigLatinDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt) {
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        pigLatinDecipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        pigLatinDecipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		pigLatinDecipher.setInputText(inputText);
+        	}
+        });
+
+        jScrollPane30.setViewportView(pigLatinDecipher.getMainCipherTextArea());
+        pigLatinDecipher.getMainCipherPanel().add(jScrollPane30, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Decrypt Pig Latin", pigLatinDecipher.getMainCipherPanel());
+//end decrypt pig latin
 //begin BiGraphs
         //need to extract all listeners
         jTextArea4.addKeyListener(new KeyAdapter() {
@@ -2904,6 +2949,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     private FrequencyCount frequencyCount;
     private RunTheAlphabet runTheAlphabet;
     private BiGraphs biGraphs;
+    private encryptPL pigLatinEncipher;
+    private decryptPL pigLatinDecipher;
 
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -3047,6 +3094,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane28;
+    private javax.swing.JScrollPane jScrollPane29;
+    private javax.swing.JScrollPane jScrollPane30;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
