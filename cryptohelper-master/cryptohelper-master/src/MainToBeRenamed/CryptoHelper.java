@@ -7,6 +7,7 @@ package MainToBeRenamed;/*
 
 
 
+
 import Ciphers.*;
 import ServiceImpl.CipherServiceImpl;
 import Services.CipherService;
@@ -46,6 +47,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         frequencyCount = new FrequencyCount();
         runTheAlphabet = new RunTheAlphabet();
         biGraphs = new BiGraphs();
+        pigLatinEncipher = new encryptPL();
+        pigLatinDecipher = new decryptPL();
 
         encryptkw = new encryptKW();
         decryptkw = new decryptKW();
@@ -180,7 +183,12 @@ public class CryptoHelper extends javax.swing.JFrame {
         jTextArea21 = new JTextArea();
         jPanel17 = new JPanel();
         jScrollPane10 = new JScrollPane();
+        jScrollPane29 = new JScrollPane();
+        jScrollPane30 = new JScrollPane();
+        jScrollPane31 = new JScrollPane();
+        jScrollPane32 = new JScrollPane();
 
+      
 
         //right click and you get a menu --- neat
         jMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
@@ -295,6 +303,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getMainCipherPanel());
 
 //end run the alphabet
+
       //begin of encryptkw
         encryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent evt){
@@ -316,7 +325,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane29.setViewportView(encryptkw.getMainCipherTextArea());
         encryptkw.getMainCipherPanel().add(jScrollPane29, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Encrypt Keyword", encryptkw.getMainCipherPanel());
-//end of encryptkw
+      //end of encryptkw
       //begin decryptkw
         decryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent evt){
@@ -334,11 +343,54 @@ public class CryptoHelper extends javax.swing.JFrame {
         		decryptkw.setInputText(inputText);
         	}
         });
-        
         jScrollPane30.setViewportView(decryptkw.getMainCipherTextArea());
         decryptkw.getMainCipherPanel().add(jScrollPane30, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Decrypt Keyword", decryptkw.getMainCipherPanel());
 //end of decrypt kw
+//begin encrypt pig latin
+        pigLatinEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt) {
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        pigLatinEncipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        pigLatinEncipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		pigLatinEncipher.setInputText(inputText);
+        	}
+        });
+
+        jScrollPane31.setViewportView(pigLatinEncipher.getMainCipherTextArea());
+        pigLatinEncipher.getMainCipherPanel().add(jScrollPane31, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Encrypt Pig Latin", pigLatinEncipher.getMainCipherPanel());
+//end encrypt pig latin
+//begin decrypt pig latin
+        pigLatinDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt) {
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        pigLatinDecipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+                  	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        pigLatinDecipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		pigLatinDecipher.setInputText(inputText);
+        	}
+        });
+
+        jScrollPane32.setViewportView(pigLatinDecipher.getMainCipherTextArea());
+        pigLatinDecipher.getMainCipherPanel().add(jScrollPane32, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Decrypt Pig Latin", pigLatinDecipher.getMainCipherPanel());
+//end decrypt pig latin
 //begin BiGraphs
         //need to extract all listeners
         biGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
@@ -1975,6 +2027,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     private FrequencyCount frequencyCount;
     private RunTheAlphabet runTheAlphabet;
     private BiGraphs biGraphs;
+    private encryptPL pigLatinEncipher;
+    private decryptPL pigLatinDecipher;
 
     private encryptKW encryptkw;
     private decryptKW decryptkw;
@@ -2074,6 +2128,20 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane28;
+    private javax.swing.JScrollPane jScrollPane29;
+    private javax.swing.JScrollPane jScrollPane30;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
+    private javax.swing.JSpinner jSpinner4;
+    private javax.swing.JSpinner jSpinner5;
     private javax.swing.JSpinner jSpinner6;
     private javax.swing.JSpinner jSpinner7;
     private javax.swing.JSpinner jSpinner8;
@@ -2103,9 +2171,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea19;
     private javax.swing.JTextArea jTextArea20;
     private javax.swing.JTextArea jTextArea21;
-
     private javax.swing.JTextArea jTextArea9;
-
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
