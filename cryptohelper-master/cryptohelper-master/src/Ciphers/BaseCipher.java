@@ -36,12 +36,12 @@ public abstract class BaseCipher {
         //likely will be taken out into it's own service and implement per subclass IF not everyone uses it
         mainCipherTextArea.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
-                //jTextAreaKeyReleased(evt);
+                cipherService.jTextAreaKeyReleased(evt);
             }
         });
         mainCipherTextArea.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                //jTextAreaMouseClicked(evt);
+                cipherService.jTextAreaMouseClicked(evt);
             }
         });
 
@@ -116,4 +116,6 @@ public abstract class BaseCipher {
     public void setjScrollPane(JScrollPane jScrollPane) {
         this.jScrollPane = jScrollPane;
     }
+
+
 }
