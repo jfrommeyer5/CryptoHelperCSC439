@@ -5,9 +5,13 @@ import Services.CipherService;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Caret;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class CipherServiceImpl implements CipherService {
 
+    private String searchStr;
 
     @Override
     public String formatString(JTextArea jta) {
@@ -164,5 +168,97 @@ public class CipherServiceImpl implements CipherService {
 
         return jTable;
     }
+
+    @Override
+    public void jTextAreaKeyReleased(KeyEvent evt) {
+        if (evt.isControlDown())
+        {
+            if (evt.getKeyCode()== KeyEvent.VK_F)
+            {
+                performSearch((JTextArea)evt.getSource());
+            }
+            else if (evt.getKeyCode()== KeyEvent.VK_G)
+            {
+                performSearchAgain((JTextArea)evt.getSource());
+            }
+        }
+    }
+
+    private void performSearch(JTextArea j)
+    {
+        Caret c = j.getCaret();
+        String str = j.getText();
+        str = str.toUpperCase();
+        searchStr = JOptionPane.showInputDialog("Please input a string to search for.", searchStr);
+        searchStr = searchStr.toUpperCase();
+        int x = str.indexOf(searchStr, c.getDot());
+        c.setDot(x);
+        if(x>=0)
+        {
+            c.moveDot(c.getDot() + searchStr.length());
+            c.setSelectionVisible(true);
+        }
+    }
+
+    private void performSearchAgain(JTextArea j)
+    {
+        Caret c = j.getCaret();
+        String str = j.getText();
+        str = str.toUpperCase();
+        int x = str.indexOf(searchStr, c.getDot());
+        c.setDot(x);
+        if(x>=0)
+        {
+            c.moveDot(c.getDot() + searchStr.length());
+            c.setSelectionVisible(true);
+        }
+    }
+
+    @Override
+    public void jTextAreaMouseClicked(MouseEvent evt) {
+        if (evt.getButton()== MouseEvent.BUTTON3)
+        {
+           // CryptoHelper.jPopupMenu1.show((JTextArea)evt.getSource(), evt.getX(), evt.getY());
+        }
+    }
+
+    public double calculateFriedman(String inputString)
+    {
+        String tempString;
+        double[] array = new double[256];
+        double friedman = 0;
+        int spinnerValue = 1;
+
+        for (int z = 0; z < spinnerValue; z++)
+        {
+            tempString = "";
+            friedman = 0;
+
+            for (int x = 0; x < inputString.length(); x++)
+            {
+                if ((x-z%spinnerValue)%spinnerValue==0) tempString = tempString + inputString.charAt(x);
+            }
+
+            for (int x = 0; x < 256; x++)
+                array[x] = 0;
+
+            for (int x = 0; x < tempString.length(); x++)
+            {
+                for (char y = 'A'; y <= 'Z'; y++)
+                {
+                    if (tempString.charAt(x) == y) array[y]++;
+                }
+            }
+            for (char x = 'A'; x <= 'Z'; x++)
+            {
+                friedman += array[x]/tempString.length() * ((array[x]-1)/(tempString.length()-1));
+            }
+
+            return friedman;
+        }
+        return friedman;
+    }
+
+
 
 }
