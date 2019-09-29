@@ -76,4 +76,7 @@ public class SplitOffAlphabets extends BaseCipher {
         if (((Integer)js.getValue()).intValue() < 1) js.setValue(new Integer(1));
     }//GEN-LAST:event_jSpinner3StateChanged
 
+    public JSpinner getjSpinner() {
+        return jSpinner;
+    }
 }
