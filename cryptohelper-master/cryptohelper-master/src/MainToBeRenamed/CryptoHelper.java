@@ -67,6 +67,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         encryptkw = new encryptKW();
         decryptkw = new decryptKW();
+        
+        caesarcipher = new caesarCipher();
 
         jScrollPane29 = new JScrollPane();
         jScrollPane30 = new JScrollPane();
@@ -82,7 +84,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane30 = new JScrollPane();
         jScrollPane31 = new JScrollPane();
         jScrollPane32 = new JScrollPane();
-
+        jScrollPane33 = new JScrollPane();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
@@ -258,6 +260,30 @@ public class CryptoHelper extends javax.swing.JFrame {
         pigLatinDecipher.getMainCipherPanel().add(jScrollPane32, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Decrypt Pig Latin", pigLatinDecipher.getMainCipherPanel());
 //end decrypt pig latin
+        
+//begin caesarcipher
+        caesarcipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        caesarcipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        caesarcipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		caesarcipher.setInputText(inputText);
+        	}
+        });
+        
+        jScrollPane33.setViewportView(caesarcipher.getMainCipherTextArea());
+        caesarcipher.getMainCipherPanel().add(jScrollPane33, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Caesar Cipher", caesarcipher.getMainCipherPanel());
+      //end of caesarCipher
+        
 //begin BiGraphs
         //need to extract all listeners
         biGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
@@ -800,6 +826,9 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane31;
     private javax.swing.JScrollPane jScrollPane32;
 
+    private caesarCipher caesarcipher;
+    private javax.swing.JScrollPane jScrollPane33;
+    
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
 
