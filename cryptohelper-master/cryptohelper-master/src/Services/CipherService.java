@@ -13,6 +13,9 @@ public interface CipherService {
     double calculateFriedman(String inputString);
     JTable buildTable();
 
-    void jTextAreaKeyReleased(KeyEvent evt);
-    void jTextAreaMouseClicked(MouseEvent evt);
+    void performSearch(JTextArea j);
+    void performSearchAgain(JTextArea j);
+
+
+
 }

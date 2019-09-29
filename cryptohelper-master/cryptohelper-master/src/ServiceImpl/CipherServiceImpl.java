@@ -2,16 +2,17 @@ package ServiceImpl;
 
 
 import Services.CipherService;
+import Menu.OptionsMenu;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.Caret;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 
 public class CipherServiceImpl implements CipherService {
 
     private String searchStr;
+
+    //private OptionsMenu optionsMenu = new OptionsMenu();
 
     @Override
     public String formatString(JTextArea jta) {
@@ -169,22 +170,8 @@ public class CipherServiceImpl implements CipherService {
         return jTable;
     }
 
-    @Override
-    public void jTextAreaKeyReleased(KeyEvent evt) {
-        if (evt.isControlDown())
-        {
-            if (evt.getKeyCode()== KeyEvent.VK_F)
-            {
-                performSearch((JTextArea)evt.getSource());
-            }
-            else if (evt.getKeyCode()== KeyEvent.VK_G)
-            {
-                performSearchAgain((JTextArea)evt.getSource());
-            }
-        }
-    }
 
-    private void performSearch(JTextArea j)
+    public void performSearch(JTextArea j)
     {
         Caret c = j.getCaret();
         String str = j.getText();
@@ -200,7 +187,7 @@ public class CipherServiceImpl implements CipherService {
         }
     }
 
-    private void performSearchAgain(JTextArea j)
+    public void performSearchAgain(JTextArea j)
     {
         Caret c = j.getCaret();
         String str = j.getText();
@@ -211,14 +198,6 @@ public class CipherServiceImpl implements CipherService {
         {
             c.moveDot(c.getDot() + searchStr.length());
             c.setSelectionVisible(true);
-        }
-    }
-
-    @Override
-    public void jTextAreaMouseClicked(MouseEvent evt) {
-        if (evt.getButton()== MouseEvent.BUTTON3)
-        {
-           // CryptoHelper.jPopupMenu1.show((JTextArea)evt.getSource(), evt.getX(), evt.getY());
         }
     }
 

@@ -4,7 +4,7 @@ import ServiceImpl.CipherServiceImpl;
 import Services.CipherService;
 
 import javax.swing.*;
-import javax.swing.text.Caret;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -20,6 +20,7 @@ public abstract class BaseCipher {
     private CipherService cipherService;
 
 
+
     public BaseCipher(){
         actionButton = new JButton();
         mainCipherPanel = new JPanel();
@@ -33,17 +34,6 @@ public abstract class BaseCipher {
 
         mainCipherTextArea.setFont(new Font("Monospaced", 0, 12));
 
-        //likely will be taken out into it's own service and implement per subclass IF not everyone uses it
-        mainCipherTextArea.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                cipherService.jTextAreaKeyReleased(evt);
-            }
-        });
-        mainCipherTextArea.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                cipherService.jTextAreaMouseClicked(evt);
-            }
-        });
 
         jScrollPane.setViewportView(mainCipherTextArea);
         mainCipherPanel.add(jScrollPane, BorderLayout.CENTER);

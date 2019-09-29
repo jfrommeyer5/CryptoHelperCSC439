@@ -14,6 +14,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import Menu.OptionsMenu;
 import java.util.*;
 import java.util.jar.*;
 import java.util.zip.*;
@@ -27,7 +28,6 @@ public class CryptoHelper extends javax.swing.JFrame {
     /** Creates new form MainToBeRenamed.CryptoHelper */
     public CryptoHelper() {
         initComponents();
-
     }
     
     /** This method is called from within the constructor to
@@ -58,6 +58,9 @@ public class CryptoHelper extends javax.swing.JFrame {
         hillBruteForce = new HillBruteForce();
         columnTranspositionWorksheet = new ColumnTranspositionWorksheet();
         gcdAndInverse = new GCDAndInverse();
+        substitutionSolver = new SubstitutionSolver();
+
+        optionsMenu = new OptionsMenu();
 
         pigLatinEncipher = new encryptPL();
         pigLatinDecipher = new decryptPL();
@@ -69,25 +72,10 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane30 = new JScrollPane();
         buttonGroup1 = new ButtonGroup();
         buttonGroup2 = new ButtonGroup();
-        jPopupMenu1 = new JPopupMenu();
-        jMenuItem1 = new JMenuItem();
-        jMenuItem2 = new JMenuItem();
-        jMenuItem3 = new JMenuItem();
-        jMenuItem4 = new JMenuItem();
         jSplitPane1 = new JSplitPane();
         jScrollPane1 = new JScrollPane();
         inputText = new JTextArea();
         rightHandNavPanelTab = new JTabbedPane();
-        jTextArea20 = new JTextArea();
-        jPanel47 = new JPanel();
-        jToolBar1 = new JToolBar();
-        jLabel21 = new JLabel();
-        jTextField11 = new JTextField();
-        jButton21 = new JButton();
-        jButton22 = new JButton();
-        jButton20 = new JButton();
-        jScrollPane28 = new JScrollPane();
-        jTextArea21 = new JTextArea();
         jPanel17 = new JPanel();
         jScrollPane10 = new JScrollPane();
         jScrollPane29 = new JScrollPane();
@@ -95,51 +83,9 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane31 = new JScrollPane();
         jScrollPane32 = new JScrollPane();
 
-      
-
-        //right click and you get a menu --- neat
-        jMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Copy");
-        jMenuItem1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-
-        jPopupMenu1.add(jMenuItem1);
-
-        jMenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Paste");
-        jMenuItem2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-
-        jPopupMenu1.add(jMenuItem2);
-
-        jMenuItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Find from Cursor's Position");
-        jMenuItem3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-
-        jPopupMenu1.add(jMenuItem3);
-
-        jMenuItem4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
-        jMenuItem4.setText("Find Again");
-        jMenuItem4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-
-        jPopupMenu1.add(jMenuItem4);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MainToBeRenamed.CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
+        setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
         jSplitPane1.setDividerLocation(80);
         jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         inputText.setFont(new Font("Monospaced", 0, 12));
@@ -665,52 +611,27 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         rightHandNavPanelTab.addTab("GCD and Inverse", gcdAndInverse.getMainCipherPanel());
 //end GCD
-        jPanel47.setLayout(new BorderLayout());
 
-        jPanel47.addComponentListener(new ComponentAdapter() {
-            public void componentShown(ComponentEvent evt) {
-                jPanel47ComponentShown(evt);
-            }
-        });
-
-        jLabel21.setText("Dictionary File: ");
-        jToolBar1.add(jLabel21);
-
-        jToolBar1.add(jTextField11);
-
-        jButton21.setText("Browse");
-        jToolBar1.add(jButton21);
-
-        jButton22.setText("Generate");
-        jToolBar1.add(jButton22);
-
-        jPanel47.add(jToolBar1, BorderLayout.NORTH);
-
-        jButton20.setText("Go");
-        jButton20.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-
-        jPanel47.add(jButton20, BorderLayout.SOUTH);
-
-        jTextArea21.addKeyListener(new KeyAdapter() {
+        substitutionSolver.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea21.addMouseListener(new MouseAdapter() {
+        substitutionSolver.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane28.setViewportView(jTextArea21);
+        substitutionSolver.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                substitutionSolver.setInputText(inputText);
+            }
+        });
 
-        jPanel47.add(jScrollPane28, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Substitution Solver", jPanel47);
+        rightHandNavPanelTab.addTab("Substitution Solver", substitutionSolver.getMainCipherPanel());
+//end substitution solver
 
         jPanel17.setLayout(new BorderLayout());
 
@@ -735,226 +656,6 @@ public class CryptoHelper extends javax.swing.JFrame {
         setBounds((screenSize.width-800)/2, (screenSize.height-600)/2, 800, 600);
     }
     // </editor-fold>//GEN-END:initComponents
-
-    private void jPanel47ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel47ComponentShown
-        try
-        {            
-            JarFile jf = new JarFile("MainToBeRenamed.CryptoHelper.jar");
-            
-            ZipEntry ze = jf.getEntry("english.wow");
-            
-            BufferedReader br = new BufferedReader(new InputStreamReader(jf.getInputStream(ze)));
-            dictionary = new int[26][26][26][26];
-
-            for(int x = 0; x < 26; x++)
-            {
-                for (int y = 0; y < 26; y++)
-                {
-                    for(int l = 0; l < 26; l++)
-                    {
-                        for(int r = 0; r < 26; r++)
-                        {
-                            dictionary[x][y][l][r] = 1;
-                        }
-                    }
-                }
-            }        
-            String temp = "";
-            while ((temp = br.readLine()) != null)
-            {
-                String[] parse = temp.split(", ");
-                dictionary[parse[0].charAt(0)-65][parse[0].charAt(1)-65][parse[0].charAt(2)-65][parse[0].charAt(3)-65] = Integer.parseInt(parse[1]);
-            }
-        }
-        catch (IOException e)
-        {
-            JOptionPane.showMessageDialog(null,
-            "Error:Cannot read from file.\n");
-        }
-    }//GEN-LAST:event_jPanel47ComponentShown
-    
-    class SubstitutionSolver implements Runnable
-    {
-        String ciphertext;
-        long iteration = 0;
-        char[] key;
-        boolean stopToggle = false;
-        
-        public void stop()
-        {
-            stopToggle = true;
-        }
-        
-        public SubstitutionSolver(String ciphertext)                               // this is the classes constructor
-        {
-            this.ciphertext = ciphertext;
-            key = new char[256];
-        }
-
-        public void run()                                                           // this is the "main" method of the thread
-        {
-            jTextArea21.setText("best overall = " + score(ciphertext) + " : best score = " + score(ciphertext) + "\n");
-            
-//            jTextArea21.append("" + ciphertext.replaceAll("/(.....)/", '\1 ');
-            
-            randomize(key);
-            
-            double bestScore = score(ciphertext);
-            double bestOverall = bestScore - 1;
-            int numSmallAdjusts = 0;
-
-            int bestI = 0;
-            int bestJ = 0;
-            
-            
-            while(true)
-            {
-                if (stopToggle) return;
-//                jTextArea21.append("");
-                
-                double bestAdj = bestScore;
-                
-                char[] testKey = new char[256];
-                
-
-                for (int i = 0; i < 26; i++)
-                {
-                    for (int j = i+1; j < 26; j++)
-                    {
-                        for (int x = 0; x < 256; x++) testKey[x] = key[x];
-                        char temp = testKey[i+65];
-                        testKey[i+65] = testKey[j+65];
-                        testKey[j+65] = temp;
-
-                        double sc = score(plaintext(ciphertext, testKey));
-                        
-//                        for (int l = 0; l < 26; l++) jTextArea21.append("" + testKey[l+65] + ", ");
-//                        jTextArea21.append("\n" + score(plaintext(ciphertext, testKey)) + "\n");
-//                        jTextArea21.append("\n");
-//                        for (int l = 0; l < 26; l++) jTextArea21.append("" + key[l+65] + ", ");
-//                        jTextArea21.append("" + score(plaintext(ciphertext, key)) + "\n");
-//                        jTextArea21.append("\n\n");
-                        
-                        if (sc > bestAdj)
-                        {
-                            bestAdj = sc;
-                            bestI = i;
-                            bestJ = j;
-                        }
-                    }
-                }
-                
-                if (bestAdj > bestScore)
-                {
-                    char temp = key[bestI+65];
-                    key[bestI+65] = key[bestJ+65];
-                    key[bestJ+65] = temp;
-                    bestScore = bestAdj;
-                    if (bestScore > bestOverall)
-                    {
-                        numSmallAdjusts = 0;
-                        bestOverall = bestScore;
-                        jTextArea21.setText("best overall = " + bestOverall + " : best score = " + bestScore + " : iteration = " + iteration + "\n");
-                        jTextArea21.append("" + plaintext(ciphertext, key)/*.gsub(/(.....)/, '\1 '*/ + "\n");
-                    }
-                }
-                else
-                {
-                    if (numSmallAdjusts < 5)
-                    {
-                        smallAdj(key);
-                        numSmallAdjusts += 1;
-                    }
-                    else
-                    {
-                        randomize(key);
-                        numSmallAdjusts = 0;
-                    }
-                    bestScore=score(plaintext(ciphertext, key));
-                }
-            }
-        }                                                                       // thread is terminating.
-        
-        private double score(String string)
-        {
-            iteration += 1;
-            double tally = 0;
-            
-            for (int x = 0; x < string.length() - 4; x++)
-            {
-                tally += Math.log((dictionary[string.charAt(x)-65][string.charAt(x+1)-65][string.charAt(x+2)-65][string.charAt(x+3)-65]));
-            }
-            return tally;
-        }
-        
-        private void smallAdj(char[] key)
-        {
-            int rNum = (int)(Math.random() * 5);
-            
-            for (int i = 0; i < rNum; i++)
-            {
-                int j = (int)(Math.random() * 26);
-                int k = (int)(Math.random() * 26);
-                
-                if (j!=k)
-                {
-			char temp = key[j+65];
-			key[j+65] = key[k+65];
-			key[k+65] = temp;
-                }
-            }
-        }
-        
-        private String plaintext(String ciphertext, char[] key)
-        {
-            String returnString = "";
-            
-            for (int x = 0; x < ciphertext.length(); x++)
-            {
-                returnString = returnString + key[ciphertext.charAt(x)];
-            }
-            return returnString;
-        }
-        
-        private void randomize(char[] key)
-        {
-            ArrayList array = new ArrayList();
-            
-            for (int x = 0; x < 26; x++)
-            {
-                array.add(x, new Character((char)(x + 65)));
-            }
-            
-            for (int x = 0; x < 26; x++)
-            {
-                int y = (int)(Math.random() * array.size());
-                key[x+65] = ((Character)array.get(y)).charValue();
-                array.remove(y);
-            }
-        }
-    }
-    
-    boolean jButton20Toggle = false;
-    Thread substitutionThread;
-    SubstitutionSolver substitutionSolver;
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        if (jButton20Toggle == false)
-        {
-            String inputString = cipherService.formatString(inputText);
-            substitutionSolver = new SubstitutionSolver(inputString);
-            substitutionThread = new Thread(substitutionSolver);
-            substitutionThread.start();
-            jButton20Toggle = true;
-            jButton20.setText("Stop");
-        }
-        else
-        {
-            substitutionSolver.stop();
-            jButton20Toggle = false;
-            jButton20.setText("Go");
-        }
-    }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButttonOpenFileActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
 
@@ -1029,7 +730,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaMouseClicked
         if (evt.getButton()== MouseEvent.BUTTON3)
         {
-            jPopupMenu1.show((JTextArea)evt.getSource(), evt.getX(), evt.getY());
+            optionsMenu.getOptionsMenu().show((JTextArea)evt.getSource(), evt.getX(), evt.getY());
         }
     }//GEN-LAST:event_jTextAreaMouseClicked
 
@@ -1087,6 +788,9 @@ public class CryptoHelper extends javax.swing.JFrame {
     private HillBruteForce hillBruteForce;
     private ColumnTranspositionWorksheet columnTranspositionWorksheet;
     private GCDAndInverse gcdAndInverse;
+    private SubstitutionSolver substitutionSolver;
+
+    private OptionsMenu optionsMenu;
 
     private encryptPL pigLatinEncipher;
     private decryptPL pigLatinDecipher;
@@ -1100,30 +804,14 @@ public class CryptoHelper extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup2;
 
     private javax.swing.JButton jbuttonOpenFile;
-
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel47;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane28;
     private javax.swing.JScrollPane jScrollPane29;
     private javax.swing.JScrollPane jScrollPane30;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane rightHandNavPanelTab;
     private javax.swing.JTextArea inputText;
-    private javax.swing.JTextArea jTextArea20;
-    private javax.swing.JTextArea jTextArea21;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
 }
