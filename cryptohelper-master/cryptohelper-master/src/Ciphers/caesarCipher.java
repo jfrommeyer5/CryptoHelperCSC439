@@ -1,5 +1,7 @@
 package Ciphers;
-import java.util.Scanner; 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
 
 /*Function to perform a caesar cipher on a string of characters.
  * Required input: 
@@ -8,23 +10,48 @@ import java.util.Scanner;
  * 
  */
 
-public class caesarCipher {
+public class caesarCipher extends BaseCipher {
 
-	public static void main(String[] args) {
-		System.out.println("Please enter the text to be encrypted: ");
-		Scanner scan = new Scanner(System.in);
-//Provide input text here (Accepts strings into originalText and converts them to char array)
-		String originalText = scan.nextLine();
-		char[] originalTextCharArr = originalText.toCharArray(); 
-//Provide cipher shift here (Accepts any integer)
-		int shiftAmt = scan.nextInt();
+	private JPanel topPanel;
+	private JLabel keywordInput;
+	private JSpinner cipherShift;
+	
+
+	public caesarCipher(){
+		super();
+		topPanel = new JPanel();
+		keywordInput = new JLabel();
+		SpinnerModel model =
+		        new SpinnerNumberModel(0, //initial value
+		                               Integer.MIN_VALUE, //min
+		                               Integer.MAX_VALUE, //max
+		                               1); 
+		cipherShift = new JSpinner(model);
+		topPanel.setLayout(new BorderLayout());
+		keywordInput.setText("Shift Amount");
 		
-		char[] finalTextCharArr = caesarCipherAction(originalTextCharArr, shiftAmt);
-		System.out.print(finalTextCharArr);
-		scan.close();
+		topPanel.add(keywordInput, BorderLayout.WEST);
+		
+		topPanel.add(cipherShift, BorderLayout.CENTER);
+		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
+		
+		initializeActionBtn("Perform Caesar Cipher");
 	}
-
+	
+	public void actionButtonActionPerformed(ActionEvent evt){
+		char[] msg = getInputText().getText().toCharArray();
+		int key = (int) cipherShift.getValue();
+		getMainCipherTextArea().setText("");
+		
+		
+		
+		char[] cipheredText = caesarCipherAction(msg, key);
+		String finalText = new String(cipheredText);
+		getMainCipherTextArea().append(finalText);
+	}
+	
 	public static char[] caesarCipherAction(char[] originalTextCharArr, int shiftAmt) {
+		System.out.print(originalTextCharArr);
 for(int i = 0; i < originalTextCharArr.length; i++) {
 			
 			//Handle Lower Case Characters
@@ -41,6 +68,7 @@ for(int i = 0; i < originalTextCharArr.length; i++) {
 					while((originalTextCharArr[i] + shiftAmt) > 122) {
 						originalTextCharArr[i] = (char) (originalTextCharArr[i] - 26);
 						}
+					originalTextCharArr[i] = (char) (originalTextCharArr[i] + shiftAmt);
 				}
 				//Perform shift if no wrap-around was needed
 				else {
@@ -63,6 +91,7 @@ for(int i = 0; i < originalTextCharArr.length; i++) {
 					while((originalTextCharArr[i] + shiftAmt) > 90) {
 						originalTextCharArr[i] = (char) (originalTextCharArr[i] - 26);
 						}
+					originalTextCharArr[i] = (char) (originalTextCharArr[i] + shiftAmt);
 				}
 				//Perform shift if no wrap-around was needed
 				else {
@@ -70,7 +99,7 @@ for(int i = 0; i < originalTextCharArr.length; i++) {
 				}
 			}
 			else {
-				System.out.println(originalTextCharArr[i] + " is a number or symbol!");
+				
 			}
 			
 		}
