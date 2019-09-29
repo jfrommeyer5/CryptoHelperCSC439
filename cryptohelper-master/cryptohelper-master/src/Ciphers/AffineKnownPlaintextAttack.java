@@ -157,4 +157,12 @@ public class AffineKnownPlaintextAttack extends BaseCipher {
             }
         }
     }
+
+    public JTextField getTextField() {
+        return textField;
+    }
+
+    public void setTextField(JTextField textField) {
+        this.textField = textField;
+    }
 }
