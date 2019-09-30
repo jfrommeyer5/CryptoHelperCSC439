@@ -2,6 +2,8 @@ package Ciphers;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  * This program takes in a string from the user and encrypts it to pig latin.
@@ -29,6 +31,15 @@ public class encryptPL extends BaseCipher{
 		getMainCipherTextArea().setText("");
 		String encryptedText = encipher(msg);
 		getMainCipherTextArea().append(encryptedText);
+
+		String usr = System.getProperty("user.name");
+
+		try (PrintWriter out = new PrintWriter("C:\\Users\\" + usr + "\\Desktop\\PigLatin.txt")) {
+			out.println(getMainCipherTextArea().getText());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+
+		}
 	}
 	/**
 	 * This method takes in a string, splits the given string into individual words, then carries out the Pig Latin rules for each word.
