@@ -3,6 +3,8 @@ package Ciphers;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class encryptKW extends BaseCipher{
 
@@ -41,6 +43,15 @@ public class encryptKW extends BaseCipher{
 		String encryptedText = encipher(msg, enc);
 		
 		getMainCipherTextArea().append(encryptedText);
+
+		String usr = System.getProperty("user.name");
+
+		try (PrintWriter out = new PrintWriter("C:\\Users\\" + usr + "\\Desktop\\EncryptKeyWord.txt")) {
+			out.println(getMainCipherTextArea().getText());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+
+		}
 	}
 	/**
 	 * This first method will take the keyword and 

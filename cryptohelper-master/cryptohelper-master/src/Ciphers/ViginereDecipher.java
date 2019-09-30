@@ -4,16 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class ViginereEncipher extends CookieCutterViginereCiphers {
-
+public class ViginereDecipher extends CookieCutterViginereCiphers {
     private JPanel keyWordPanel;
     private JLabel keyWordLabel;
     private JTextField keyWordTextField;
 
 
-    public ViginereEncipher(){
+    public ViginereDecipher(){
         super();
-        initializeActionBtn("Enchiper");
+        initializeActionBtn("Decipher");
     }
 
     @Override
@@ -24,7 +23,11 @@ public class ViginereEncipher extends CookieCutterViginereCiphers {
 
         for (int x = 0; x < inputString.length(); x++)
         {
-            outputString = outputString + getTable().getValueAt(s1.charAt(x%s1.length())-'A', inputString.charAt(x)-'A');
+            for (int y = 0; y < 26; y++)
+            {
+                if(getTable().getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
+                    outputString = outputString + getTable().getColumnName(y);
+            }
         }
 
         char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
@@ -40,7 +43,6 @@ public class ViginereEncipher extends CookieCutterViginereCiphers {
 
     @Override
     public JPanel initializeBottomTextPanel() {
-
         keyWordPanel = new JPanel();
         keyWordLabel = new JLabel();
         keyWordTextField = new JTextField();

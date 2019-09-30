@@ -88,4 +88,12 @@ public class PolyMonoCalculator extends BaseCipher {
 
         if (((Integer)js.getValue()).intValue() < 1) js.setValue(new Integer(1));
     }
+
+    public JSpinner getjSpinner() {
+        return jSpinner;
+    }
+
+    public void setjSpinner(JSpinner jSpinner) {
+        this.jSpinner = jSpinner;
+    }
 }
