@@ -4,21 +4,17 @@ package MainToBeRenamed;/*
  * Created on January 11, 2005, 7:37 PM
  */
 
-
-
-import Ciphers.BiGraphs;
-import Ciphers.FrequencyCount;
-import Ciphers.RunTheAlphabet;
-import Ciphers.TermsOfTheGPL;
-
+import Ciphers.*;
+import ServiceImpl.CipherServiceImpl;
+import Services.CipherService;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import Menu.OptionsMenu;
 import java.util.*;
 import java.util.jar.*;
 import java.util.zip.*;
@@ -32,7 +28,6 @@ public class CryptoHelper extends javax.swing.JFrame {
     /** Creates new form MainToBeRenamed.CryptoHelper */
     public CryptoHelper() {
         initComponents();
-
     }
     
     /** This method is called from within the constructor to
@@ -47,258 +42,53 @@ public class CryptoHelper extends javax.swing.JFrame {
         frequencyCount = new FrequencyCount();
         runTheAlphabet = new RunTheAlphabet();
         biGraphs = new BiGraphs();
+        triGraphs = new TriGraphs();
+        nGraphs = new NGraphs();
+        affineKnownPlaintextAttack = new AffineKnownPlaintextAttack();
+        affineEncipher = new AffineEncipherDecipher();
+        affineDecipher = new AffineEncipherDecipher();
+        splitOffAlphabets = new SplitOffAlphabets();
+        polyMonoCalculator = new PolyMonoCalculator();
+        viginereEncipher = new ViginereEncipher();
+        viginereDecipher = new ViginereDecipher();
+        viginereBruteForce = new ViginereBruteForce();
+        autoKeyCyphertextAttack = new AutoKeyCyphertextAttack();
+        autoKeyPlaintextAttack = new AutoKeyPlaintextAttack();
+        autoKeyDecipher = new AutoKeyDecipher();
+        hillBruteForce = new HillBruteForce();
+        columnTranspositionWorksheet = new ColumnTranspositionWorksheet();
+        gcdAndInverse = new GCDAndInverse();
+        substitutionSolver = new SubstitutionSolver();
 
+        optionsMenu = new OptionsMenu();
 
+        pigLatinEncipher = new encryptPL();
+        pigLatinDecipher = new decryptPL();
+
+        encryptkw = new encryptKW();
+        decryptkw = new decryptKW();
+        
+        caesarcipher = new caesarCipher();
+
+        jScrollPane29 = new JScrollPane();
+        jScrollPane30 = new JScrollPane();
         buttonGroup1 = new ButtonGroup();
         buttonGroup2 = new ButtonGroup();
-        jPopupMenu1 = new JPopupMenu();
-        jMenuItem1 = new JMenuItem();
-        jMenuItem2 = new JMenuItem();
-        jMenuItem3 = new JMenuItem();
-        jMenuItem4 = new JMenuItem();
         jSplitPane1 = new JSplitPane();
         jScrollPane1 = new JScrollPane();
         inputText = new JTextArea();
         rightHandNavPanelTab = new JTabbedPane();
-        jScrollPane2 = new JScrollPane();
-
-
-        jScrollPane3 = new JScrollPane();
-
-        jPanel3 = new JPanel();
-        jScrollPane4 = new JScrollPane();
-        jTextArea4 = new JTextArea();
-
-        jPanel4 = new JPanel();
-        jScrollPane5 = new JScrollPane();
-        jTextArea5 = new JTextArea();
-        jButton4 = new JButton();
-        jPanel20 = new JPanel();
-        jScrollPane12 = new JScrollPane();
-        jTextArea12 = new JTextArea();
-        jButton10 = new JButton();
-        jPanel21 = new JPanel();
-        jLabel8 = new JLabel();
-        jSpinner5 = new JSpinner();
-        jPanel5 = new JPanel();
-        jButton5 = new JButton();
-        jPanel6 = new JPanel();
-        jLabel1 = new JLabel();
-        jTextField1 = new JTextField();
-        jCheckBox1 = new JCheckBox();
-        jScrollPane6 = new JScrollPane();
-        jTextArea6 = new JTextArea();
-        jPanel7 = new JPanel();
-        jPanel8 = new JPanel();
-        jPanel9 = new JPanel();
-        jRadioButton1 = new JRadioButton();
-        jRadioButton2 = new JRadioButton();
-        jRadioButton3 = new JRadioButton();
-        jRadioButton4 = new JRadioButton();
-        jRadioButton5 = new JRadioButton();
-        jRadioButton6 = new JRadioButton();
-        jRadioButton7 = new JRadioButton();
-        jRadioButton8 = new JRadioButton();
-        jRadioButton9 = new JRadioButton();
-        jRadioButton10 = new JRadioButton();
-        jRadioButton11 = new JRadioButton();
-        jRadioButton12 = new JRadioButton();
-        jPanel10 = new JPanel();
-        jLabel3 = new JLabel();
-        jSpinner1 = new JSpinner();
-        jLabel2 = new JLabel();
-        jButton6 = new JButton();
-        jScrollPane7 = new JScrollPane();
-        jTextArea7 = new JTextArea();
-        jPanel11 = new JPanel();
-        jPanel12 = new JPanel();
-        jPanel13 = new JPanel();
-        jRadioButton13 = new JRadioButton();
-        jRadioButton14 = new JRadioButton();
-        jRadioButton15 = new JRadioButton();
-        jRadioButton16 = new JRadioButton();
-        jRadioButton17 = new JRadioButton();
-        jRadioButton18 = new JRadioButton();
-        jRadioButton19 = new JRadioButton();
-        jRadioButton20 = new JRadioButton();
-        jRadioButton21 = new JRadioButton();
-        jRadioButton22 = new JRadioButton();
-        jRadioButton23 = new JRadioButton();
-        jRadioButton24 = new JRadioButton();
-        jPanel14 = new JPanel();
-        jLabel4 = new JLabel();
-        jSpinner2 = new JSpinner();
-        jLabel5 = new JLabel();
-        jButton7 = new JButton();
-        jScrollPane8 = new JScrollPane();
-        jTextArea8 = new JTextArea();
-        jPanel15 = new JPanel();
-        jPanel16 = new JPanel();
-        jLabel6 = new JLabel();
-        jSpinner3 = new JSpinner();
-        jScrollPane9 = new JScrollPane();
-        jTextArea9 = new JTextArea();
-        jButton8 = new JButton();
-        jPanel18 = new JPanel();
-        jPanel19 = new JPanel();
-        jLabel7 = new JLabel();
-        jSpinner4 = new JSpinner();
-        jScrollPane11 = new JScrollPane();
-        jTextArea11 = new JTextArea();
-        jButton9 = new JButton();
-        jPanel22 = new JPanel();
-        jSplitPane2 = new JSplitPane();
-        jScrollPane14 = new JScrollPane();
-        jTable1 = new JTable();
-        jPanel23 = new JPanel();
-        jPanel24 = new JPanel();
-        jLabel9 = new JLabel();
-        jTextField2 = new JTextField();
-        jScrollPane13 = new JScrollPane();
-        jTextArea13 = new JTextArea();
-        jButton11 = new JButton();
-        jPanel25 = new JPanel();
-        jSplitPane3 = new JSplitPane();
-        jScrollPane15 = new JScrollPane();
-        jTable2 = new JTable();
-        jPanel26 = new JPanel();
-        jPanel27 = new JPanel();
-        jLabel10 = new JLabel();
-        jTextField3 = new JTextField();
-        jScrollPane16 = new JScrollPane();
-        jTextArea14 = new JTextArea();
-        jButton12 = new JButton();
-        jPanel37 = new JPanel();
-        jSplitPane7 = new JSplitPane();
-        jScrollPane23 = new JScrollPane();
-        jTable6 = new JTable();
-        jPanel38 = new JPanel();
-        jPanel39 = new JPanel();
-        jLabel15 = new JLabel();
-        jSpinner8 = new JSpinner();
-        jLabel16 = new JLabel();
-        jTextField7 = new JTextField();
-        jScrollPane24 = new JScrollPane();
-        jTextArea18 = new JTextArea();
-        jButton16 = new JButton();
-        jPanel28 = new JPanel();
-        jSplitPane4 = new JSplitPane();
-        jScrollPane17 = new JScrollPane();
-        jTable3 = new JTable();
-        jPanel29 = new JPanel();
-        jPanel30 = new JPanel();
-        jLabel11 = new JLabel();
-        jSpinner6 = new JSpinner();
-        jScrollPane18 = new JScrollPane();
-        jTextArea15 = new JTextArea();
-        jButton13 = new JButton();
-        jPanel31 = new JPanel();
-        jSplitPane5 = new JSplitPane();
-        jScrollPane19 = new JScrollPane();
-        jTable4 = new JTable();
-        jPanel32 = new JPanel();
-        jPanel33 = new JPanel();
-        jLabel12 = new JLabel();
-        jSpinner7 = new JSpinner();
-        jLabel13 = new JLabel();
-        jTextField4 = new JTextField();
-        jTextField5 = new JTextField();
-        jScrollPane20 = new JScrollPane();
-        jTextArea16 = new JTextArea();
-        jButton14 = new JButton();
-        jPanel34 = new JPanel();
-        jSplitPane6 = new JSplitPane();
-        jScrollPane21 = new JScrollPane();
-        jTable5 = new JTable();
-        jPanel35 = new JPanel();
-        jPanel36 = new JPanel();
-        jLabel14 = new JLabel();
-        jTextField6 = new JTextField();
-        jCheckBox2 = new JCheckBox();
-        jScrollPane22 = new JScrollPane();
-        jTextArea17 = new JTextArea();
-        jButton15 = new JButton();
-        jPanel40 = new JPanel();
-        jButton17 = new JButton();
-        jScrollPane25 = new JScrollPane();
-        jTextArea19 = new JTextArea();
-        jPanel41 = new JPanel();
-        jLabel18 = new JLabel();
-        jTextField8 = new JTextField();
-        jPanel42 = new JPanel();
-        jScrollPane26 = new JScrollPane();
-        jTable7 = new JTable();
-        jPanel43 = new JPanel();
-        jLabel17 = new JLabel();
-        jSpinner9 = new JSpinner();
-        jPanel44 = new JPanel();
-        jButton18 = new JButton();
-        jPanel45 = new JPanel();
-        jPanel46 = new JPanel();
-        jLabel19 = new JLabel();
-        jTextField9 = new JTextField();
-        jLabel20 = new JLabel();
-        jTextField10 = new JTextField();
-        jScrollPane27 = new JScrollPane();
-        jTextArea20 = new JTextArea();
-        jButton19 = new JButton();
-        jPanel47 = new JPanel();
-        jToolBar1 = new JToolBar();
-        jLabel21 = new JLabel();
-        jTextField11 = new JTextField();
-        jButton21 = new JButton();
-        jButton22 = new JButton();
-        jButton20 = new JButton();
-        jScrollPane28 = new JScrollPane();
-        jTextArea21 = new JTextArea();
         jPanel17 = new JPanel();
         jScrollPane10 = new JScrollPane();
-
-
-        //right click and you get a menu --- neat
-        jMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Copy");
-        jMenuItem1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-
-        jPopupMenu1.add(jMenuItem1);
-
-        jMenuItem2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Paste");
-        jMenuItem2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-
-        jPopupMenu1.add(jMenuItem2);
-
-        jMenuItem3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Find from Cursor's Position");
-        jMenuItem3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-
-        jPopupMenu1.add(jMenuItem3);
-
-        jMenuItem4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK));
-        jMenuItem4.setText("Find Again");
-        jMenuItem4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-
-        jPopupMenu1.add(jMenuItem4);
+        jScrollPane29 = new JScrollPane();
+        jScrollPane30 = new JScrollPane();
+        jScrollPane31 = new JScrollPane();
+        jScrollPane32 = new JScrollPane();
+        jScrollPane33 = new JScrollPane();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MainToBeRenamed.CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
-        jSplitPane1.setDividerLocation(50);
+        setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
+        jSplitPane1.setDividerLocation(80);
         jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         inputText.setFont(new Font("Monospaced", 0, 12));
         inputText.addKeyListener(new KeyAdapter() {
@@ -313,6 +103,20 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
 
         jScrollPane1.setViewportView(inputText);
+/*
+        jbuttonOpenFile.setText("Open File!");
+        jbuttonOpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    jButttonOpenFileActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        jScrollPane1.setColumnHeaderView(jbuttonOpenFile);
+*/
 
         jSplitPane1.setTopComponent(jScrollPane1);
 
@@ -339,8 +143,6 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(frequencyCount.getMainCipherTextArea());
-        frequencyCount.getMainCipherPanel().add(jScrollPane2, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Frequency Count", frequencyCount.getMainCipherPanel());
 
 
@@ -367,19 +169,129 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane3.setViewportView(runTheAlphabet.getMainCipherTextArea());
-        runTheAlphabet.getMainCipherPanel().add(jScrollPane3, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getMainCipherPanel());
 
 //end run the alphabet
+
+      //begin of encryptkw
+        encryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        encryptkw.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        encryptkw.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		encryptkw.setInputText(inputText);
+        	}
+        });
+        
+        jScrollPane29.setViewportView(encryptkw.getMainCipherTextArea());
+        encryptkw.getMainCipherPanel().add(jScrollPane29, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Encrypt Keyword", encryptkw.getMainCipherPanel());
+      //end of encryptkw
+      //begin decryptkw
+        decryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        decryptkw.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        decryptkw.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		decryptkw.setInputText(inputText);
+        	}
+        });
+        jScrollPane30.setViewportView(decryptkw.getMainCipherTextArea());
+        decryptkw.getMainCipherPanel().add(jScrollPane30, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Decrypt Keyword", decryptkw.getMainCipherPanel());
+//end of decrypt kw
+//begin encrypt pig latin
+        pigLatinEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt) {
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        pigLatinEncipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        pigLatinEncipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		pigLatinEncipher.setInputText(inputText);
+        	}
+        });
+
+        jScrollPane31.setViewportView(pigLatinEncipher.getMainCipherTextArea());
+        pigLatinEncipher.getMainCipherPanel().add(jScrollPane31, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Encrypt Pig Latin", pigLatinEncipher.getMainCipherPanel());
+//end encrypt pig latin
+//begin decrypt pig latin
+        pigLatinDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt) {
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        pigLatinDecipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+                  	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        pigLatinDecipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		pigLatinDecipher.setInputText(inputText);
+        	}
+        });
+
+        jScrollPane32.setViewportView(pigLatinDecipher.getMainCipherTextArea());
+        pigLatinDecipher.getMainCipherPanel().add(jScrollPane32, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Decrypt Pig Latin", pigLatinDecipher.getMainCipherPanel());
+//end decrypt pig latin
+        
+//begin caesarcipher
+        caesarcipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        caesarcipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        caesarcipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		caesarcipher.setInputText(inputText);
+        	}
+        });
+        
+        jScrollPane33.setViewportView(caesarcipher.getMainCipherTextArea());
+        caesarcipher.getMainCipherPanel().add(jScrollPane33, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Caesar Cipher", caesarcipher.getMainCipherPanel());
+      //end of caesarCipher
+        
 //begin BiGraphs
         //need to extract all listeners
-        jTextArea4.addKeyListener(new KeyAdapter() {
+        biGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea4.addMouseListener(new MouseAdapter() {
+        biGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
@@ -393,1216 +305,359 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane4.setViewportView(biGraphs.getMainCipherTextArea());
-        biGraphs.getMainCipherPanel().add(jScrollPane4, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("BiGraphs", biGraphs.getMainCipherPanel());
 //end BiGraphs
+// begin TriGraphs
 
-        jPanel4.setLayout(new BorderLayout());
-
-        jTextArea5.setFont(new Font("Monospaced", 0, 12));
-        jTextArea5.addKeyListener(new KeyAdapter() {
+        triGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea5.addMouseListener(new MouseAdapter() {
+        triGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane5.setViewportView(jTextArea5);
-
-        jPanel4.add(jScrollPane5, BorderLayout.CENTER);
-
-        jButton4.setText("Show TriGraphs");
-        jButton4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        //workaround to pass inputText to FrequencyCount class
+        triGraphs.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                triGraphs.setInputText(inputText);
             }
         });
 
-        jPanel4.add(jButton4, BorderLayout.SOUTH);
-
-        rightHandNavPanelTab.addTab("TriGraphs", jPanel4);
-
-        jPanel20.setLayout(new BorderLayout());
-
-        jTextArea12.setFont(new Font("Monospaced", 0, 12));
-        jTextArea12.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("TriGraphs", triGraphs.getMainCipherPanel());
+//end of TriGraphs
+//begin NGraphs
+        nGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea12.addMouseListener(new MouseAdapter() {
+        nGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane12.setViewportView(jTextArea12);
-
-        jPanel20.add(jScrollPane12, BorderLayout.CENTER);
-
-        jButton10.setText("Show NGraphs");
-        jButton10.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+        //workaround to pass inputText to FrequencyCount class
+        nGraphs.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nGraphs.setInputText(inputText);
             }
         });
 
-        jPanel20.add(jButton10, BorderLayout.SOUTH);
-
-        jLabel8.setText("Length of NGraph");
-        jPanel21.add(jLabel8);
-
-        jSpinner5.setPreferredSize(new Dimension(50, 20));
-        jSpinner5.setValue(new Integer(1));
-        jSpinner5.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner3StateChanged(evt);
-            }
-        });
-
-        jPanel21.add(jSpinner5);
-
-        jPanel20.add(jPanel21, BorderLayout.NORTH);
-
-        rightHandNavPanelTab.addTab("NGraphs", jPanel20);
-
-        jPanel5.setLayout(new BorderLayout());
-
-        jButton5.setText("Execute");
-        jButton5.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jPanel5.add(jButton5, BorderLayout.SOUTH);
-
-        jPanel6.setLayout(new BorderLayout());
-
-        jLabel1.setText("Enter Keyword");
-        jPanel6.add(jLabel1, BorderLayout.WEST);
-
-        jTextField1.setFont(new Font("Monospaced", 0, 12));
-        jTextField1.setText("the");
-        jPanel6.add(jTextField1, BorderLayout.CENTER);
-
-        jCheckBox1.setText("Shift first");
-        jPanel6.add(jCheckBox1, BorderLayout.EAST);
-
-        jPanel5.add(jPanel6, BorderLayout.NORTH);
-
-        jTextArea6.setFont(new Font("Monospaced", 0, 12));
-        jTextArea6.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("NGraphs", nGraphs.getMainCipherPanel());
+//end of NGraphs
+//begin affineKnown
+        affineKnownPlaintextAttack.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea6.addMouseListener(new MouseAdapter() {
+        affineKnownPlaintextAttack.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane6.setViewportView(jTextArea6);
-
-        jPanel5.add(jScrollPane6, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Affine Known Plaintext Attack", jPanel5);
-
-        jPanel7.setLayout(new BorderLayout());
-
-        jPanel8.setLayout(new BorderLayout());
-
-        jPanel8.setPreferredSize(new Dimension(689, 75));
-        jPanel9.setLayout(new GridLayout(1, 0));
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("1");
-        jPanel9.add(jRadioButton1);
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("3");
-        jPanel9.add(jRadioButton2);
-
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("5");
-        jPanel9.add(jRadioButton3);
-
-        buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("7");
-        jPanel9.add(jRadioButton4);
-
-        buttonGroup1.add(jRadioButton5);
-        jRadioButton5.setText("9");
-        jPanel9.add(jRadioButton5);
-
-        buttonGroup1.add(jRadioButton6);
-        jRadioButton6.setText("11");
-        jPanel9.add(jRadioButton6);
-
-        buttonGroup1.add(jRadioButton7);
-        jRadioButton7.setText("15");
-        jPanel9.add(jRadioButton7);
-
-        buttonGroup1.add(jRadioButton8);
-        jRadioButton8.setText("17");
-        jPanel9.add(jRadioButton8);
-
-        buttonGroup1.add(jRadioButton9);
-        jRadioButton9.setText("19");
-        jPanel9.add(jRadioButton9);
-
-        buttonGroup1.add(jRadioButton10);
-        jRadioButton10.setText("21");
-        jPanel9.add(jRadioButton10);
-
-        buttonGroup1.add(jRadioButton11);
-        jRadioButton11.setText("23");
-        jPanel9.add(jRadioButton11);
-
-        buttonGroup1.add(jRadioButton12);
-        jRadioButton12.setText("25");
-        jPanel9.add(jRadioButton12);
-
-        jPanel8.add(jPanel9, BorderLayout.CENTER);
-
-        jLabel3.setText("Additive Shift");
-        jPanel10.add(jLabel3);
-
-        jSpinner1.setPreferredSize(new Dimension(50, 20));
-        jSpinner1.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
+        affineKnownPlaintextAttack.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                affineKnownPlaintextAttack.setInputText(inputText);
             }
         });
 
-        jPanel10.add(jSpinner1);
-
-        jPanel8.add(jPanel10, BorderLayout.SOUTH);
-
-        jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel2.setText("Multiplicative shift");
-        jPanel8.add(jLabel2, BorderLayout.NORTH);
-
-        jPanel7.add(jPanel8, BorderLayout.NORTH);
-
-        jButton6.setText("Encipher");
-        jButton6.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jPanel7.add(jButton6, BorderLayout.SOUTH);
-
-        jTextArea7.setFont(new Font("Monospaced", 0, 12));
-        jTextArea7.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("Affine Known Plaintext Attack", affineKnownPlaintextAttack.getMainCipherPanel());
+//end of affineKnown
+//begin affineEncipher
+        affineEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea7.addMouseListener(new MouseAdapter() {
+        affineEncipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane7.setViewportView(jTextArea7);
-
-        jPanel7.add(jScrollPane7, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Affine Encipher", jPanel7);
-
-        jPanel11.setLayout(new BorderLayout());
-
-        jPanel12.setLayout(new BorderLayout());
-
-        jPanel12.setPreferredSize(new Dimension(689, 75));
-        jPanel13.setLayout(new GridLayout(1, 0));
-
-        buttonGroup2.add(jRadioButton13);
-        jRadioButton13.setSelected(true);
-        jRadioButton13.setText("1");
-        jPanel13.add(jRadioButton13);
-
-        buttonGroup2.add(jRadioButton14);
-        jRadioButton14.setText("3");
-        jPanel13.add(jRadioButton14);
-
-        buttonGroup2.add(jRadioButton15);
-        jRadioButton15.setText("5");
-        jPanel13.add(jRadioButton15);
-
-        buttonGroup2.add(jRadioButton16);
-        jRadioButton16.setText("7");
-        jPanel13.add(jRadioButton16);
-
-        buttonGroup2.add(jRadioButton17);
-        jRadioButton17.setText("9");
-        jPanel13.add(jRadioButton17);
-
-        buttonGroup2.add(jRadioButton18);
-        jRadioButton18.setText("11");
-        jPanel13.add(jRadioButton18);
-
-        buttonGroup2.add(jRadioButton19);
-        jRadioButton19.setText("15");
-        jPanel13.add(jRadioButton19);
-
-        buttonGroup2.add(jRadioButton20);
-        jRadioButton20.setText("17");
-        jPanel13.add(jRadioButton20);
-
-        buttonGroup2.add(jRadioButton21);
-        jRadioButton21.setText("19");
-        jPanel13.add(jRadioButton21);
-
-        buttonGroup2.add(jRadioButton22);
-        jRadioButton22.setText("21");
-        jPanel13.add(jRadioButton22);
-
-        buttonGroup2.add(jRadioButton23);
-        jRadioButton23.setText("23");
-        jPanel13.add(jRadioButton23);
-
-        buttonGroup2.add(jRadioButton24);
-        jRadioButton24.setText("25");
-        jPanel13.add(jRadioButton24);
-
-        jPanel12.add(jPanel13, BorderLayout.CENTER);
-
-        jLabel4.setText("Additive Shift");
-        jPanel14.add(jLabel4);
-
-        jSpinner2.setPreferredSize(new Dimension(50, 20));
-        jSpinner2.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner2StateChanged(evt);
+        affineEncipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                affineEncipher.setInputText(inputText);
             }
         });
 
-        jPanel14.add(jSpinner2);
+        rightHandNavPanelTab.addTab("Affine Encipher", affineEncipher.getMainCipherPanel());
+        //end AffineEncipher
+        //begin AffineDecipher
 
-        jPanel12.add(jPanel14, BorderLayout.SOUTH);
 
-        jLabel5.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel5.setText("Multiplicative shift");
-        jPanel12.add(jLabel5, BorderLayout.NORTH);
-
-        jPanel11.add(jPanel12, BorderLayout.NORTH);
-
-        jButton7.setText("Decipher");
-        jButton7.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jPanel11.add(jButton7, BorderLayout.SOUTH);
-
-        jTextArea8.setFont(new Font("Monospaced", 0, 12));
-        jTextArea8.addKeyListener(new KeyAdapter() {
+        affineDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea8.addMouseListener(new MouseAdapter() {
+        affineDecipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane8.setViewportView(jTextArea8);
-
-        jPanel11.add(jScrollPane8, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Affine Decipher", jPanel11);
-
-        jPanel15.setLayout(new BorderLayout());
-
-        jLabel6.setText("Enter Wordlength");
-        jPanel16.add(jLabel6);
-
-        jSpinner3.setPreferredSize(new Dimension(50, 20));
-        jSpinner3.setValue(new Integer(1));
-        jSpinner3.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner3StateChanged(evt);
+        affineDecipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                affineDecipher.setInputText(inputText);
             }
         });
 
-        jPanel16.add(jSpinner3);
+        rightHandNavPanelTab.addTab("Affine Decipher", affineDecipher.getMainCipherPanel());
 
-        jPanel15.add(jPanel16, BorderLayout.NORTH);
+        //end affineDecipher
+        //begin Split Off Alphabets
 
-        jTextArea9.setFont(new Font("Monospaced", 0, 12));
-        jTextArea9.addKeyListener(new KeyAdapter() {
+        splitOffAlphabets.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea9.addMouseListener(new MouseAdapter() {
+        splitOffAlphabets.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane9.setViewportView(jTextArea9);
-
-        jPanel15.add(jScrollPane9, BorderLayout.CENTER);
-
-        jButton8.setText("Split off the alphabets");
-        jButton8.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+        splitOffAlphabets.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                splitOffAlphabets.setInputText(inputText);
             }
         });
 
-        jPanel15.add(jButton8, BorderLayout.SOUTH);
+        rightHandNavPanelTab.addTab("Split Off Alphabets", splitOffAlphabets.getMainCipherPanel());
+//end split the alphabet
+//begin PolyMonoCalculatro
 
-        rightHandNavPanelTab.addTab("Split Off Alphabets", jPanel15);
-
-        jPanel18.setLayout(new BorderLayout());
-
-        jLabel7.setText("Keyword Size");
-        jPanel19.add(jLabel7);
-
-        jSpinner4.setPreferredSize(new Dimension(50, 20));
-        jSpinner4.setValue(new Integer(1));
-        jSpinner4.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner3StateChanged(evt);
-            }
-        });
-
-        jPanel19.add(jSpinner4);
-
-        jPanel18.add(jPanel19, BorderLayout.NORTH);
-
-        jTextArea11.setFont(new Font("Monospaced", 0, 12));
-        jTextArea11.addKeyListener(new KeyAdapter() {
+        polyMonoCalculator.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea11.addMouseListener(new MouseAdapter() {
+        polyMonoCalculator.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane11.setViewportView(jTextArea11);
-
-        jPanel18.add(jScrollPane11, BorderLayout.CENTER);
-
-        jButton9.setText("Calculate");
-        jButton9.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+        polyMonoCalculator.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                polyMonoCalculator.setInputText(inputText);
             }
         });
 
-        jPanel18.add(jButton9, BorderLayout.SOUTH);
+        rightHandNavPanelTab.addTab("Poly/Mono Calculator", polyMonoCalculator.getMainCipherPanel());
+//end Poly/Mono Calculator
+//begin Viginere Encipher
 
-        rightHandNavPanelTab.addTab("Poly/Mono Calculator", jPanel18);
-
-        jPanel22.setLayout(new BorderLayout());
-
-        jSplitPane2.setDividerLocation(300);
-        jSplitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        jTable1.setModel(new DefaultTableModel(
-            new Object [][] {
-                {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
-                {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
-                {"C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B"},
-                {"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C"},
-                {"E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D"},
-                {"F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E"},
-                {"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F"},
-                {"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G"},
-                {"I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H"},
-                {"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"},
-                {"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
-                {"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"},
-                {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"},
-                {"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"},
-                {"O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"},
-                {"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"},
-                {"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"},
-                {"R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"},
-                {"S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"},
-                {"T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"},
-                {"U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"},
-                {"V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"},
-                {"W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"},
-                {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"},
-                {"Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"},
-                {"Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"}
-            },
-            new String [] {
-                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-            }
-        ) {
-            Class[] types = new Class [] {
-                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setRowSelectionAllowed(false);
-        jScrollPane14.setViewportView(jTable1);
-
-        jSplitPane2.setTopComponent(jScrollPane14);
-
-        jPanel23.setLayout(new BorderLayout());
-
-        jPanel23.setOpaque(false);
-        jPanel24.setLayout(new BorderLayout());
-
-        jLabel9.setText("Keyword");
-        jPanel24.add(jLabel9, BorderLayout.WEST);
-
-        jTextField2.setFont(new Font("Monospaced", 0, 12));
-        jPanel24.add(jTextField2, BorderLayout.CENTER);
-
-        jPanel23.add(jPanel24, BorderLayout.NORTH);
-
-        jTextArea13.setFont(new Font("Monospaced", 0, 12));
-        jTextArea13.addKeyListener(new KeyAdapter() {
+        viginereEncipher.getOutputTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea13.addMouseListener(new MouseAdapter() {
+        viginereEncipher.getOutputTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane13.setViewportView(jTextArea13);
-
-        jPanel23.add(jScrollPane13, BorderLayout.CENTER);
-
-        jButton11.setText("Encipher");
-        jButton11.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+        viginereEncipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viginereEncipher.setInputText(inputText);
             }
         });
 
-        jPanel23.add(jButton11, BorderLayout.SOUTH);
-
-        jSplitPane2.setBottomComponent(jPanel23);
-
-        jPanel22.add(jSplitPane2, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Viginere Encipher", jPanel22);
-
-        jPanel25.setLayout(new BorderLayout());
-
-        jSplitPane3.setDividerLocation(300);
-        jSplitPane3.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        jTable2.setModel(new DefaultTableModel(
-            new Object [][] {
-                {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
-                {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
-                {"C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B"},
-                {"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C"},
-                {"E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D"},
-                {"F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E"},
-                {"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F"},
-                {"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G"},
-                {"I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H"},
-                {"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"},
-                {"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
-                {"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"},
-                {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"},
-                {"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"},
-                {"O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"},
-                {"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"},
-                {"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"},
-                {"R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"},
-                {"S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"},
-                {"T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"},
-                {"U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"},
-                {"V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"},
-                {"W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"},
-                {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"},
-                {"Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"},
-                {"Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"}
-            },
-            new String [] {
-                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-            }
-        ) {
-            Class[] types = new Class [] {
-                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable2.setRowSelectionAllowed(false);
-        jScrollPane15.setViewportView(jTable2);
-
-        jSplitPane3.setTopComponent(jScrollPane15);
-
-        jPanel26.setLayout(new BorderLayout());
-
-        jPanel26.setOpaque(false);
-        jPanel27.setLayout(new BorderLayout());
-
-        jLabel10.setText("Keyword");
-        jPanel27.add(jLabel10, BorderLayout.WEST);
-
-        jTextField3.setFont(new Font("Monospaced", 0, 12));
-        jPanel27.add(jTextField3, BorderLayout.CENTER);
-
-        jPanel26.add(jPanel27, BorderLayout.NORTH);
-
-        jTextArea14.setFont(new Font("Monospaced", 0, 12));
-        jTextArea14.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("Viginere Encipher", viginereEncipher.getMainCipherPanel());
+//end Vinigner Enciphe
+//begin decipher
+        viginereDecipher.getOutputTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea14.addMouseListener(new MouseAdapter() {
+        viginereDecipher.getOutputTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane16.setViewportView(jTextArea14);
-
-        jPanel26.add(jScrollPane16, BorderLayout.CENTER);
-
-        jButton12.setText("Decipher");
-        jButton12.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+        viginereDecipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viginereDecipher.setInputText(inputText);
             }
         });
 
-        jPanel26.add(jButton12, BorderLayout.SOUTH);
+        rightHandNavPanelTab.addTab("Viginere Decipher", viginereDecipher.getMainCipherPanel());
+//end Viginere Decipher
+//begin Viginere Brute Force
 
-        jSplitPane3.setBottomComponent(jPanel26);
-
-        jPanel25.add(jSplitPane3, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Viginere Decipher", jPanel25);
-
-        jPanel37.setLayout(new BorderLayout());
-
-        jSplitPane7.setDividerLocation(300);
-        jSplitPane7.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        jTable6.setModel(new DefaultTableModel(
-            new Object [][] {
-                {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
-                {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
-                {"C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B"},
-                {"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C"},
-                {"E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D"},
-                {"F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E"},
-                {"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F"},
-                {"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G"},
-                {"I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H"},
-                {"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"},
-                {"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
-                {"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"},
-                {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"},
-                {"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"},
-                {"O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"},
-                {"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"},
-                {"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"},
-                {"R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"},
-                {"S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"},
-                {"T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"},
-                {"U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"},
-                {"V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"},
-                {"W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"},
-                {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"},
-                {"Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"},
-                {"Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"}
-            },
-            new String [] {
-                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-            }
-        ) {
-            Class[] types = new Class [] {
-                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable6.setRowSelectionAllowed(false);
-        jScrollPane23.setViewportView(jTable6);
-
-        jSplitPane7.setTopComponent(jScrollPane23);
-
-        jPanel38.setLayout(new BorderLayout());
-
-        jPanel38.setOpaque(false);
-        jLabel15.setText("Keyword Length");
-        jPanel39.add(jLabel15);
-
-        jSpinner8.setPreferredSize(new Dimension(50, 20));
-        jPanel39.add(jSpinner8);
-
-        jLabel16.setText("Friedman cutoff");
-        jPanel39.add(jLabel16);
-
-        jTextField7.setText(".060");
-        jPanel39.add(jTextField7);
-
-        jPanel38.add(jPanel39, BorderLayout.NORTH);
-
-        jTextArea18.setFont(new Font("Monospaced", 0, 12));
-        jTextArea18.addKeyListener(new KeyAdapter() {
+        viginereBruteForce.getOutputTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea18.addMouseListener(new MouseAdapter() {
+        viginereBruteForce.getOutputTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane24.setViewportView(jTextArea18);
-
-        jPanel38.add(jScrollPane24, BorderLayout.CENTER);
-
-        jButton16.setText("Go");
-        jButton16.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+        viginereBruteForce.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viginereBruteForce.setInputText(inputText);
             }
         });
 
-        jPanel38.add(jButton16, BorderLayout.SOUTH);
-
-        jSplitPane7.setBottomComponent(jPanel38);
-
-        jPanel37.add(jSplitPane7, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Viginere Brute Force", jPanel37);
-
-        jPanel28.setLayout(new BorderLayout());
-
-        jSplitPane4.setDividerLocation(300);
-        jSplitPane4.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        jTable3.setModel(new DefaultTableModel(
-            new Object [][] {
-                {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
-                {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
-                {"C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B"},
-                {"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C"},
-                {"E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D"},
-                {"F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E"},
-                {"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F"},
-                {"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G"},
-                {"I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H"},
-                {"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"},
-                {"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
-                {"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"},
-                {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"},
-                {"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"},
-                {"O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"},
-                {"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"},
-                {"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"},
-                {"R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"},
-                {"S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"},
-                {"T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"},
-                {"U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"},
-                {"V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"},
-                {"W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"},
-                {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"},
-                {"Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"},
-                {"Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"}
-            },
-            new String [] {
-                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-            }
-        ) {
-            Class[] types = new Class [] {
-                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable3.setRowSelectionAllowed(false);
-        jScrollPane17.setViewportView(jTable3);
-
-        jSplitPane4.setTopComponent(jScrollPane17);
-
-        jPanel29.setLayout(new BorderLayout());
-
-        jPanel29.setOpaque(false);
-        jLabel11.setText("Keyword Length");
-        jPanel30.add(jLabel11);
-
-        jSpinner6.setPreferredSize(new Dimension(50, 20));
-        jSpinner6.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner6StateChanged(evt);
-            }
-        });
-
-        jPanel30.add(jSpinner6);
-
-        jPanel29.add(jPanel30, BorderLayout.NORTH);
-
-        jTextArea15.setFont(new Font("Monospaced", 0, 12));
-        jTextArea15.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("Viginere Brute Force", viginereBruteForce.getMainCipherPanel());
+//end Viginere Brute Force
+//begin AutoKey Cypyhertext Attack
+        autoKeyCyphertextAttack.getOutputTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea15.addMouseListener(new MouseAdapter() {
+        autoKeyCyphertextAttack.getOutputTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane18.setViewportView(jTextArea15);
-
-        jPanel29.add(jScrollPane18, BorderLayout.CENTER);
-
-        jButton13.setText("Perform Attack");
-        jButton13.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+        autoKeyCyphertextAttack.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                autoKeyCyphertextAttack.setInputText(inputText);
             }
         });
 
-        jPanel29.add(jButton13, BorderLayout.SOUTH);
-
-        jSplitPane4.setBottomComponent(jPanel29);
-
-        jPanel28.add(jSplitPane4, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("AutoKey Cyphertext Attack", jPanel28);
-
-        jPanel31.setLayout(new BorderLayout());
-
-        jSplitPane5.setDividerLocation(300);
-        jSplitPane5.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        jTable4.setModel(new DefaultTableModel(
-            new Object [][] {
-                {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
-                {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
-                {"C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B"},
-                {"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C"},
-                {"E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D"},
-                {"F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E"},
-                {"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F"},
-                {"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G"},
-                {"I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H"},
-                {"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"},
-                {"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
-                {"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"},
-                {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"},
-                {"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"},
-                {"O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"},
-                {"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"},
-                {"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"},
-                {"R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"},
-                {"S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"},
-                {"T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"},
-                {"U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"},
-                {"V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"},
-                {"W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"},
-                {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"},
-                {"Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"},
-                {"Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"}
-            },
-            new String [] {
-                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-            }
-        ) {
-            Class[] types = new Class [] {
-                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable4.setRowSelectionAllowed(false);
-        jScrollPane19.setViewportView(jTable4);
-
-        jSplitPane5.setTopComponent(jScrollPane19);
-
-        jPanel32.setLayout(new BorderLayout());
-
-        jPanel32.setOpaque(false);
-        jLabel12.setText("Max Keyword Length");
-        jPanel33.add(jLabel12);
-
-        jSpinner7.setPreferredSize(new Dimension(50, 20));
-        jSpinner7.setValue(new Integer(1));
-        jSpinner7.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner7StateChanged(evt);
-            }
-        });
-
-        jPanel33.add(jSpinner7);
-
-        jLabel13.setText("Friedman Cuttoff");
-        jPanel33.add(jLabel13);
-
-        jTextField4.setText("0.055");
-        jTextField4.setPreferredSize(new Dimension(50, 19));
-        jPanel33.add(jTextField4);
-
-        jTextField5.setText("2.0");
-        jTextField5.setPreferredSize(new Dimension(50, 19));
-        jPanel33.add(jTextField5);
-
-        jPanel32.add(jPanel33, BorderLayout.NORTH);
-
-        jTextArea16.setFont(new Font("Monospaced", 0, 12));
-        jTextArea16.addKeyListener(new KeyAdapter() {
+        rightHandNavPanelTab.addTab("AutoKey Cyphertext Attack", autoKeyCyphertextAttack.getMainCipherPanel());
+//end autokey cypehertext attack
+//begin plaintext attack
+        autoKeyPlaintextAttack.getOutputTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea16.addMouseListener(new MouseAdapter() {
+        autoKeyPlaintextAttack.getOutputTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane20.setViewportView(jTextArea16);
-
-        jPanel32.add(jScrollPane20, BorderLayout.CENTER);
-
-        jButton14.setText("Perform Attack");
-        jButton14.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+        autoKeyPlaintextAttack.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                autoKeyPlaintextAttack.setInputText(inputText);
             }
         });
 
-        jPanel32.add(jButton14, BorderLayout.SOUTH);
+        rightHandNavPanelTab.addTab("AutoKey Plaintext Attack", autoKeyPlaintextAttack.getMainCipherPanel());
+//end AutoKey Plaintext Attack
+//begin autokey decipher
 
-        jSplitPane5.setBottomComponent(jPanel32);
-
-        jPanel31.add(jSplitPane5, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("AutoKey Plaintext Attack", jPanel31);
-
-        jPanel34.setLayout(new BorderLayout());
-
-        jSplitPane6.setDividerLocation(300);
-        jSplitPane6.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        jTable5.setModel(new DefaultTableModel(
-            new Object [][] {
-                {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"},
-                {"B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A"},
-                {"C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B"},
-                {"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C"},
-                {"E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D"},
-                {"F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E"},
-                {"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F"},
-                {"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G"},
-                {"I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H"},
-                {"J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I"},
-                {"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"},
-                {"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"},
-                {"M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"},
-                {"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"},
-                {"O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"},
-                {"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"},
-                {"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"},
-                {"R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q"},
-                {"S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R"},
-                {"T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"},
-                {"U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"},
-                {"V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U"},
-                {"W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"},
-                {"X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"},
-                {"Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"},
-                {"Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"}
-            },
-            new String [] {
-                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-            }
-        ) {
-            Class[] types = new Class [] {
-                String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable5.setRowSelectionAllowed(false);
-        jScrollPane21.setViewportView(jTable5);
-
-        jSplitPane6.setTopComponent(jScrollPane21);
-
-        jPanel35.setLayout(new BorderLayout());
-
-        jPanel35.setOpaque(false);
-        jPanel36.setLayout(new BorderLayout());
-
-        jLabel14.setText("Keyword");
-        jPanel36.add(jLabel14, BorderLayout.WEST);
-
-        jTextField6.setFont(new Font("Monospaced", 0, 12));
-        jPanel36.add(jTextField6, BorderLayout.CENTER);
-
-        jCheckBox2.setText("PlainText");
-        jPanel36.add(jCheckBox2, BorderLayout.EAST);
-
-        jPanel35.add(jPanel36, BorderLayout.NORTH);
-
-        jTextArea17.setFont(new Font("Monospaced", 0, 12));
-        jScrollPane22.setViewportView(jTextArea17);
-
-        jPanel35.add(jScrollPane22, BorderLayout.CENTER);
-
-        jButton15.setText("Decipher");
-        jButton15.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+        autoKeyDecipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                autoKeyDecipher.setInputText(inputText);
             }
         });
 
-        jPanel35.add(jButton15, BorderLayout.SOUTH);
+        rightHandNavPanelTab.addTab("AutoKey Decipher", autoKeyDecipher.getMainCipherPanel());
+//end autoKey decipher
+//begin hill brute force
 
-        jSplitPane6.setBottomComponent(jPanel35);
 
-        jPanel34.add(jSplitPane6, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("AutoKey Decipher", jPanel34);
-
-        jPanel40.setLayout(new BorderLayout());
-
-        jButton17.setText("Go");
-        jButton17.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
-
-        jPanel40.add(jButton17, BorderLayout.SOUTH);
-
-        jTextArea19.addKeyListener(new KeyAdapter() {
+        hillBruteForce.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea19.addMouseListener(new MouseAdapter() {
+        hillBruteForce.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane25.setViewportView(jTextArea19);
-
-        jPanel40.add(jScrollPane25, BorderLayout.CENTER);
-
-        jLabel18.setText("Friedman cutoff");
-        jPanel41.add(jLabel18);
-
-        jTextField8.setText("0.060");
-        jTextField8.setPreferredSize(new Dimension(50, 19));
-        jPanel41.add(jTextField8);
-
-        jPanel40.add(jPanel41, BorderLayout.NORTH);
-
-        rightHandNavPanelTab.addTab("Hill Brute Force", jPanel40);
-
-        jPanel42.setLayout(new BorderLayout());
-
-        jTable7.setModel(new DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane26.setViewportView(jTable7);
-
-        jPanel42.add(jScrollPane26, BorderLayout.CENTER);
-
-        jLabel17.setText("Number of Rows");
-        jPanel43.add(jLabel17);
-
-        jSpinner9.setPreferredSize(new Dimension(50, 20));
-        jSpinner9.setValue(new Integer(1));
-        jSpinner9.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent evt) {
-                jSpinner3StateChanged(evt);
+        hillBruteForce.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hillBruteForce.setInputText(inputText);
             }
         });
 
-        jPanel43.add(jSpinner9);
 
-        jPanel42.add(jPanel43, BorderLayout.NORTH);
+        rightHandNavPanelTab.addTab("Hill Brute Force", hillBruteForce.getMainCipherPanel());
+//end hill brute force
+//begin column transpotions
 
-        jPanel44.setLayout(new BorderLayout());
-
-        jButton18.setText("Go");
-        jButton18.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+        columnTranspositionWorksheet.getGoButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                columnTranspositionWorksheet.setInputText(inputText);
             }
         });
 
-        jPanel44.add(jButton18, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Column Transposition Worksheet", columnTranspositionWorksheet.getMainPanel());
+//end transposiotion
+//begin GCD
 
-        jPanel42.add(jPanel44, BorderLayout.SOUTH);
-
-        rightHandNavPanelTab.addTab("Column Transposition Worksheet", jPanel42);
-
-        jPanel45.setLayout(new BorderLayout());
-
-        jLabel19.setText("Inverse of");
-        jPanel46.add(jLabel19);
-
-        jTextField9.setPreferredSize(new Dimension(100, 20));
-        jPanel46.add(jTextField9);
-
-        jLabel20.setText("Mod");
-        jPanel46.add(jLabel20);
-
-        jTextField10.setPreferredSize(new Dimension(100, 20));
-        jPanel46.add(jTextField10);
-
-        jPanel45.add(jPanel46, BorderLayout.NORTH);
-
-        jTextArea20.addKeyListener(new KeyAdapter() {
+        gcdAndInverse.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea20.addMouseListener(new MouseAdapter() {
+        gcdAndInverse.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane27.setViewportView(jTextArea20);
-
-        jPanel45.add(jScrollPane27, BorderLayout.CENTER);
-
-        jButton19.setText("Go");
-        jButton19.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+        gcdAndInverse.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gcdAndInverse.setInputText(inputText);
             }
         });
 
-        jPanel45.add(jButton19, BorderLayout.SOUTH);
+        rightHandNavPanelTab.addTab("GCD and Inverse", gcdAndInverse.getMainCipherPanel());
+//end GCD
 
-        rightHandNavPanelTab.addTab("GCD and Inverse", jPanel45);
-
-        jPanel47.setLayout(new BorderLayout());
-
-        jPanel47.addComponentListener(new ComponentAdapter() {
-            public void componentShown(ComponentEvent evt) {
-                jPanel47ComponentShown(evt);
-            }
-        });
-
-        jLabel21.setText("Dictionary File: ");
-        jToolBar1.add(jLabel21);
-
-        jToolBar1.add(jTextField11);
-
-        jButton21.setText("Browse");
-        jToolBar1.add(jButton21);
-
-        jButton22.setText("Generate");
-        jToolBar1.add(jButton22);
-
-        jPanel47.add(jToolBar1, BorderLayout.NORTH);
-
-        jButton20.setText("Go");
-        jButton20.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-
-        jPanel47.add(jButton20, BorderLayout.SOUTH);
-
-        jTextArea21.addKeyListener(new KeyAdapter() {
+        substitutionSolver.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        jTextArea21.addMouseListener(new MouseAdapter() {
+        substitutionSolver.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
         });
 
-        jScrollPane28.setViewportView(jTextArea21);
+        substitutionSolver.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                substitutionSolver.setInputText(inputText);
+            }
+        });
 
-        jPanel47.add(jScrollPane28, BorderLayout.CENTER);
-
-        rightHandNavPanelTab.addTab("Substitution Solver", jPanel47);
+        rightHandNavPanelTab.addTab("Substitution Solver", substitutionSolver.getMainCipherPanel());
+//end substitution solver
 
         jPanel17.setLayout(new BorderLayout());
 
@@ -1628,805 +683,30 @@ public class CryptoHelper extends javax.swing.JFrame {
     }
     // </editor-fold>//GEN-END:initComponents
 
-    private void jPanel47ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel47ComponentShown
-        try
-        {            
-            JarFile jf = new JarFile("MainToBeRenamed.CryptoHelper.jar");
-            
-            ZipEntry ze = jf.getEntry("english.wow");
-            
-            BufferedReader br = new BufferedReader(new InputStreamReader(jf.getInputStream(ze)));
-            dictionary = new int[26][26][26][26];
+    private void jButttonOpenFileActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
 
-            for(int x = 0; x < 26; x++)
-            {
-                for (int y = 0; y < 26; y++)
-                {
-                    for(int l = 0; l < 26; l++)
-                    {
-                        for(int r = 0; r < 26; r++)
-                        {
-                            dictionary[x][y][l][r] = 1;
-                        }
-                    }
-                }
-            }        
-            String temp = "";
-            while ((temp = br.readLine()) != null)
-            {
-                String[] parse = temp.split(", ");
-                dictionary[parse[0].charAt(0)-65][parse[0].charAt(1)-65][parse[0].charAt(2)-65][parse[0].charAt(3)-65] = Integer.parseInt(parse[1]);
-            }
-        }
-        catch (IOException e)
-        {
-            JOptionPane.showMessageDialog(null,
-            "Error:Cannot read from file.\n");
-        }
-    }//GEN-LAST:event_jPanel47ComponentShown
-    
-    class SubstitutionSolver implements Runnable
-    {
-        String ciphertext;
-        long iteration = 0;
-        char[] key;
-        boolean stopToggle = false;
-        
-        public void stop()
-        {
-            stopToggle = true;
-        }
-        
-        public SubstitutionSolver(String ciphertext)                               // this is the classes constructor
-        {
-            this.ciphertext = ciphertext;
-            key = new char[256];
+
+        final JFileChooser fc = new JFileChooser();
+
+//In response to a button click:
+        int returnVal = fc.showOpenDialog(null);
+
+        String inputFile = fc.getSelectedFile().getPath();
+
+        String intmandun = " ";
+
+        try {
+            intmandun = new String(Files.readAllBytes(Paths.get(inputFile)));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        public void run()                                                           // this is the "main" method of the thread
-        {
-            jTextArea21.setText("best overall = " + score(ciphertext) + " : best score = " + score(ciphertext) + "\n");
-            
-//            jTextArea21.append("" + ciphertext.replaceAll("/(.....)/", '\1 ');
-            
-            randomize(key);
-            
-            double bestScore = score(ciphertext);
-            double bestOverall = bestScore - 1;
-            int numSmallAdjusts = 0;
-
-            int bestI = 0;
-            int bestJ = 0;
-            
-            
-            while(true)
-            {
-                if (stopToggle) return;
-//                jTextArea21.append("");
-                
-                double bestAdj = bestScore;
-                
-                char[] testKey = new char[256];
-                
-
-                for (int i = 0; i < 26; i++)
-                {
-                    for (int j = i+1; j < 26; j++)
-                    {
-                        for (int x = 0; x < 256; x++) testKey[x] = key[x];
-                        char temp = testKey[i+65];
-                        testKey[i+65] = testKey[j+65];
-                        testKey[j+65] = temp;
-
-                        double sc = score(plaintext(ciphertext, testKey));
-                        
-//                        for (int l = 0; l < 26; l++) jTextArea21.append("" + testKey[l+65] + ", ");
-//                        jTextArea21.append("\n" + score(plaintext(ciphertext, testKey)) + "\n");
-//                        jTextArea21.append("\n");
-//                        for (int l = 0; l < 26; l++) jTextArea21.append("" + key[l+65] + ", ");
-//                        jTextArea21.append("" + score(plaintext(ciphertext, key)) + "\n");
-//                        jTextArea21.append("\n\n");
-                        
-                        if (sc > bestAdj)
-                        {
-                            bestAdj = sc;
-                            bestI = i;
-                            bestJ = j;
-                        }
-                    }
-                }
-                
-                if (bestAdj > bestScore)
-                {
-                    char temp = key[bestI+65];
-                    key[bestI+65] = key[bestJ+65];
-                    key[bestJ+65] = temp;
-                    bestScore = bestAdj;
-                    if (bestScore > bestOverall)
-                    {
-                        numSmallAdjusts = 0;
-                        bestOverall = bestScore;
-                        jTextArea21.setText("best overall = " + bestOverall + " : best score = " + bestScore + " : iteration = " + iteration + "\n");
-                        jTextArea21.append("" + plaintext(ciphertext, key)/*.gsub(/(.....)/, '\1 '*/ + "\n");
-                    }
-                }
-                else
-                {
-                    if (numSmallAdjusts < 5)
-                    {
-                        smallAdj(key);
-                        numSmallAdjusts += 1;
-                    }
-                    else
-                    {
-                        randomize(key);
-                        numSmallAdjusts = 0;
-                    }
-                    bestScore=score(plaintext(ciphertext, key));
-                }
-            }
-        }                                                                       // thread is terminating.
-        
-        private double score(String string)
-        {
-            iteration += 1;
-            double tally = 0;
-            
-            for (int x = 0; x < string.length() - 4; x++)
-            {
-                tally += Math.log((dictionary[string.charAt(x)-65][string.charAt(x+1)-65][string.charAt(x+2)-65][string.charAt(x+3)-65]));
-            }
-            return tally;
-        }
-        
-        private void smallAdj(char[] key)
-        {
-            int rNum = (int)(Math.random() * 5);
-            
-            for (int i = 0; i < rNum; i++)
-            {
-                int j = (int)(Math.random() * 26);
-                int k = (int)(Math.random() * 26);
-                
-                if (j!=k)
-                {
-			char temp = key[j+65];
-			key[j+65] = key[k+65];
-			key[k+65] = temp;
-                }
-            }
-        }
-        
-        private String plaintext(String ciphertext, char[] key)
-        {
-            String returnString = "";
-            
-            for (int x = 0; x < ciphertext.length(); x++)
-            {
-                returnString = returnString + key[ciphertext.charAt(x)];
-            }
-            return returnString;
-        }
-        
-        private void randomize(char[] key)
-        {
-            ArrayList array = new ArrayList();
-            
-            for (int x = 0; x < 26; x++)
-            {
-                array.add(x, new Character((char)(x + 65)));
-            }
-            
-            for (int x = 0; x < 26; x++)
-            {
-                int y = (int)(Math.random() * array.size());
-                key[x+65] = ((Character)array.get(y)).charValue();
-                array.remove(y);
-            }
-        }
+//        String lines = Files.readAllLines(Paths.get(inputFile));
+//        String intman = lines;
+        String inputString = intmandun;
+        inputText.setText(inputString);
     }
-    
-    boolean jButton20Toggle = false;
-    Thread substitutionThread;
-    SubstitutionSolver substitutionSolver;
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        if (jButton20Toggle == false)
-        {
-            String inputString = formatString(inputText);
-            substitutionSolver = new SubstitutionSolver(inputString);
-            substitutionThread = new Thread(substitutionSolver);
-            substitutionThread.start();
-            jButton20Toggle = true;
-            jButton20.setText("Stop");
-        }
-        else
-        {
-            substitutionSolver.stop();
-            jButton20Toggle = false;
-            jButton20.setText("Go");
-        }
-    }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        double y = Math.max(Double.parseDouble(jTextField10.getText()), Double.parseDouble(jTextField9.getText()));
-        double z = Math.min(Double.parseDouble(jTextField10.getText()), Double.parseDouble(jTextField9.getText()));
-        double w = 0;
-        double ans = 0;
-   
-        jTextArea20.setText("The inverse algorithm used here is not euclid's algo, rather it is one I came up with that is not\n as efficient\n\n");
-
-        boolean exit = false;
-		
-        while(!exit)
-        {
-            w = y%z;
-            if (w != 0)
-            {
-                y = z;
-                z = w;
-            }
-            else
-            {
-                exit = true;
-                ans = z;
-            }
-        }
-
-//        System.out.println("gcd is " + ans);
-        jTextArea20.append("gcd is " + ans + "\n");
-
-        if (ans==1)
-        {
-            y = Double.parseDouble(jTextField10.getText());
-            z = Double.parseDouble(jTextField9.getText());
-
-            for (int x = 1; x <= y; x++)
-            {
-                w = ((-(y*x-1)/z));
-                w = (w + ((int)(-w/y) + 1)*y);
-                if (w-((int)w)==0)
-                {
-//                    System.out.println("The inverse is " + w);
-                    jTextArea20.append("The inverse is " + w + "\n");
-                    break;
-                }
-            }
-        }
-        else 
-        {
-//            System.out.println("There is no inverse, sorry");
-            jTextArea20.append("There is no inverse, sorry\n");
-        }
-    }//GEN-LAST:event_jButton19ActionPerformed
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        jTextArea9.setText("");
-        
-        String inputString = formatString(inputText);
-
-        int numRows = ((Integer)jSpinner9.getValue()).intValue();
-        String[] sArray = new String[numRows];
-        
-        for (int x = 0; x < numRows; x++)
-        {
-            sArray[x] = "";
-        }
-        
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            sArray[x%numRows] = sArray[x%numRows] + inputString.charAt(x);
-        }
-        
-        jTable7.setModel(new javax.swing.table.DefaultTableModel(numRows, sArray[0].length()));
-     
-        jTable7.setRowSelectionAllowed(false);
-        
-        for (int x = 0; x < sArray.length; x++)
-        {
-            for (int y = 0; y < sArray[x].length(); y++)
-            {
-                jTable7.setValueAt(new Character(sArray[x].charAt(y)), x, y);
-            }
-        }        
-    }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        String inputString = formatString(inputText);
-        String outputString = "";
-        double friedman = 0.0;
-        
-        if (inputString.length()%2!=0)
-        {
-            JOptionPane.showMessageDialog(null, 
-                    "Please input a message with an even number of characters", 
-                    "Warning",JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
-        char[] array = new char[inputString.length()];
-        char[] array2 = new char[inputString.length()];
-        
-        for (int x = 0; x < array.length; x++) array[x] = (char)(inputString.charAt(x)-'A' + 1);
-        
-        System.out.println();
-        
-        for (int q = 1; q <= 26; q++)
-        {
-            for (int w = 1; w <= 26; w++)
-            {
-                for (int e = 1; e <= 26; e++)
-                {
-                    for (int r = 1; r <= 26; r++)
-                    {
-                        for (int x = 0; x < array.length; x = x + 2)
-                        {
-                            array2[x] = (char)((q * array[x] + 
-                                w * array[x+1])%26);
-                            array2[x+1] = (char)((e * array[x] + 
-                                r * array[x+1])%26);            
-                        }
-                        for (int x = 0; x < array.length; x++)
-                        {
-                            if (array2[x] == 0) array2[x] = 26;
-                            array2[x] = (char)(array2[x]+'A' - 1);        
-                        }
-        
-                        outputString = new String(array2);
-                        friedman = calculateFriedman(outputString);
-                        if (friedman >= Double.parseDouble(jTextField8.getText()))
-                            jTextArea19.append("" + friedman + " = " + 
-                            q + ", " + w + ", " + e + ", " + r + " = " + 
-                            outputString + "\n");                        
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        String inputString = formatString(inputText);
-        String outputString = "";
-        String s1 = "";
-        String finish = "";
-        double friedman = 0.0;
-        char[] array = new char[((Integer)jSpinner8.getValue()).intValue()];
-
-        jTextArea18.setText("");
-        
-        for (int x = 0; x < ((Integer)jSpinner8.getValue()).intValue(); x++)
-        {
-            s1 = s1 + "A";
-            finish = finish + "Z";
-            array[x] = 'A';
-        }
-
-        
-        while(!s1.equals(finish))
-        {
-            for (int x = 0; x < inputString.length(); x++)
-            {
-                for (int y = 0; y < 26; y++) 
-                {
-                    if(jTable6.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
-                        outputString = outputString + jTable6.getColumnName(y);
-                }
-            }
-            outputString = outputString.toUpperCase();
-            friedman = calculateFriedman(outputString);
-            if (friedman >= Double.parseDouble(jTextField7.getText())) jTextArea18.append("Key = " + s1 + ", friedman = " + friedman + ", pt = " + outputString + "\n");
-            
-            array[0]++;
-            
-            for (int x = 0; x < array.length; x++)
-            {
-                if (array[x] >= 'Z'+1) {array[x] = 'A'; if ((x+1) < array.length) array[x+1]++;}
-            }
-            
-            s1 = new String(array);
-            outputString = "";
-        }
-    }//GEN-LAST:event_jButton16ActionPerformed
-
-    private double calculateFriedman(String inputString)
-    {
-        String tempString;
-        double[] array = new double[256];
-        double friedman = 0;
-        int spinnerValue = 1;
-        
-        for (int z = 0; z < spinnerValue; z++)
-        {
-            tempString = "";
-            friedman = 0;
-            
-            for (int x = 0; x < inputString.length(); x++)
-            {
-                if ((x-z%spinnerValue)%spinnerValue==0) tempString = tempString + inputString.charAt(x);
-            }
-        
-            for (int x = 0; x < 256; x++)
-                array[x] = 0;
-        
-            for (int x = 0; x < tempString.length(); x++)
-            {
-                for (char y = 'A'; y <= 'Z'; y++)
-                {
-                    if (tempString.charAt(x) == y) array[y]++;
-                }
-            }
-            for (char x = 'A'; x <= 'Z'; x++)
-            {
-                friedman += array[x]/tempString.length() * ((array[x]-1)/(tempString.length()-1));
-            }
-        
-            return friedman;
-        }        
-        return friedman;
-    }
-    
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        String inputString = formatString(inputText);
-        String outputString = "";
-        String s1 = formatString(jTextField6);
-        char[] charArray;
-        
-        if (!jCheckBox2.isSelected())
-        {
-            s1 = s1 + inputString;
-            
-            for (int x = 0; x < inputString.length(); x++)
-            {
-                for (int y = 0; y < 26; y++) 
-                {
-                    if(jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
-                        outputString = outputString + jTable5.getColumnName(y);
-                }
-            }
-            
-            charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
-            
-            for (int x = 0, y = 0; x < outputString.length(); x++, y++)
-            {
-                charArray[y] = outputString.charAt(x);
-                if ((x+1)%5 == 0 && (x+1)!= outputString.length()) charArray[++y] = ' ';
-            }
-        }
-        else
-        {
-            for (int x = 0; x < inputString.length(); x++)
-            {
-                for (int y = 0; y < 26; y++) 
-                {
-                    if(jTable5.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
-                        outputString = outputString + jTable5.getColumnName(y);
-                }
-                s1 = s1 + outputString.charAt(x);
-                s1 = s1.toUpperCase();
-            }
-            
-            charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
-            
-            for (int x = 0, y = 0; x < outputString.length(); x++, y++)
-            {
-                charArray[y] = outputString.charAt(x);
-                if ((x+1)%5 == 0 && (x+1)!= outputString.length()) charArray[++y] = ' ';
-            }            
-        }
-            
-        jTextArea17.setText(new String(charArray));
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jSpinner7StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner7StateChanged
-        JSpinner js = (JSpinner)evt.getSource();
-        
-        if (((Integer)js.getValue()).intValue() < 1) js.setValue(new Integer(1));
-    }//GEN-LAST:event_jSpinner7StateChanged
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-/* possibilities for letter 1 of keyword
- * n key length = 5 fieldman rating 0.50
- * possibilities for letter 2 of keyword
- * 0 key length = 5 fieldman rating 0.55
- */
-
-        String inputString = formatString(inputText);
-        String outputString = "";
-        String s1 = "";
-        String tempString = "";
-        double[] array = new double[256];
-        double friedman = 0;        
-        
-        int js = ((Integer)jSpinner7.getValue()).intValue();
-        double friedman_cutoff_low = Double.parseDouble(jTextField4.getText());
-        double friedman_cutoff_hi = Double.parseDouble(jTextField5.getText());
-
-        int x, z, t, w;
-        char y;
-        
-        jTextArea16.setText("");
-        
-        for (x = 0; x < js; x++)
-        {
-            for (y = 'A'; y<='Z'; y++)
-            {
-                for (z = 1; z <= js; z++)
-                {
-                    s1 = "";
-                    tempString = "";
-                    outputString = "";
-                    friedman = 0;
-
-                    for ( t = x; t < inputString.length(); t++)
-                    {
-                        if ((t-x)%z==0) tempString = tempString + inputString.charAt(t);
-                    }                    
-                    
-                    
-                    
-                    s1 = "" + y;
-                    for (t = 0; t < tempString.length(); t++)
-                    {
-                        for (w = 0; w < 26; w++) 
-                        {
-                            if(jTable5.getValueAt(s1.charAt(t%s1.length())-'A', w).equals((new Character(tempString.charAt(t))).toString()))
-                                outputString = outputString + jTable5.getColumnName(w);
-                        }
-                        s1 = s1 + outputString.charAt(t);
-                        s1 = s1.toUpperCase();
-                    }
-                    
-                    System.out.println(s1);
-                    System.out.println(outputString);
-                    System.out.println();
-                    
-                    
-                    
-                    outputString = outputString.toUpperCase();
-
-                    for (t = 0; t < 256; t++)
-                        array[t] = 0;   
-        
-                    for (t = 0; t < outputString.length(); t++)
-                    {
-                        for (char c = 'A'; c <= 'Z'; c++)
-                        {
-                            if (outputString.charAt(t) == c) array[c]++;
-                        }
-                    }
-                    for (char c = 'A'; c <= 'Z'; c++)
-                    {
-                        friedman += array[c]/outputString.length() * ((array[c]-1)/(outputString.length()-1));
-                    }        
-                    
-                    
-                    if(friedman >= friedman_cutoff_low && friedman <= friedman_cutoff_hi)
-                    {
-                        //print this possibility;
-                        //jTextArea16.append("\n\nFriedman value = " + friedman);;        
-                        jTextArea16.append("Possibilities for letter  " + (x+1) + "  of keyword  ");
-                        jTextArea16.append("" + y + "  keylength =  " + z + "  friedman =  " + friedman + "\n");
-                    }
-                }
-            }
-        }        
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jSpinner6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner6StateChanged
-        JSpinner js = (JSpinner)evt.getSource();
-        
-        if (((Integer)js.getValue()).intValue() < 0) js.setValue(new Integer(0));
-    }//GEN-LAST:event_jSpinner6StateChanged
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        String inputString = formatString(inputText);
-        String outputString = "";
-        String s1 = "";
-        double[] array = new double[256];
-        double friedman = 0;        
-        
-        for (int x = 0; x < ((Integer)jSpinner6.getValue()).intValue(); x++)
-        {
-            s1 = s1 + "A";
-        }
-        
-        s1 = s1 + inputString;
-
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            for (int y = 0; y < 26; y++) 
-            {
-                if(jTable3.getValueAt(s1.charAt(x%s1.length()     )-'A', y).equals((new Character(inputString.charAt(x))).toString()))
-                    outputString = outputString + jTable3.getColumnName(y);
-            }
-        }
-      
-        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
-        
-        for (int x = 0, y = 0; x < outputString.length(); x++, y++)
-        {
-            charArray[y] = outputString.charAt(x);
-            if ((x+1)%5 == 0 && (x+1)!= outputString.length()) charArray[++y] = ' ';
-        }
-        
-        jTextArea15.setText(new String(charArray));
-        
-        outputString = outputString.toUpperCase();
-        
-        for (int x = 0; x < 256; x++)
-            array[x] = 0;   
-        
-        for (int x = 0; x < outputString.length(); x++)
-        {
-            for (char y = 'A'; y <= 'Z'; y++)
-            {
-                if (outputString.charAt(x) == y) array[y]++;
-            }
-        }
-        for (char x = 'A'; x <= 'Z'; x++)
-        {
-            friedman += array[x]/outputString.length() * ((array[x]-1)/(outputString.length()-1));
-        }        
-        jTextArea15.append("\n\nFriedman value = " + friedman);
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        String inputString = formatString(inputText);
-        String outputString = "";
-        String s1 = formatString(jTextField3);
-
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            for (int y = 0; y < 26; y++) 
-            {
-                if(jTable2.getValueAt(s1.charAt(x%s1.length())-'A', y).equals((new Character(inputString.charAt(x))).toString()))
-                    outputString = outputString + jTable2.getColumnName(y);
-            }
-        }
-      
-        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
-        
-        for (int x = 0, y = 0; x < outputString.length(); x++, y++)
-        {
-            charArray[y] = outputString.charAt(x);
-            if ((x+1)%5 == 0 && (x+1)!= outputString.length()) charArray[++y] = ' ';
-        }
-        
-        jTextArea14.setText(new String(charArray));
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        String inputString = formatString(inputText);
-        String outputString = "";
-        String s1 = formatString(jTextField2);
-        
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            outputString = outputString + jTable1.getValueAt(s1.charAt(x%s1.length())-'A', inputString.charAt(x)-'A');
-        }
-
-        char[] charArray = new char[outputString.length() + ((outputString.length()-1)/5)];
-        
-        for (int x = 0, y = 0; x < outputString.length(); x++, y++)
-        {
-            charArray[y] = outputString.charAt(x);
-            if ((x+1)%5 == 0 && (x+1)!= outputString.length()) charArray[++y] = ' ';
-        }
-        
-        jTextArea13.setText(new String(charArray));        
-    }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-
-        String inputString = formatString(inputText);
-        int js = ((Integer)jSpinner5.getValue()).intValue();
-
-        String tempString;
-        Counter counter = new Counter();
-        
-        for (int x = 0; x < inputString.length() - (js - 1); x++)
-        {
-            tempString = inputString.substring(x, x+js);
-            if (inputString.indexOf(tempString, x)>=0)
-            {
-                if (!counter.contains(tempString))
-                {
-                    counter.add(tempString, x);
-                    for (int y = x; y >= 0;)
-                    {
-                        if ((y = inputString.indexOf(tempString, y+js)) >= 0) counter.inc(y);
-                    }
-                }
-            }
-        }
-        
-        jTextArea12.setText("");
-        
-        for (int x = 0; x < counter.length; x++)
-        {
-            jTextArea12.append(counter.sArray[x]);
-            jTextArea12.append(" = ");
-            jTextArea12.append(new Integer(counter.iArray[x]).toString());
-            jTextArea12.append(" at positions ");
-            for (int y = 0; y < counter.iArray[x]; y++)
-            {
-                jTextArea12.append("" + counter.pArray[x][y]);
-                if (y!=counter.iArray[x] - 1)
-                    jTextArea12.append(",");
-            }
-            jTextArea12.append("\n");
-        }        
-        
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        String inputString = formatString(inputText);
-        String tempString;
-        double[] array = new double[256];
-        double friedman = 0;
-        int spinnerValue = ((Integer)jSpinner4.getValue()).intValue();
-        
-        jTextArea11.setText(".065 = Monoalphabetic, .038 means polyalphabetic.  I'll add some bar graphs in the future.\n\n");
-        
-        for (int z = 0; z < spinnerValue; z++)
-        {
-            tempString = "";
-            friedman = 0;
-            
-            for (int x = 0; x < inputString.length(); x++)
-            {
-                if ((x-z%spinnerValue)%spinnerValue==0) tempString = tempString + inputString.charAt(x);
-            }
-        
-            for (int x = 0; x < 256; x++)
-                array[x] = 0;
-        
-            for (int x = 0; x < tempString.length(); x++)
-            {
-                for (char y = 'A'; y <= 'Z'; y++)
-                {
-                    if (tempString.charAt(x) == y) array[y]++;
-                }
-            }
-            for (char x = 'A'; x <= 'Z'; x++)
-            {
-                friedman += array[x]/tempString.length() * ((array[x]-1)/(tempString.length()-1));
-            }
-        
-            jTextArea11.append("" + friedman + "\n");
-        }
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
-        JSpinner js = (JSpinner)evt.getSource();
-        
-        if (((Integer)js.getValue()).intValue() < 1) js.setValue(new Integer(1));
-    }//GEN-LAST:event_jSpinner3StateChanged
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        jTextArea9.setText("");
-        
-        String inputString = formatString(inputText);
-
-        int wordLength = ((Integer)jSpinner3.getValue()).intValue();
-        String[] sArray = new String[wordLength];
-        
-        for (int x = 0; x < wordLength; x++)
-        {
-            sArray[x] = "";
-        }
-        
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            sArray[x%wordLength] = sArray[x%wordLength] + inputString.charAt(x);
-        }
-        
-        for (int x = 0; x < sArray.length; x++)
-        {
-            jTextArea9.append(sArray[x] + "\n");
-        }
-        
-    }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jPanel17ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel17ComponentShown
         jScrollPane10.getVerticalScrollBar().setValue(0);
@@ -2476,7 +756,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private void jTextAreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextAreaMouseClicked
         if (evt.getButton()== MouseEvent.BUTTON3)
         {
-            jPopupMenu1.show((JTextArea)evt.getSource(), evt.getX(), evt.getY());
+            optionsMenu.getOptionsMenu().show((JTextArea)evt.getSource(), evt.getX(), evt.getY());
         }
     }//GEN-LAST:event_jTextAreaMouseClicked
 
@@ -2496,262 +776,6 @@ public class CryptoHelper extends javax.swing.JFrame {
         ((JTextArea)((JPopupMenu)((JMenuItem)evt.getSource()).getParent()).getInvoker()).copy();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        JSpinner js = (JSpinner)evt.getSource();
-        
-        if (((Integer)js.getValue()).intValue() < 0) js.setValue(new Integer(0));
-        if (((Integer)js.getValue()).intValue() > 25) js.setValue(new Integer(25));        
-    }//GEN-LAST:event_jSpinner1StateChanged
-
-    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
-        JSpinner js = (JSpinner)evt.getSource();
-        
-        if (((Integer)js.getValue()).intValue() < 0) js.setValue(new Integer(0));
-        if (((Integer)js.getValue()).intValue() > 25) js.setValue(new Integer(25));        
-    }//GEN-LAST:event_jSpinner2StateChanged
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        int m = 0;
-        String inputString = formatString(inputText);
-        
-        jTextArea8.setText("");
-        
-        char[] charArray = inputString.toCharArray();
-
-        if (jRadioButton13.isSelected()) m = 1;
-        else if (jRadioButton14.isSelected()) m = 9;
-        else if (jRadioButton15.isSelected()) m = 21;
-        else if (jRadioButton16.isSelected()) m = 15;
-        else if (jRadioButton17.isSelected()) m = 3;
-        else if (jRadioButton18.isSelected()) m = 19;
-        else if (jRadioButton19.isSelected()) m = 7;
-        else if (jRadioButton20.isSelected()) m = 23;
-        else if (jRadioButton21.isSelected()) m = 11;
-        else if (jRadioButton22.isSelected()) m = 5;
-        else if (jRadioButton23.isSelected()) m = 17;
-        else if (jRadioButton24.isSelected()) m = 25;
-        
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            charArray[x] = (char)(charArray[x] - 64);
-            charArray[x] = (char)((charArray[x] + (26-((Integer)(jSpinner2.getValue())).intValue()))%26);
-            charArray[x] = (char)((charArray[x] * m)%26);
-            if (charArray[x] == 0) charArray[x] = (char)26;
-            charArray[x] = (char)(charArray[x] + 64);
-        }
-        
-        char[] charArray2 = new char[charArray.length + ((charArray.length-1)/5)];
-        
-        for (int x = 0, y = 0; x < charArray.length; x++, y++)
-        {
-            charArray2[y] = charArray[x];
-            if ((x+1)%5 == 0 && (x+1)!= charArray.length) charArray2[++y] = ' ';
-        }
-        
-        jTextArea8.append(new String(charArray2));
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-/*
- *Write an affine solver that will look for occurences of all 312 combinations of a known piece of plaintext all the occurences & display the keys that were used
- *{
- *take out spaces
- *outer if that will detect whether the checkbox was checked & take the appropriate action.
- *two for loops to iterate through the combinations
- *inner for loop will use same ago used for trigraph in regards finding occurences
- *}
- *
- *make some tally bars in places where it would be useful to get information at a glance.
- */
-        String inputString = formatString(inputText);
-        String searchString = formatString(jTextField1);
-        
-        jTextArea6.setText("The following are all the possible combinations of \"" + searchString + "\"\n");
-        jTextArea6.append("which are contained in the cyphertext message and the affine\n");
-        jTextArea6.append("keys used to encrypt them.\n\n");
-        
-        if (!jCheckBox1.isSelected())
-        {
-            searchCeasar(1, inputString, searchString);
-            searchCeasar(3, inputString, searchString);
-            searchCeasar(5, inputString, searchString);
-            searchCeasar(7, inputString, searchString);
-            searchCeasar(9, inputString, searchString);
-            searchCeasar(11, inputString, searchString);
-            searchCeasar(15, inputString, searchString);
-            searchCeasar(17, inputString, searchString);
-            searchCeasar(19, inputString, searchString);
-            searchCeasar(21, inputString, searchString);
-            searchCeasar(23, inputString, searchString);
-            searchCeasar(25, inputString, searchString);
-        }
-        else
-        {
-            searchCeasarReverse(1, inputString, searchString);
-            searchCeasarReverse(3, inputString, searchString);
-            searchCeasarReverse(5, inputString, searchString);
-            searchCeasarReverse(7, inputString, searchString);
-            searchCeasarReverse(9, inputString, searchString);
-            searchCeasarReverse(11, inputString, searchString);
-            searchCeasarReverse(15, inputString, searchString);
-            searchCeasarReverse(17, inputString, searchString);
-            searchCeasarReverse(19, inputString, searchString);
-            searchCeasarReverse(21, inputString, searchString);
-            searchCeasarReverse(23, inputString, searchString);
-            searchCeasarReverse(25, inputString, searchString);            
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void searchCeasar(int m, String inputString, String searchString)
-    {
-        int counter;
-        String mSearchString;
-        char[] charArray;
-        
-            for (int x = 0; x < 25; x++)
-            {
-                charArray = searchString.toCharArray(); 
-                for (int y = 0; y < charArray.length; y++) 
-                {
-                    charArray[y] = (char)(charArray[y] - 64);
-                    charArray[y] = (char)((charArray[y] * m)%26);
-                    charArray[y] = (char)((charArray[y] + x)%26);
-                    if (charArray[y] == 0) charArray[y] = (char)26;
-                    charArray[y] = (char)(charArray[y] + 64);                    
-                }
-                mSearchString = new String(charArray);
-                // insert code that now searches using the content of mSearchString
-                
-                counter = 0;
-                if (inputString.indexOf(mSearchString)==0) counter++;
-                for (int y = 0; y >= 0;)
-                {
-                    if ((y = inputString.indexOf(mSearchString, y+1)) >= 0) counter++;
-                }  
-                if (counter > 0)
-                {
-                    jTextArea6.append(mSearchString + " appears " + counter + " times with a ");
-                    jTextArea6.append("multiplicative key = " + m + " and an additive key = " + x);
-                    jTextArea6.append("\n");
-                }
-            }
-    }
-
-    private void searchCeasarReverse(int m, String inputString, String searchString)
-    {
-        int counter;
-        String mSearchString;
-        char[] charArray;
-            for (int x = 0; x < 25; x++)
-            {
-                charArray = searchString.toCharArray(); 
-                for (int y = 0; y < charArray.length; y++) 
-                {
-                    charArray[y] = (char)(charArray[y] - 64);
-                    charArray[y] = (char)((charArray[y] + x)%26);
-                    charArray[y] = (char)((charArray[y] * m)%26);
-                    if (charArray[y] == 0) charArray[y] = (char)26;
-                    charArray[y] = (char)(charArray[y] + 64);                    
-                }
-                mSearchString = new String(charArray);
-                // insert code that now searches using the content of mSearchString
-                
-                counter = 0;
-                if (inputString.indexOf(mSearchString)==0) counter++;
-                for (int y = 0; y >= 0;)
-                {
-                    if ((y = inputString.indexOf(mSearchString, y+1)) >= 0) counter++;
-                }                
-                if (counter > 0)
-                {
-                    jTextArea6.append(mSearchString + " appears " + counter + " times with a ");
-                    jTextArea6.append("multiplicative key = " + m + " and an additive key = " + x);
-                    jTextArea6.append("\n");
-                }
-            }
-    }
-    
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        int m = 0;
-        String inputString = formatString(inputText);
-        
-        jTextArea7.setText("");
-        
-        char[] charArray = inputString.toCharArray();
-
-        if (jRadioButton1.isSelected()) m = 1;
-        else if (jRadioButton2.isSelected()) m = 3;
-        else if (jRadioButton3.isSelected()) m = 5;
-        else if (jRadioButton4.isSelected()) m = 7;
-        else if (jRadioButton5.isSelected()) m = 9;
-        else if (jRadioButton6.isSelected()) m = 11;
-        else if (jRadioButton7.isSelected()) m = 15;
-        else if (jRadioButton8.isSelected()) m = 17;
-        else if (jRadioButton9.isSelected()) m = 19;
-        else if (jRadioButton10.isSelected()) m = 21;
-        else if (jRadioButton11.isSelected()) m = 23;
-        else if (jRadioButton12.isSelected()) m = 25;
-        
-        for (int x = 0; x < inputString.length(); x++)
-        {
-            charArray[x] = (char)(charArray[x] - 64);
-            charArray[x] = (char)((charArray[x] * m)%26);
-            charArray[x] = (char)((charArray[x] + ((Integer)(jSpinner1.getValue())).intValue())%26);
-            if (charArray[x] == 0) charArray[x] = (char)26;
-            charArray[x] = (char)(charArray[x] + 64);
-        }
-        
-        char[] charArray2 = new char[charArray.length + ((charArray.length-1)/5)];
-        
-        for (int x = 0, y = 0; x < charArray.length; x++, y++)
-        {
-            charArray2[y] = charArray[x];
-            if ((x+1)%5 == 0 && (x+1)!= charArray.length) charArray2[++y] = ' ';
-        }
-        
-        jTextArea7.append(new String(charArray2));
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String inputString = formatString(inputText);
-
-        String tempString;
-        Counter counter = new Counter();
-        
-        for (int x = 0; x < inputString.length() - 2; x++)
-        {
-            tempString = inputString.substring(x, x+3);
-            if (inputString.indexOf(tempString, x)>=0)
-            {
-                if (!counter.contains(tempString))
-                {
-                    counter.add(tempString, x);
-                    for (int y = x; y >= 0;)
-                    {
-                        if ((y = inputString.indexOf(tempString, y+3)) >= 0) counter.inc(y);
-                    }
-                }
-            }
-        }
-        
-        jTextArea5.setText("");
-        
-        for (int x = 0; x < counter.length; x++)
-        {
-            jTextArea5.append(counter.sArray[x]);
-            jTextArea5.append(" = ");
-            jTextArea5.append(new Integer(counter.iArray[x]).toString());
-            jTextArea5.append(" at positions ");
-            for (int y = 0; y < counter.iArray[x]; y++)
-            {
-                jTextArea5.append("" + counter.pArray[x][y]);
-                if (y!=counter.iArray[x] - 1)
-                    jTextArea5.append(",");
-            }
-            jTextArea5.append("\n");
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -2763,352 +787,60 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
     }
 
-    //already extracted into own class. Will be removed once refactoring is complete
-    private class Counter
-    {
-        public int length = 0;
-
-        public String[] sArray = new String[10000];
-        public int[] iArray = new int[10000];
-        public int[][] pArray = new int[10000][100];
-
-        public void add(String s, int pos)
-        {
-            sArray[length] = s;
-            iArray[length] = 1;
-            pArray[length][0] = pos;
-            length++;
-        }
-        public boolean contains(String s)
-        {
-            for (int x = 0; x < length; x++)
-            {
-                if (sArray[x].equals(s)) return true;
-            }
-            return false;
-        }
-        public void inc(int pos)
-        {
-            iArray[length - 1]++;
-            pArray[length - 1][iArray[length - 1]-1] = pos;
-        }
-    }
-    
-    private String formatString(JTextArea jta)
-    {
-        String inputString = jta.getText();
-        inputString = inputString.toUpperCase();
-        inputString = inputString.replace(',', ' ');
-        inputString = inputString.replace('.', ' ');
-        inputString = inputString.replace('?', ' ');
-        inputString = inputString.replace('\"', ' ');
-        inputString = inputString.replace('!', ' ');
-        inputString = inputString.replace('@', ' ');
-        inputString = inputString.replace('#', ' ');
-        inputString = inputString.replace('$', ' ');
-        inputString = inputString.replace('%', ' ');
-        inputString = inputString.replace('^', ' ');
-        inputString = inputString.replace('&', ' ');
-        inputString = inputString.replace('*', ' ');
-        inputString = inputString.replace('(', ' ');
-        inputString = inputString.replace(')', ' ');
-        inputString = inputString.replace('-', ' ');
-        inputString = inputString.replace('+', ' ');
-        inputString = inputString.replace('/', ' ');
-        inputString = inputString.replace('\\', ' ');
-        inputString = inputString.replace('<', ' ');
-        inputString = inputString.replace('>', ' ');
-        inputString = inputString.replace('\'', ' ');
-        inputString = inputString.replace('~', ' ');
-        inputString = inputString.replace('`', ' ');
-        inputString = inputString.replace('[', ' ');
-        inputString = inputString.replace(']', ' ');
-        inputString = inputString.replace('|', ' ');
-        inputString = inputString.replace('{', ' ');
-        inputString = inputString.replace('}', ' ');
-        inputString = inputString.replace('=', ' ');
-        inputString = inputString.replace(':', ' ');
-        inputString = inputString.replace(';', ' ');
-        inputString = inputString.replace('0', ' ');
-        inputString = inputString.replace('1', ' ');
-        inputString = inputString.replace('2', ' ');
-        inputString = inputString.replace('3', ' ');
-        inputString = inputString.replace('4', ' ');
-        inputString = inputString.replace('5', ' ');
-        inputString = inputString.replace('6', ' ');
-        inputString = inputString.replace('7', ' ');
-        inputString = inputString.replace('8', ' ');
-        inputString = inputString.replace('9', ' ');
-        inputString = inputString.replaceAll(" ", "");
-        inputString = inputString.replaceAll("\n", "");
-        return inputString;
-    }
-
-    private String formatString(JTextField jtf)
-    {
-        String inputString = jtf.getText();
-        inputString = inputString.toUpperCase();
-        inputString = inputString.replace(',', ' ');
-        inputString = inputString.replace('.', ' ');
-        inputString = inputString.replace('?', ' ');
-        inputString = inputString.replace('\"', ' ');
-        inputString = inputString.replace('!', ' ');
-        inputString = inputString.replace('@', ' ');
-        inputString = inputString.replace('#', ' ');
-        inputString = inputString.replace('$', ' ');
-        inputString = inputString.replace('%', ' ');
-        inputString = inputString.replace('^', ' ');
-        inputString = inputString.replace('&', ' ');
-        inputString = inputString.replace('*', ' ');
-        inputString = inputString.replace('(', ' ');
-        inputString = inputString.replace(')', ' ');
-        inputString = inputString.replace('-', ' ');
-        inputString = inputString.replace('+', ' ');
-        inputString = inputString.replace('/', ' ');
-        inputString = inputString.replace('\\', ' ');
-        inputString = inputString.replace('<', ' ');
-        inputString = inputString.replace('>', ' ');
-        inputString = inputString.replace('\'', ' ');
-        inputString = inputString.replace('~', ' ');
-        inputString = inputString.replace('`', ' ');
-        inputString = inputString.replace('[', ' ');
-        inputString = inputString.replace(']', ' ');
-        inputString = inputString.replace('|', ' ');
-        inputString = inputString.replace('{', ' ');
-        inputString = inputString.replace('}', ' ');
-        inputString = inputString.replace('=', ' ');
-        inputString = inputString.replace(':', ' ');
-        inputString = inputString.replace(';', ' ');
-        inputString = inputString.replace('0', ' ');
-        inputString = inputString.replace('1', ' ');
-        inputString = inputString.replace('2', ' ');
-        inputString = inputString.replace('3', ' ');
-        inputString = inputString.replace('4', ' ');
-        inputString = inputString.replace('5', ' ');
-        inputString = inputString.replace('6', ' ');
-        inputString = inputString.replace('7', ' ');
-        inputString = inputString.replace('8', ' ');
-        inputString = inputString.replace('9', ' ');
-        inputString = inputString.replaceAll(" ", "");
-        inputString = inputString.replaceAll("\n", "");
-        return inputString;
-    }    
 
     private String searchStr;
     private int[][][][] dictionary;
     // Variables declaration - do not modify//GEN-BEGIN:variables
 
-    //private CipherService = new CipherService();
+    private CipherService cipherService = new CipherServiceImpl();
 
     private TermsOfTheGPL termsOfTheGPL;
     private FrequencyCount frequencyCount;
     private RunTheAlphabet runTheAlphabet;
     private BiGraphs biGraphs;
+    private TriGraphs triGraphs;
+    private NGraphs nGraphs;
+    private AffineKnownPlaintextAttack affineKnownPlaintextAttack;
+    private AffineEncipherDecipher affineEncipher;
+    private AffineEncipherDecipher affineDecipher;
+    private SplitOffAlphabets splitOffAlphabets;
+    private PolyMonoCalculator polyMonoCalculator;
+    private ViginereEncipher viginereEncipher;
+    private ViginereDecipher viginereDecipher;
+    private ViginereBruteForce viginereBruteForce;
+    private AutoKeyCyphertextAttack autoKeyCyphertextAttack;
+    private AutoKeyPlaintextAttack autoKeyPlaintextAttack;
+    private AutoKeyDecipher autoKeyDecipher;
+    private HillBruteForce hillBruteForce;
+    private ColumnTranspositionWorksheet columnTranspositionWorksheet;
+    private GCDAndInverse gcdAndInverse;
+    private SubstitutionSolver substitutionSolver;
 
+    private OptionsMenu optionsMenu;
+
+    private encryptPL pigLatinEncipher;
+    private decryptPL pigLatinDecipher;
+
+    private encryptKW encryptkw;
+    private decryptKW decryptkw;
+    private javax.swing.JScrollPane jScrollPane31;
+    private javax.swing.JScrollPane jScrollPane32;
+
+    private caesarCipher caesarcipher;
+    private javax.swing.JScrollPane jScrollPane33;
+    
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
 
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
+    private javax.swing.JButton jbuttonOpenFile;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
-    private javax.swing.JPanel jPanel33;
-    private javax.swing.JPanel jPanel34;
-    private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
-    private javax.swing.JPanel jPanel37;
-    private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel43;
-    private javax.swing.JPanel jPanel44;
-    private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
-    private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton10;
-    private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton12;
-    private javax.swing.JRadioButton jRadioButton13;
-    private javax.swing.JRadioButton jRadioButton14;
-    private javax.swing.JRadioButton jRadioButton15;
-    private javax.swing.JRadioButton jRadioButton16;
-    private javax.swing.JRadioButton jRadioButton17;
-    private javax.swing.JRadioButton jRadioButton18;
-    private javax.swing.JRadioButton jRadioButton19;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton20;
-    private javax.swing.JRadioButton jRadioButton21;
-    private javax.swing.JRadioButton jRadioButton22;
-    private javax.swing.JRadioButton jRadioButton23;
-    private javax.swing.JRadioButton jRadioButton24;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane13;
-    private javax.swing.JScrollPane jScrollPane14;
-    private javax.swing.JScrollPane jScrollPane15;
-    private javax.swing.JScrollPane jScrollPane16;
-    private javax.swing.JScrollPane jScrollPane17;
-    private javax.swing.JScrollPane jScrollPane18;
-    private javax.swing.JScrollPane jScrollPane19;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane20;
-    private javax.swing.JScrollPane jScrollPane21;
-    private javax.swing.JScrollPane jScrollPane22;
-    private javax.swing.JScrollPane jScrollPane23;
-    private javax.swing.JScrollPane jScrollPane24;
-    private javax.swing.JScrollPane jScrollPane25;
-    private javax.swing.JScrollPane jScrollPane26;
-    private javax.swing.JScrollPane jScrollPane27;
-    private javax.swing.JScrollPane jScrollPane28;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JSpinner jSpinner4;
-    private javax.swing.JSpinner jSpinner5;
-    private javax.swing.JSpinner jSpinner6;
-    private javax.swing.JSpinner jSpinner7;
-    private javax.swing.JSpinner jSpinner8;
-    private javax.swing.JSpinner jSpinner9;
+    private javax.swing.JScrollPane jScrollPane29;
+    private javax.swing.JScrollPane jScrollPane30;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JSplitPane jSplitPane3;
-    private javax.swing.JSplitPane jSplitPane4;
-    private javax.swing.JSplitPane jSplitPane5;
-    private javax.swing.JSplitPane jSplitPane6;
-    private javax.swing.JSplitPane jSplitPane7;
     private javax.swing.JTabbedPane rightHandNavPanelTab;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JTable jTable7;
     private javax.swing.JTextArea inputText;
-
-    private javax.swing.JTextArea jTextArea11;
-    private javax.swing.JTextArea jTextArea12;
-    private javax.swing.JTextArea jTextArea13;
-    private javax.swing.JTextArea jTextArea14;
-    private javax.swing.JTextArea jTextArea15;
-    private javax.swing.JTextArea jTextArea16;
-    private javax.swing.JTextArea jTextArea17;
-    private javax.swing.JTextArea jTextArea18;
-    private javax.swing.JTextArea jTextArea19;
-    private javax.swing.JTextArea jTextArea20;
-    private javax.swing.JTextArea jTextArea21;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
-    private javax.swing.JTextArea jTextArea8;
-    private javax.swing.JTextArea jTextArea9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
-    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
-    
+
 }
