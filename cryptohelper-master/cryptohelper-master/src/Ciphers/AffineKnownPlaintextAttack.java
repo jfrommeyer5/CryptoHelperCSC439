@@ -162,7 +162,9 @@ public class AffineKnownPlaintextAttack extends BaseCipher {
         return textField;
     }
 
-    public void setTextField(JTextField textField) {
-        this.textField = textField;
+
+    public JCheckBox getCheckBox() {
+        return checkBox;
     }
+
 }
