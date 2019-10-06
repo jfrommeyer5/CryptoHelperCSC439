@@ -1,22 +1,57 @@
-import java.util.*;
-/**
- * This program will take in an 
- * encrypted message (only in keyword cipher), and 
- * will output the original message. The format for 
- * the output is five letter blocks with no 
- * punctuations.
- * @author Juan Ruiz
- *
- */
+package Ciphers;
 
-public class decryptKW {
+
+import javax.swing.*;
+import java.util.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+
+public class decryptKW extends BaseCipher {
+
+	private JPanel topPanel;
+	private JTextField keywordArea;
+	private JLabel keywordInput;
+	
+	public decryptKW(){
+		super();
+		topPanel = new JPanel();
+		keywordArea = new JTextField();
+		keywordInput = new JLabel();
+
+		topPanel.setLayout(new BorderLayout());
+		keywordInput.setText("Keyword");
+		
+		topPanel.add(keywordInput, BorderLayout.WEST);
+		keywordArea.setFont(new Font("Monospaced", 0, 12));
+		
+		topPanel.add(keywordArea, BorderLayout.CENTER);
+		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
+		
+		initializeActionBtn("Decipher");
+	}
+	
+	@Override
+	public void actionButtonActionPerformed(ActionEvent evt){
+		String msg = getInputText().getText();
+		String key = keywordArea.getText();
+		getMainCipherTextArea().setText("");
+		
+		char[] keyIn = key.toCharArray();
+		
+		String enc = encoder(keyIn);
+		
+		String decryptedText = decipher(msg, enc);
+		
+		getMainCipherTextArea().append(decryptedText);
+	}
+	
 	/**
 	 * This will work similarly to the encoder that is in 
 	 * the encryptKW class
 	 * @param key
 	 * @return
 	 */
-	public static String encoder(char[] key){
+	public String encoder(char[] key){
 		String encoded = ""; 
 		boolean[] alpha = new boolean[26];
 		
@@ -52,6 +87,7 @@ public class decryptKW {
 		return encoded;
 		
 	}
+	
 	/**
 	 * This will decipher an encrypted message, 
 	 * by using the new alphabet that was generated
@@ -59,7 +95,7 @@ public class decryptKW {
 	 * @param encoded
 	 * @return
 	 */
-	public static String decipher(String msg, String encoded){
+	public String decipher(String msg, String encoded){
 			//Here a hash map is utilized in order to make it simple to 
 			//find the character needed in the encoded alphabet
 			Map<Character, Integer> enc = new HashMap<Character, Integer>();
@@ -108,23 +144,6 @@ public class decryptKW {
 			return plaintext;
 			
 	}
-	/**
-	 * This is the main that will ask for input 
-	 * and will output the deciphered message
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		System.out.println("Please input your keyword: ");
-		String key = input.nextLine();
-		
-		String enc = encoder(key.toCharArray());
-		
-		System.out.println("Please input the message to decipher: ");
-		String msg = input.nextLine();
-		
-		System.out.println("Message before decipher: "+ msg);
-		System.out.println("Message after decipher: " + decipher(msg, enc));
-		
-	}
+
 }
+

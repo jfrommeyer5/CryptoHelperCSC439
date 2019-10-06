@@ -13,6 +13,12 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.jar.*;
 import java.util.zip.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+
 
 /**
  *
@@ -23,8 +29,9 @@ public class CryptoHelper extends javax.swing.JFrame {
     /** Creates new form CryptoHelper */
     public CryptoHelper() {
         initComponents();
-        System.out.println("Test");
+
         jTextArea10.append("GNU GENERAL PUBLIC LICENSE\n");
+        jTextArea10.append("\n");
         jTextArea10.append("Version 2, June 1991\n");
         jTextArea10.append("\n");
         jTextArea10.append("Copyright (C) 1989, 1991 Free Software Foundation, Inc.  \n");
@@ -136,6 +143,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jButton1a = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -396,7 +404,22 @@ public class CryptoHelper extends javax.swing.JFrame {
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jButton1.setText("Perform Frequency Count");
+
+
+        jButton1a.setText("Open File!");
+        jButton1a.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+                    jButton1aActionPerformed(evt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        jPanel1.add(jButton1a, java.awt.BorderLayout.NORTH);
+
+
+        jButton1.setText("Perform Frequency Count!!!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -1705,6 +1728,21 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Terms of the GPL", jPanel17);
 
+
+
+
+//
+
+
+
+
+
+
+
+
+
+
+
         jSplitPane1.setBottomComponent(jTabbedPane1);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
@@ -2898,7 +2936,39 @@ public class CryptoHelper extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+
+
+    private void jButton1aActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
+
+
+        final JFileChooser fc = new JFileChooser();
+
+//In response to a button click:
+        int returnVal = fc.showOpenDialog(null);
+
+        String inputFile = fc.getSelectedFile().getPath();
+
+        String intmandun = " ";
+
+        try {
+             intmandun = new String(Files.readAllBytes(Paths.get(inputFile)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        String lines = Files.readAllLines(Paths.get(inputFile));
+//        String intman = lines;
+        String inputString = intmandun;
+        jTextArea1.setText(inputString);
+
+
+
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+
+
         String inputString = jTextArea1.getText();
         inputString = inputString.toUpperCase();
         int array[] = new int[26];
@@ -3165,6 +3235,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JButton jButton1a;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
