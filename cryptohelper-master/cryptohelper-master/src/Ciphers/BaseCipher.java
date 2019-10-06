@@ -40,6 +40,7 @@ public abstract class BaseCipher {
 
         mainCipherPanel.add(actionButton, BorderLayout.SOUTH);
 
+        mainCipherTextArea.setEditable(false);
 
     }
 
