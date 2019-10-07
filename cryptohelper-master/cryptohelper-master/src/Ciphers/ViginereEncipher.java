@@ -55,4 +55,8 @@ public class ViginereEncipher extends CookieCutterViginereCiphers {
 
         return keyWordPanel;
     }
+
+    public JTextField getKeyWordTextField() {
+        return keyWordTextField;
+    }
 }

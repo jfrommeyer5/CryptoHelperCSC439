@@ -728,7 +728,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         getContentPane().add(jSplitPane1, BorderLayout.CENTER);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-800)/2, (screenSize.height-600)/2, 800, 600);
+        setBounds((screenSize.width-1000)/2, (screenSize.height-800)/2, 1000, 800);
     }
     // </editor-fold>//GEN-END:initComponents
 
