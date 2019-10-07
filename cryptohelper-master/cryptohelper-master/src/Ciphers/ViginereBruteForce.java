@@ -99,4 +99,7 @@ public class ViginereBruteForce extends CookieCutterViginereCiphers {
         if (((Integer)js.getValue()).intValue() < 0) js.setValue(new Integer(0));
     }
 
+    public JSpinner getjSpinner() {
+        return jSpinner;
+    }
 }

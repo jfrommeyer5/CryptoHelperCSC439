@@ -7,29 +7,142 @@ import java.text.StringCharacterIterator;
 public class Enigma{
 	
 	public static void main(String[] args) {
-		Plugboard pb = new Plugboard();
-		Rotor1 r1 = new Rotor1(1);
+		Plugboard pbr = new Plugboard("ZYXWVUTSRQPONMLKJIHGFEDCBA");
+		Plugboard pbn = new Plugboard();
+		Rotor[] rotorArr = new Rotor[3];
+		Rotor[] temp = new Rotor[3];
+		temp[0] = new Rotor1(1);
+		temp[1] = new Rotor2(2);
+		temp[2] = new Rotor3(3);
+		
+		for(int i = 0; i < 3; i++) {
+			rotorArr[temp[i].getPos()-1] = temp[i];
+		}
 		
 		String a = "AAAAAAAAAAAAAAAAAAAAAAAAAA";
 		String msg = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		
+		System.out.println("in\t>\tpout\t>\tr3in\t>\tr3out\t>\tr2out\t>\tr1out");
+		
 		CharacterIterator iter = new StringCharacterIterator(a);
+		
+		while(iter.current() != CharacterIterator.DONE) {
+			System.out.print("r1: ");
+			if(rotorArr[0].rotate()) {
+				System.out.print("r1: True\n");
+				System.out.print("r2: ");
+				if(rotorArr[1].rotate()) {
+					System.out.print("r2: True\n");
+					System.out.print("r3: " + rotorArr[2].rotate() + "\n");
+					System.out.print("r3: ");
+				}
+			}
+			System.out.print(iter.current() + "\t>\t");
+			System.out.print(rotorArr[2].encrypt(pbn.encrypt(iter.current())));
+			System.out.println();
+			
+			iter.next();
+		}
+		System.out.println();		
+		System.out.println("in\t>\tpout\t>\tr3in\t>\tr3out\t>\tr2out\t>\tr1out");
+		
+		iter = new StringCharacterIterator(a);
+		
+		for(int i = 0; i < 3; i++) {
+			rotorArr[i].reset();
+		}
 
 		while(iter.current() != CharacterIterator.DONE) {
-			r1.rotate();
-			System.out.print(iter.current() + " > ");
-			System.out.print(r1.encrypt(pb.encrypt(iter.current())) + "\n");
+			System.out.print("r1: ");
+			if(rotorArr[0].rotate()) {
+				System.out.print("r1: True\n");
+				System.out.print("r2: ");
+				if(rotorArr[1].rotate()) {
+					System.out.print("r2: True\n");
+					System.out.print("r3: " + rotorArr[2].rotate() + "\n");
+					System.out.print("r3: ");
+				}
+			}
+			System.out.print(iter.current() + "\t>\t");
+			System.out.print(rotorArr[1].encrypt(rotorArr[2].encrypt(pbn.encrypt(iter.current()))));
+			System.out.println();
+			
 			iter.next();
 		}
 		
+		iter = new StringCharacterIterator(a);
+
+		while(iter.current() != CharacterIterator.DONE) {
+			System.out.print("r1: ");
+			if(rotorArr[0].rotate()) {
+				System.out.print("r1: True\n");
+				System.out.print("r2: ");
+				if(rotorArr[1].rotate()) {
+					System.out.print("r2: True\n");
+					System.out.print("r3: " + rotorArr[2].rotate() + "\n");
+					System.out.print("r3: ");
+				}
+			}
+			System.out.print(iter.current() + "\t>\t");
+			System.out.print(rotorArr[1].encrypt(rotorArr[2].encrypt(pbn.encrypt(iter.current()))));
+			System.out.println();
+			
+			iter.next();
+		}
+		System.out.println();		
+		System.out.println("in\t>\tpout\t>\tr3in\t>\tr3out\t>\tr2out\t>\tr1out");
+		
+		iter = new StringCharacterIterator(a);
+		
+		for(int i = 0; i < 3; i++) {
+			rotorArr[i].reset();
+		}
+		
+		while(iter.current() != CharacterIterator.DONE) {
+			System.out.print("r1: ");
+			if(rotorArr[0].rotate()) {
+				System.out.print("r1: True\n");
+				System.out.print("r2: ");
+				if(rotorArr[1].rotate()) {
+					System.out.print("r2: True\n");
+					System.out.print("r3: " + rotorArr[2].rotate() + "\n");
+					System.out.print("r3: ");
+				}
+			}
+			System.out.print(iter.current() + "\t>\t");
+			System.out.print(
+					rotorArr[0].encrypt(
+							rotorArr[1].encrypt(
+									rotorArr[2].encrypt(
+											pbn.encrypt(iter.current())))) + "\n");
+			iter.next();
+		}
 		System.out.println();
+		System.out.println("in\t>\tpout\t>\tr3in\t>\tr3out\t>\tr2out\t>\tr1out");
 		
 		iter = new StringCharacterIterator(msg);
 
+		for(int i = 0; i < 3; i++) {
+			rotorArr[i].reset();
+		}
+		
 		while(iter.current() != CharacterIterator.DONE) {
-			r1.rotate();
-			System.out.print(iter.current() + " > ");
-			System.out.print(r1.encrypt(pb.encrypt(iter.current())) + "\n");
+			System.out.print("r1: ");
+			if(rotorArr[0].rotate()) {
+				System.out.print("r1: True\n");
+				System.out.print("r2: ");
+				if(rotorArr[1].rotate()) {
+					System.out.print("r2: True\n");
+					System.out.print("r3: " + rotorArr[2].rotate() + "\n");
+					System.out.print("r3: ");
+				}
+			}
+			System.out.print(iter.current() + "\t>\t");
+			System.out.print(
+					rotorArr[0].encrypt(
+							rotorArr[1].encrypt(
+									rotorArr[2].encrypt(
+											pbn.encrypt(iter.current())))) + "\n");
 			iter.next();
 		}
 	}
@@ -53,6 +166,7 @@ class Plugboard{
 	}
 	
 	public char encrypt(char in) {
+		System.out.print(this.pegs.charAt(Plugboard.alpha.indexOf(in)) + "\t>\t");
 		return this.pegs.charAt(Plugboard.alpha.indexOf(in));
 	}
 	
@@ -61,161 +175,214 @@ class Plugboard{
 	}
 }
 
-class Rotor1{
-	private String left =         "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+abstract class Rotor{
 	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private int pos, step = 0;
 	
-	Rotor1(int pos) {
+	public Rotor(){}
+
+	public Rotor(int pos){
+		pos(pos);
+	}
+	
+	public int getPos(){
+		return pos;
+	}
+	
+	public void pos(int pos) {
 		this.pos = pos;
 	}
 	
-	public char encrypt(char in) {
-		System.out.print(Rotor1.alpha.charAt((Rotor1.alpha.indexOf(in)+step)%26) + " > ");
-		int index = Rotor1.alpha.indexOf((this.left.charAt((Rotor1.alpha.indexOf(in)+step)%26))-step)%26;
+	public void reset() {
+		step = 0;
+	}
+	
+	protected abstract char encrypt(char in);
+	
+	public char encrypt(char in, String left) {
+		System.out.print(alpha.charAt((alpha.indexOf(in)+step)%26) + "\t>\t");
+		int index = alpha.indexOf((left.charAt((alpha.indexOf(in)+step)%26))-step)%26;
 		
 		if(index < 0) index = -index;
 		
-		return Rotor1.alpha.charAt(index);
+		return alpha.charAt(index);
 	}
 	
-	public char decrypt(char in) {
-		return Rotor1.alpha.charAt(this.left.indexOf(in));
+	protected abstract char decrypt(char in);
+	
+	public char decrypt(char in, String left) {
+		return alpha.charAt(left.indexOf(in));
 	}
 	
 	public boolean rotate() {
 		if(++step >= 26) {
 			step = step%26;
+			System.out.println(step);
 			return true;
 		}
-		
+
+		System.out.println(step);
 		return false;
 	}
 }
 
-class Rotor2{
+class Rotor1 extends Rotor{
+	private String left = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+	
+	Rotor1(){
+		super();
+	}
+	
+	Rotor1(int pos){
+		super(pos);
+	}
+	
+	public char encrypt(char in) {
+		return super.encrypt(in, this.left);
+	}
+	
+	public char decrypt(char in) {
+		return super.decrypt(in, this.left);
+	}
+}
+
+class Rotor2 extends Rotor{
 	private String left = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
-	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int pos;
 	
-	Rotor2(int pos) {
-		this.pos = pos;
+	Rotor2(){
+		super();
 	}
 	
+	Rotor2(int pos){
+		super(pos);
+	}
+
 	public char encrypt(char in) {
-		return this.left.charAt(Rotor2.alpha.indexOf(in));
+		return super.encrypt(in, this.left);
 	}
 	
 	public char decrypt(char in) {
-		return Rotor2.alpha.charAt(this.left.indexOf(in));
+		return super.decrypt(in, this.left);
 	}
 }
 
-class Rotor3{
+class Rotor3 extends Rotor{
 	private String left = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
-	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int pos;
 	
-	Rotor3(int pos) {
-		this.pos = pos;
+	Rotor3(){
+		super();
+	}
+	
+	Rotor3(int pos){
+		super(pos);
 	}
 	
 	public char encrypt(char in) {
-		return this.left.charAt(Rotor3.alpha.indexOf(in));
+		return super.encrypt(in, this.left);
 	}
 	
 	public char decrypt(char in) {
-		return Rotor3.alpha.charAt(this.left.indexOf(in));
+		return super.decrypt(in, this.left);
 	}
 }
 
-class Rotor4{
+class Rotor4 extends Rotor{
 	private String left = "ESOVPZJAYQUIRHXLNFTGKDCMWB";
-	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int pos;
 	
-	Rotor4(int pos) {
-		this.pos = pos;
+	Rotor4(){
+		super();
+	}
+	
+	Rotor4(int pos){
+		super(pos);
 	}
 	
 	public char encrypt(char in) {
-		return this.left.charAt(Rotor4.alpha.indexOf(in));
+		return super.encrypt(in, this.left);
 	}
 	
 	public char decrypt(char in) {
-		return Rotor4.alpha.charAt(this.left.indexOf(in));
+		return super.decrypt(in, this.left);
 	}
 }
 
-class Rotor5{
+class Rotor5 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
-	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int pos;
 	
-	Rotor5(int pos) {
-		this.pos = pos;
+	Rotor5(){
+		super();
+	}
+	
+	Rotor5(int pos){
+		super(pos);
 	}
 	
 	public char encrypt(char in) {
-		return this.left.charAt(Rotor5.alpha.indexOf(in));
+		return super.encrypt(in, this.left);
 	}
 	
 	public char decrypt(char in) {
-		return Rotor5.alpha.charAt(this.left.indexOf(in));
+		return super.decrypt(in, this.left);
 	}
 }
 
-class Rotor6{
+class Rotor6 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
-	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int pos;
 	
-	Rotor6(int pos) {
-		this.pos = pos;
+	Rotor6(){
+		super();
+	}
+	
+	Rotor6(int pos){
+		super(pos);
 	}
 	
 	public char encrypt(char in) {
-		return this.left.charAt(Rotor6.alpha.indexOf(in));
+		return super.encrypt(in, this.left);
 	}
 	
 	public char decrypt(char in) {
-		return Rotor6.alpha.charAt(this.left.indexOf(in));
+		return super.decrypt(in, this.left);
 	}
 }
 
-class Rotor7{
+class Rotor7 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
-	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int pos;
 	
-	Rotor7(int pos) {
-		this.pos = pos;
+	Rotor7(){
+		super();
+	}
+	
+	Rotor7(int pos){
+		super(pos);
 	}
 	
 	public char encrypt(char in) {
-		return this.left.charAt(Rotor7.alpha.indexOf(in));
+		return super.encrypt(in, this.left);
 	}
 	
 	public char decrypt(char in) {
-		return Rotor7.alpha.charAt(this.left.indexOf(in));
+		return super.decrypt(in, this.left);
 	}
 }
 
-class Rotor8{
+class Rotor8 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
-	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int pos;
 	
-	Rotor8(int pos) {
-		this.pos = pos;
+	Rotor8(){
+		super();
+	}
+	
+	Rotor8(int pos){
+		super(pos);
 	}
 	
 	public char encrypt(char in) {
-		return this.left.charAt(Rotor8.alpha.indexOf(in));
+		return super.encrypt(in, this.left);
 	}
 	
 	public char decrypt(char in) {
-		return Rotor8.alpha.charAt(this.left.indexOf(in));
+		return super.decrypt(in, this.left);
 	}
 }
 
