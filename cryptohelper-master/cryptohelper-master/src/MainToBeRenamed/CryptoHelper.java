@@ -69,6 +69,11 @@ public class CryptoHelper extends javax.swing.JFrame {
         decryptkw = new decryptKW();
         
         caesarcipher = new caesarCipher();
+        columnEncrypt = new columnEncrypt();
+        columnDecrypt = new columnDecrypt();
+        jscrollPane34 = new JScrollPane();
+        jscrollPane35 = new JScrollPane();
+        
 
         jScrollPane29 = new JScrollPane();
         jScrollPane30 = new JScrollPane();
@@ -283,6 +288,50 @@ public class CryptoHelper extends javax.swing.JFrame {
         caesarcipher.getMainCipherPanel().add(jScrollPane33, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Caesar Cipher", caesarcipher.getMainCipherPanel());
       //end of caesarCipher
+//begin columnEncrypt
+        columnEncrypt.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        columnEncrypt.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        columnEncrypt.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		columnEncrypt.setInputText(inputText);
+        	}
+        });
+        
+        jscrollPane34.setViewportView(columnEncrypt.getMainCipherTextArea());
+        columnEncrypt.getMainCipherPanel().add(jscrollPane34, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("CTC Encrypt", columnEncrypt.getMainCipherPanel());
+ //end columnEncrypt
+ //begin columnDecrypt
+        columnDecrypt.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        columnDecrypt.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        columnDecrypt.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		columnDecrypt.setInputText(inputText);
+        	}
+        });
+        
+        jscrollPane35.setViewportView(columnDecrypt.getMainCipherTextArea());
+        columnDecrypt.getMainCipherPanel().add(jscrollPane35, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("CTC Decrypt", columnDecrypt.getMainCipherPanel());
+ //end columnDecrypt
         
 //begin BiGraphs
         //need to extract all listeners
@@ -828,6 +877,12 @@ public class CryptoHelper extends javax.swing.JFrame {
 
     private caesarCipher caesarcipher;
     private javax.swing.JScrollPane jScrollPane33;
+    
+    private columnEncrypt columnEncrypt;
+    private columnDecrypt columnDecrypt;
+    private javax.swing.JScrollPane jscrollPane34;
+    private javax.swing.JScrollPane jscrollPane35;
+    
     
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
