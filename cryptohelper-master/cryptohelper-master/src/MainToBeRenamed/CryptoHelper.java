@@ -11,21 +11,16 @@ import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import Menu.OptionsMenu;
-import java.util.*;
-import java.util.jar.*;
-import java.util.zip.*;
 
 /**
  *
  * @author  Harlock
  */
 public class CryptoHelper extends javax.swing.JFrame {
-    
-    /** Creates new form MainToBeRenamed.CryptoHelper */
+	private static final long serialVersionUID = 1L;
+	
+	/** Creates new form MainToBeRenamed.CryptoHelper */
     public CryptoHelper() {
         initComponents();
     }
@@ -69,6 +64,11 @@ public class CryptoHelper extends javax.swing.JFrame {
         decryptkw = new decryptKW();
         
         caesarcipher = new caesarCipher();
+        columnEncrypt = new columnEncrypt();
+        columnDecrypt = new columnDecrypt();
+        jscrollPane34 = new JScrollPane();
+        jscrollPane35 = new JScrollPane();
+        
 
         jScrollPane29 = new JScrollPane();
         jScrollPane30 = new JScrollPane();
@@ -283,6 +283,50 @@ public class CryptoHelper extends javax.swing.JFrame {
         caesarcipher.getMainCipherPanel().add(jScrollPane33, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Caesar Cipher", caesarcipher.getMainCipherPanel());
       //end of caesarCipher
+//begin columnEncrypt
+        columnEncrypt.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        columnEncrypt.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        columnEncrypt.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		columnEncrypt.setInputText(inputText);
+        	}
+        });
+        
+        jscrollPane34.setViewportView(columnEncrypt.getMainCipherTextArea());
+        columnEncrypt.getMainCipherPanel().add(jscrollPane34, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("CTC Encrypt", columnEncrypt.getMainCipherPanel());
+ //end columnEncrypt
+ //begin columnDecrypt
+        columnDecrypt.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt){
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        columnDecrypt.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        columnDecrypt.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		columnDecrypt.setInputText(inputText);
+        	}
+        });
+        
+        jscrollPane35.setViewportView(columnDecrypt.getMainCipherTextArea());
+        columnDecrypt.getMainCipherPanel().add(jscrollPane35, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("CTC Decrypt", columnDecrypt.getMainCipherPanel());
+ //end columnDecrypt
         
 //begin BiGraphs
         //need to extract all listeners
@@ -679,34 +723,9 @@ public class CryptoHelper extends javax.swing.JFrame {
         getContentPane().add(jSplitPane1, BorderLayout.CENTER);
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-800)/2, (screenSize.height-600)/2, 800, 600);
+        setBounds((screenSize.width-1000)/2, (screenSize.height-800)/2, 1000, 800);
     }
     // </editor-fold>//GEN-END:initComponents
-
-    private void jButttonOpenFileActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
-
-
-        final JFileChooser fc = new JFileChooser();
-
-//In response to a button click:
-        int returnVal = fc.showOpenDialog(null);
-
-        String inputFile = fc.getSelectedFile().getPath();
-
-        String intmandun = " ";
-
-        try {
-            intmandun = new String(Files.readAllBytes(Paths.get(inputFile)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-//        String lines = Files.readAllLines(Paths.get(inputFile));
-//        String intman = lines;
-        String inputString = intmandun;
-        inputText.setText(inputString);
-    }
-
 
     private void jPanel17ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel17ComponentShown
         jScrollPane10.getVerticalScrollBar().setValue(0);
@@ -760,22 +779,6 @@ public class CryptoHelper extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextAreaMouseClicked
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        performSearchAgain((JTextArea)((JPopupMenu)((JMenuItem)evt.getSource()).getParent()).getInvoker());
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        performSearch((JTextArea)((JPopupMenu)((JMenuItem)evt.getSource()).getParent()).getInvoker());
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        ((JTextArea)((JPopupMenu)((JMenuItem)evt.getSource()).getParent()).getInvoker()).paste();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ((JTextArea)((JPopupMenu)((JMenuItem)evt.getSource()).getParent()).getInvoker()).copy();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -789,9 +792,6 @@ public class CryptoHelper extends javax.swing.JFrame {
 
 
     private String searchStr;
-    private int[][][][] dictionary;
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-
     private CipherService cipherService = new CipherServiceImpl();
 
     private TermsOfTheGPL termsOfTheGPL;
@@ -829,10 +829,15 @@ public class CryptoHelper extends javax.swing.JFrame {
     private caesarCipher caesarcipher;
     private javax.swing.JScrollPane jScrollPane33;
     
+    private columnEncrypt columnEncrypt;
+    private columnDecrypt columnDecrypt;
+    private javax.swing.JScrollPane jscrollPane34;
+    private javax.swing.JScrollPane jscrollPane35;
+    
+    
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
 
-    private javax.swing.JButton jbuttonOpenFile;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;

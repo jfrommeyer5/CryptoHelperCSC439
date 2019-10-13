@@ -89,4 +89,8 @@ public class AutoKeyDecipher extends CookieCutterViginereCiphers {
 
         return bottomCenterPanel;
     }
+
+    public JTextField getTextField() {
+        return textField;
+    }
 }

@@ -1,4 +1,11 @@
+package Ciphers;
+
+import javax.swing.*;
 import java.util.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+
+
 /**
  * This program will take in cipher text 
  * for the columnar cipher to get the 
@@ -6,7 +13,46 @@ import java.util.*;
  * @author juanr
  *
  */
-public class columnDecrypt {
+public class columnDecrypt extends BaseCipher{
+	
+	private JPanel topPanel;
+	private JPanel keyPanel;
+	private JTextField keywordArea;
+	private JLabel keywordInput;
+	
+	public columnDecrypt(){
+		super();
+		topPanel = new JPanel();
+		keywordArea = new JTextField();
+		keywordInput = new JLabel();
+		keyPanel = new JPanel();
+		
+		keyPanel.setLayout(new BorderLayout());
+		topPanel.setLayout(new BorderLayout());
+		keywordInput.setText("Keyword ");
+		
+		keyPanel.add(keywordInput, BorderLayout.WEST);
+		keywordArea.setFont(new Font("Monospaced", 0, 12));
+		keyPanel.add(keywordArea, BorderLayout.CENTER);
+		topPanel.add(keyPanel, BorderLayout.CENTER);
+		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
+		
+		initializeActionBtn("Decipher");
+	}
+	@Override
+	public void actionButtonActionPerformed(ActionEvent evt) {
+		// TODO Auto-generated method stub
+		String msg = getInputText().getText();
+		String key = keywordArea.getText();
+		
+		getMainCipherTextArea().setText("");
+		
+		String ct = decrypt(msg, key);
+		
+		getMainCipherTextArea().append(ct);
+		
+	}
+
 
 	public static String decrypt(String msg, String key){
 		msg = msg.replaceAll("[^a-zA-Z0-9]", "");
@@ -60,10 +106,8 @@ public class columnDecrypt {
 		}
 		return order;
 	}
-	//testing cases
-	//making sure it works
-	//for any cipher text
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please input your keyword: ");
 		String k = in.nextLine();
@@ -72,6 +116,7 @@ public class columnDecrypt {
 		
 		System.out.println("Your message before decryption: "+ m.toUpperCase());
 		System.out.println("Your message after decryption: "+ decrypt(m,k));
+		
 	}
 
 }

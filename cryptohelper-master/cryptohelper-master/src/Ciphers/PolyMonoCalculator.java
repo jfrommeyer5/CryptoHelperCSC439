@@ -92,8 +92,4 @@ public class PolyMonoCalculator extends BaseCipher {
     public JSpinner getjSpinner() {
         return jSpinner;
     }
-
-    public void setjSpinner(JSpinner jSpinner) {
-        this.jSpinner = jSpinner;
-    }
 }

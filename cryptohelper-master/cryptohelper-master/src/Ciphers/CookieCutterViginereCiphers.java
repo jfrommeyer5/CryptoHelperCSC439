@@ -72,25 +72,13 @@ public abstract class CookieCutterViginereCiphers extends BaseCipher {
         return table;
     }
 
-    public void setTable(JTable table) {
-        this.table = table;
-    }
-
     @Override
     public CipherService getCipherService() {
         return cipherService;
-    }
-
-    @Override
-    public void setCipherService(CipherService cipherService) {
-        this.cipherService = cipherService;
     }
 
     public JTextArea getOutputTextArea() {
         return outputTextArea;
     }
 
-    public void setOutputTextArea(JTextArea outputTextArea) {
-        this.outputTextArea = outputTextArea;
-    }
 }
