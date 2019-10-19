@@ -106,17 +106,10 @@ public class columnDecrypt extends BaseCipher{
 		}
 		return order;
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner in = new Scanner(System.in);
-		System.out.println("Please input your keyword: ");
-		String k = in.nextLine();
-		System.out.println("Please input your message: ");
-		String m = in.nextLine();
-		
-		System.out.println("Your message before decryption: "+ m.toUpperCase());
-		System.out.println("Your message after decryption: "+ decrypt(m,k));
-		
+	public String getTextKeyArea(){
+		return keywordArea.getText();
 	}
-
+	public void setTextKeyArea(String txt){
+		keywordArea.setText(txt);
+	}
 }

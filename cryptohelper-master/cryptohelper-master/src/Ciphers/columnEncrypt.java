@@ -135,25 +135,18 @@ public class columnEncrypt extends BaseCipher{
 		}
 		return order;
 	}
-	//testing cases 
-		//long messages 
-		//keywords with double letters
-		//making sure it works
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner in = new Scanner(System.in);
-		System.out.println("Please input your keyword: ");
-		String k = in.nextLine();
-		System.out.println("Please input your message: ");
-		String m = in.nextLine();
-		System.out.println("Please input your fill character: ");
-		String f = in.next();
-		
-		System.out.println("Your message before encryption: "+ m.toUpperCase());
-		System.out.println("Your message after encryption: "+ encrypt(m,k,f));
-		
+	public String getTextKeyArea(){
+		return keywordArea.getText();
 	}
-
+	public void setTextKeyArea(String txt){
+		keywordArea.setText(txt);
+	}
+	public String getFillArea(){
+		return fillArea.getText();
+	}
+	public void setFillArea(String txt){
+		fillArea.setText(txt);
+	}
 	
 
 }
