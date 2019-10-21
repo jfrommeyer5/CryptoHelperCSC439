@@ -15,8 +15,12 @@ public class BaconDecipher extends BaseCipher {
 		char[] inputArray;
 		String holder;
 		inputArray = inputString.toCharArray();
-		if(!inputString.matches("[01]+")){
+		if(!inputString.matches("[01]+") ){
 			outputString = "Only 0 and 1 characters accepted!";
+			return outputString;
+		}else
+		if(inputString.length() % 5 != 0) {
+			outputString = "String of invalid length!";
 			return outputString;
 		}
 		for(int i = 0; i < inputArray.length; i = i+5) {
