@@ -15,9 +15,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import Menu.OptionsMenu;
-import java.util.*;
-import java.util.jar.*;
-import java.util.zip.*;
 
 /**
  *
@@ -59,6 +56,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         columnTranspositionWorksheet = new ColumnTranspositionWorksheet();
         gcdAndInverse = new GCDAndInverse();
         substitutionSolver = new SubstitutionSolver();
+        base64Encode = new Base64Encode();
 
         optionsMenu = new OptionsMenu();
 
@@ -687,6 +685,29 @@ public class CryptoHelper extends javax.swing.JFrame {
         rightHandNavPanelTab.addTab("GCD and Inverse", gcdAndInverse.getMainCipherPanel());
 //end GCD
 
+//begin Jacob's Cipher thing.
+
+        base64Encode.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
+                jTextAreaKeyReleased(evt);
+            }
+        });
+        base64Encode.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                jTextAreaMouseClicked(evt);
+            }
+        });
+
+        base64Encode.getActionButton().addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                base64Encode.setInputText(inputText);
+            }
+        });
+
+        rightHandNavPanelTab.addTab("Base64Encode", base64Encode.getMainCipherPanel());
+
+//end Jacob's Cipher thing.
         substitutionSolver.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
@@ -864,6 +885,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private ColumnTranspositionWorksheet columnTranspositionWorksheet;
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
+    private Base64Encode base64Encode;
 
     private OptionsMenu optionsMenu;
 
