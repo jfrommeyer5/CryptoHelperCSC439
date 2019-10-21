@@ -18,44 +18,25 @@ public class BaconEncipherTest extends BaconEncipher {
         baconEncipher.setInputText(testJTextArea);
         baconEncipher.getActionButton().doClick();
 
-        testJTextArea.setText("testing functionality\n" +
-                "uftujoh gvodujpobmjuz\n" +
-                "vguvkpi hwpevkqpcnkva\n" +
-                "whvwlqj ixqfwlrqdolwb\n" +
-                "xiwxmrk jyrgxmsrepmxc\n" +
-                "yjxynsl kzshyntsfqnyd\n" +
-                "zkyzotm latizoutgroze\n" +
-                "alzapun mbujapvuhspaf\n" +
-                "bmabqvo ncvkbqwvitqbg\n" +
-                "cnbcrwp odwlcrxwjurch\n" +
-                "docdsxq pexmdsyxkvsdi\n" +
-                "epdetyr qfynetzylwtej\n" +
-                "fqefuzs rgzofuazmxufk\n" +
-                "grfgvat shapgvbanyvgl\n" +
-                "hsghwbu tibqhwcbozwhm\n" +
-                "ithixcv ujcrixdcpaxin\n" +
-                "juijydw vkdsjyedqbyjo\n" +
-                "kvjkzex wletkzferczkp\n" +
-                "lwklafy xmfulagfsdalq\n" +
-                "mxlmbgz yngvmbhgtebmr\n" +
-                "nymncha zohwncihufcns\n" +
-                "oznodib apixodjivgdot\n" +
-                "paopejc bqjypekjwhepu\n" +
-                "qbpqfkd crkzqflkxifqv\n" +
-                "rcqrgle dslargmlyjgrw\n");
-
+        testJTextArea.setText("testing functionality");
+                
         assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
+        
+        testJTextArea.setText("Using Capitals");
+        
+        assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
+        
+        testJTextArea.setText("Using numbers 0010");
+        
+        assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
+        
+        testJTextArea.setText("Using symbols >.,!");
+        
+        assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
+        
+
     }
 	}
 
-	@Test
-	public void testBaconEncipher() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPerformBaconCipher() {
-		fail("Not yet implemented");
-	}
 
 }
