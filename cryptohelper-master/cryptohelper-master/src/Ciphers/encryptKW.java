@@ -141,4 +141,10 @@ public class encryptKW extends BaseCipher{
 		
 		
 	}
+	public String getTextKeyArea(){
+		return keywordArea.getText();
+	}
+	public void setTextKeyArea(String txt){
+		keywordArea.setText(txt);
+	}
 }
