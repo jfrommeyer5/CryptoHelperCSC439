@@ -144,6 +144,12 @@ public class decryptKW extends BaseCipher {
 			return plaintext;
 			
 	}
+	public String getTextKeyArea(){
+		return keywordArea.getText();
+	}
+	public void setTextKeyArea(String txt){
+		keywordArea.setText(txt);
+	}
 
 }
 
