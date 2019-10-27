@@ -17,7 +17,7 @@ decryptKW decryptkw;
 	}
 	
 	@Test
-	public void testEncrypt(){
+	public void testDecrypt(){
 		decryptkw = new decryptKW();
 		JTextArea testArea = new JTextArea();
 		testArea.setText("JYKTJ NCQDU TKPUC Z");
