@@ -57,6 +57,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         gcdAndInverse = new GCDAndInverse();
         substitutionSolver = new SubstitutionSolver();
         base64Encode = new Base64Encode();
+        BaconEncipher = new BaconEncipher();
+        BaconDecipher = new BaconDecipher();
 
         optionsMenu = new OptionsMenu();
 
@@ -71,7 +73,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         columnDecrypt = new columnDecrypt();
         jscrollPane34 = new JScrollPane();
         jscrollPane35 = new JScrollPane();
-        
+        jscrollPane36 = new JScrollPane(); //BaconEncipher
+        jscrollPane37 = new JScrollPane(); //BaconEncipher
 
         jScrollPane29 = new JScrollPane();
         jScrollPane30 = new JScrollPane();
@@ -176,7 +179,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
 //end run the alphabet
 
-      //begin of encryptkw
+//begin of encryptkw
         encryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent evt){
         		jTextAreaKeyReleased(evt);
@@ -197,8 +200,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane29.setViewportView(encryptkw.getMainCipherTextArea());
         encryptkw.getMainCipherPanel().add(jScrollPane29, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Encrypt Keyword", encryptkw.getMainCipherPanel());
-      //end of encryptkw
-      //begin decryptkw
+//end of encryptkw
+//begin decryptkw
         decryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent evt){
         		jTextAreaKeyReleased(evt);
@@ -264,7 +267,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         rightHandNavPanelTab.addTab("Decrypt Pig Latin", pigLatinDecipher.getMainCipherPanel());
 //end decrypt pig latin
         
-//begin caesarcipher
+//begin caesarCipher
         caesarcipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent evt){
         		jTextAreaKeyReleased(evt);
@@ -285,7 +288,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane33.setViewportView(caesarcipher.getMainCipherTextArea());
         caesarcipher.getMainCipherPanel().add(jScrollPane33, BorderLayout.CENTER);
         rightHandNavPanelTab.addTab("Caesar Cipher", caesarcipher.getMainCipherPanel());
-      //end of caesarCipher
+//end of caesarCipher
 //begin columnEncrypt
         columnEncrypt.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent evt){
@@ -440,8 +443,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
 
         rightHandNavPanelTab.addTab("Affine Encipher", affineEncipher.getMainCipherPanel());
-        //end AffineEncipher
-        //begin AffineDecipher
+//end AffineEncipher
+//begin AffineDecipher
 
 
         affineDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
@@ -464,8 +467,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         rightHandNavPanelTab.addTab("Affine Decipher", affineDecipher.getMainCipherPanel());
 
-        //end affineDecipher
-        //begin Split Off Alphabets
+//end affineDecipher
+//begin Split Off Alphabets
 
         splitOffAlphabets.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
@@ -728,6 +731,50 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         rightHandNavPanelTab.addTab("Substitution Solver", substitutionSolver.getMainCipherPanel());
 //end substitution solver
+//begin baconEncipher
+        BaconEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt) {
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        BaconEncipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        BaconEncipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		BaconEncipher.setInputText(inputText);
+        	}
+        });
+
+        jscrollPane36.setViewportView(BaconEncipher.getMainCipherTextArea());
+        BaconEncipher.getMainCipherPanel().add(jscrollPane36, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Bacon Encipher", BaconEncipher.getMainCipherPanel());
+//end BaconEncipher
+//begin baconDecipher
+        BaconDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+        	public void keyReleased(KeyEvent evt) {
+        		jTextAreaKeyReleased(evt);
+        	}
+        });
+        BaconDecipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt){
+        		jTextAreaMouseClicked(evt);
+        	}
+        });
+        BaconDecipher.getActionButton().addActionListener(new ActionListener() {
+        	@Override
+        	public void actionPerformed(ActionEvent e){
+        		BaconDecipher.setInputText(inputText);
+        	}
+        });
+
+        jscrollPane37.setViewportView(BaconDecipher.getMainCipherTextArea());
+        BaconDecipher.getMainCipherPanel().add(jscrollPane37, BorderLayout.CENTER);
+        rightHandNavPanelTab.addTab("Bacon Decipher", BaconDecipher.getMainCipherPanel());
+//end BaconEncipher
 
         jPanel17.setLayout(new BorderLayout());
 
@@ -886,7 +933,9 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
-
+    private BaconEncipher BaconEncipher;
+    private BaconDecipher BaconDecipher;
+    
     private OptionsMenu optionsMenu;
 
     private encryptPL pigLatinEncipher;
@@ -904,7 +953,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     private columnDecrypt columnDecrypt;
     private javax.swing.JScrollPane jscrollPane34;
     private javax.swing.JScrollPane jscrollPane35;
-    
+    private javax.swing.JScrollPane jscrollPane36; //BaconEncipher
+    private javax.swing.JScrollPane jscrollPane37; //BaconDecipher
     
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
