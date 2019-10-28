@@ -97,4 +97,20 @@ public class GCDAndInverse extends BaseCipher {
             getMainCipherTextArea().append("There is no inverse, sorry\n");
         }
     }
+
+    public JTextField getInverseOfJTextField() {
+        return inverseOfJTextField;
+    }
+
+    public void setInverseOfJTextField(JTextField inverseOfJTextField) {
+        this.inverseOfJTextField = inverseOfJTextField;
+    }
+
+    public JTextField getModJTextField() {
+        return modJTextField;
+    }
+
+    public void setModJTextField(JTextField modJTextField) {
+        this.modJTextField = modJTextField;
+    }
 }
