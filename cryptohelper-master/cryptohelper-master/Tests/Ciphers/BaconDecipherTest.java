@@ -18,19 +18,19 @@ public class BaconEncipherTest extends BaconEncipher {
         baconEncipher.setInputText(testJTextArea);
         baconEncipher.getActionButton().doClick();
 
-        testJTextArea.setText("testing functionality");
+        testJTextArea.setText("0100000101100100010110011100110111101101001011011101111100100010010011");
                 
         assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
         
-        testJTextArea.setText("Using Capitals");
+        testJTextArea.setText("Invalid due to letters");
         
         assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
         
-        testJTextArea.setText("Using numbers 0010");
+        testJTextArea.setText("Using numbers and letters 0010");
         
         assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
         
-        testJTextArea.setText("Using symbols >.,!");
+        testJTextArea.setText("010000010110010001011001110011011110110100101101110111110010001001"); //invalid length
         
         assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
         

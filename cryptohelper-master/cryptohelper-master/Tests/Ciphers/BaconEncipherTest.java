@@ -34,7 +34,6 @@ public class BaconEncipherTest extends BaconEncipher {
         
         assertEquals(testJTextArea.getText(), baconEncipher.getMainCipherTextArea().getText());
         
-
     }
 	}
 
