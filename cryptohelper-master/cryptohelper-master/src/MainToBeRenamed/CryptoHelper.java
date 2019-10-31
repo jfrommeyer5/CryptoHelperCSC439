@@ -12,8 +12,12 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+
 import Menu.OptionsMenu;
 
 /**
@@ -34,6 +38,8 @@ public class CryptoHelper extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+
 
         termsOfTheGPL = new TermsOfTheGPL();
         frequencyCount = new FrequencyCount();
@@ -57,6 +63,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         gcdAndInverse = new GCDAndInverse();
         substitutionSolver = new SubstitutionSolver();
         base64Encode = new Base64Encode();
+        base64Decode = new Base64Decode();
 
         optionsMenu = new OptionsMenu();
 
@@ -88,6 +95,10 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane31 = new JScrollPane();
         jScrollPane32 = new JScrollPane();
         jScrollPane33 = new JScrollPane();
+
+
+        Object[] ciphersList = {frequencyCount, runTheAlphabet, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,viginereEncipher,
+        viginereDecipher, viginereBruteForce, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce, columnTranspositionWorksheet, gcdAndInverse, substitutionSolver, termsOfTheGPL, base64Encode};
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
@@ -127,16 +138,6 @@ public class CryptoHelper extends javax.swing.JFrame {
 //begin frequency count
 
         //need to figure out how to extract ALL event listeners into a class
-        frequencyCount.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        frequencyCount.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         //workaround to pass inputText to FrequencyCount class
         frequencyCount.getActionButton().addActionListener( new ActionListener(){
@@ -146,23 +147,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Frequency Count", frequencyCount.getMainCipherPanel());
 
 
 //end of frequency count
-
-
-        //need to figure out how to extract ALL event listeners into a class
-        runTheAlphabet.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        runTheAlphabet.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         //workaround to pass inputText to FrequencyCount class
         runTheAlphabet.getActionButton().addActionListener( new ActionListener(){
@@ -172,7 +159,6 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getMainCipherPanel());
 
 //end run the alphabet
 
@@ -196,7 +182,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         
         jScrollPane29.setViewportView(encryptkw.getMainCipherTextArea());
         encryptkw.getMainCipherPanel().add(jScrollPane29, BorderLayout.CENTER);
-        rightHandNavPanelTab.addTab("Encrypt Keyword", encryptkw.getMainCipherPanel());
+
       //end of encryptkw
       //begin decryptkw
         decryptkw.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
@@ -217,7 +203,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
         jScrollPane30.setViewportView(decryptkw.getMainCipherTextArea());
         decryptkw.getMainCipherPanel().add(jScrollPane30, BorderLayout.CENTER);
-        rightHandNavPanelTab.addTab("Decrypt Keyword", decryptkw.getMainCipherPanel());
+
 //end of decrypt kw
 //begin encrypt pig latin
         pigLatinEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
@@ -239,7 +225,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jScrollPane31.setViewportView(pigLatinEncipher.getMainCipherTextArea());
         pigLatinEncipher.getMainCipherPanel().add(jScrollPane31, BorderLayout.CENTER);
-        rightHandNavPanelTab.addTab("Encrypt Pig Latin", pigLatinEncipher.getMainCipherPanel());
+
 //end encrypt pig latin
 //begin decrypt pig latin
         pigLatinDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
@@ -261,7 +247,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jScrollPane32.setViewportView(pigLatinDecipher.getMainCipherTextArea());
         pigLatinDecipher.getMainCipherPanel().add(jScrollPane32, BorderLayout.CENTER);
-        rightHandNavPanelTab.addTab("Decrypt Pig Latin", pigLatinDecipher.getMainCipherPanel());
+
 //end decrypt pig latin
         
 //begin caesarcipher
@@ -284,7 +270,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         
         jScrollPane33.setViewportView(caesarcipher.getMainCipherTextArea());
         caesarcipher.getMainCipherPanel().add(jScrollPane33, BorderLayout.CENTER);
-        rightHandNavPanelTab.addTab("Caesar Cipher", caesarcipher.getMainCipherPanel());
+
       //end of caesarCipher
 //begin columnEncrypt
         columnEncrypt.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
@@ -306,7 +292,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         
         jscrollPane34.setViewportView(columnEncrypt.getMainCipherTextArea());
         columnEncrypt.getMainCipherPanel().add(jscrollPane34, BorderLayout.CENTER);
-        rightHandNavPanelTab.addTab("CTC Encrypt", columnEncrypt.getMainCipherPanel());
+
  //end columnEncrypt
  //begin columnDecrypt
         columnDecrypt.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
@@ -328,21 +314,10 @@ public class CryptoHelper extends javax.swing.JFrame {
         
         jscrollPane35.setViewportView(columnDecrypt.getMainCipherTextArea());
         columnDecrypt.getMainCipherPanel().add(jscrollPane35, BorderLayout.CENTER);
-        rightHandNavPanelTab.addTab("CTC Decrypt", columnDecrypt.getMainCipherPanel());
+
  //end columnDecrypt
         
 //begin BiGraphs
-        //need to extract all listeners
-        biGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        biGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         //workaround to pass inputText to FrequencyCount class
         biGraphs.getActionButton().addActionListener( new ActionListener(){
@@ -352,20 +327,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("BiGraphs", biGraphs.getMainCipherPanel());
+
 //end BiGraphs
 // begin TriGraphs
-
-        triGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        triGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         //workaround to pass inputText to FrequencyCount class
         triGraphs.getActionButton().addActionListener( new ActionListener(){
@@ -375,19 +339,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("TriGraphs", triGraphs.getMainCipherPanel());
+
 //end of TriGraphs
 //begin NGraphs
-        nGraphs.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        nGraphs.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         //workaround to pass inputText to FrequencyCount class
         nGraphs.getActionButton().addActionListener( new ActionListener(){
@@ -397,19 +351,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("NGraphs", nGraphs.getMainCipherPanel());
+
 //end of NGraphs
 //begin affineKnown
-        affineKnownPlaintextAttack.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        affineKnownPlaintextAttack.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         affineKnownPlaintextAttack.getActionButton().addActionListener( new ActionListener(){
             @Override
@@ -418,19 +362,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Affine Known Plaintext Attack", affineKnownPlaintextAttack.getMainCipherPanel());
+
 //end of affineKnown
 //begin affineEncipher
-        affineEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        affineEncipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         affineEncipher.getActionButton().addActionListener( new ActionListener(){
             @Override
@@ -439,21 +373,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Affine Encipher", affineEncipher.getMainCipherPanel());
+
         //end AffineEncipher
         //begin AffineDecipher
-
-
-        affineDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        affineDecipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         affineDecipher.getActionButton().addActionListener( new ActionListener(){
             @Override
@@ -462,21 +384,10 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Affine Decipher", affineDecipher.getMainCipherPanel());
+
 
         //end affineDecipher
         //begin Split Off Alphabets
-
-        splitOffAlphabets.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        splitOffAlphabets.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         splitOffAlphabets.getActionButton().addActionListener( new ActionListener(){
             @Override
@@ -485,20 +396,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Split Off Alphabets", splitOffAlphabets.getMainCipherPanel());
+
 //end split the alphabet
 //begin PolyMonoCalculatro
-
-        polyMonoCalculator.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        polyMonoCalculator.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         polyMonoCalculator.getActionButton().addActionListener( new ActionListener(){
             @Override
@@ -507,21 +407,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Poly/Mono Calculator", polyMonoCalculator.getMainCipherPanel());
+
 //end Poly/Mono Calculator
 //begin Viginere Encipher
-
-        viginereEncipher.getOutputTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        viginereEncipher.getOutputTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
-
         viginereEncipher.getActionButton().addActionListener( new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -529,20 +417,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Viginere Encipher", viginereEncipher.getMainCipherPanel());
+
 //end Vinigner Enciphe
 //begin decipher
-        viginereDecipher.getOutputTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        viginereDecipher.getOutputTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
-
         viginereDecipher.getActionButton().addActionListener( new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -550,21 +427,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Viginere Decipher", viginereDecipher.getMainCipherPanel());
+
 //end Viginere Decipher
 //begin Viginere Brute Force
-
-        viginereBruteForce.getOutputTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        viginereBruteForce.getOutputTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
-
         viginereBruteForce.getActionButton().addActionListener( new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -572,20 +437,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Viginere Brute Force", viginereBruteForce.getMainCipherPanel());
+
 //end Viginere Brute Force
 //begin AutoKey Cypyhertext Attack
-        autoKeyCyphertextAttack.getOutputTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        autoKeyCyphertextAttack.getOutputTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
-
         autoKeyCyphertextAttack.getActionButton().addActionListener( new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -593,20 +447,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("AutoKey Cyphertext Attack", autoKeyCyphertextAttack.getMainCipherPanel());
+
 //end autokey cypehertext attack
 //begin plaintext attack
-        autoKeyPlaintextAttack.getOutputTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        autoKeyPlaintextAttack.getOutputTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
-
         autoKeyPlaintextAttack.getActionButton().addActionListener( new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -614,7 +457,7 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("AutoKey Plaintext Attack", autoKeyPlaintextAttack.getMainCipherPanel());
+
 //end AutoKey Plaintext Attack
 //begin autokey decipher
 
@@ -625,21 +468,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("AutoKey Decipher", autoKeyDecipher.getMainCipherPanel());
+
 //end autoKey decipher
 //begin hill brute force
-
-
-        hillBruteForce.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        hillBruteForce.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         hillBruteForce.getActionButton().addActionListener( new ActionListener(){
             @Override
@@ -649,7 +480,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
 
 
-        rightHandNavPanelTab.addTab("Hill Brute Force", hillBruteForce.getMainCipherPanel());
+
 //end hill brute force
 //begin column transpotions
 
@@ -660,21 +491,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Column Transposition Worksheet", columnTranspositionWorksheet.getMainPanel());
+
 //end transposiotion
 //begin GCD
-
-        gcdAndInverse.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        gcdAndInverse.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
-
         gcdAndInverse.getActionButton().addActionListener( new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -682,21 +501,9 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("GCD and Inverse", gcdAndInverse.getMainCipherPanel());
 //end GCD
 
 //begin Jacob's Cipher thing.
-
-        base64Encode.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                jTextAreaKeyReleased(evt);
-            }
-        });
-        base64Encode.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                jTextAreaMouseClicked(evt);
-            }
-        });
 
         base64Encode.getActionButton().addActionListener(new ActionListener(){
             @Override
@@ -705,15 +512,18 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Base64Encode", base64Encode.getMainCipherPanel());
+
 
 //end Jacob's Cipher thing.
-        substitutionSolver.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+
+//begin base64 decode
+
+        base64Decode.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
             }
         });
-        substitutionSolver.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+        base64Decode.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 jTextAreaMouseClicked(evt);
             }
@@ -726,8 +536,12 @@ public class CryptoHelper extends javax.swing.JFrame {
             }
         });
 
-        rightHandNavPanelTab.addTab("Substitution Solver", substitutionSolver.getMainCipherPanel());
 //end substitution solver
+        addActionButtonActionListener(ciphersList);
+        addMouseListeners(ciphersList);
+        addKeyListeners(ciphersList);
+
+        addRightHandNavPanelTabs();
 
         jPanel17.setLayout(new BorderLayout());
 
@@ -742,7 +556,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         jPanel17.add(jScrollPane10, BorderLayout.CENTER);
 
-        rightHandNavPanelTab.addTab("Terms of the GPL", jPanel17);
+
 
         jSplitPane1.setBottomComponent(rightHandNavPanelTab);
 
@@ -752,6 +566,114 @@ public class CryptoHelper extends javax.swing.JFrame {
         setBounds((screenSize.width-1000)/2, (screenSize.height-800)/2, 1000, 800);
     }
     // </editor-fold>//GEN-END:initComponents
+
+    public void addActionButtonActionListener(Object[] ciphersList){
+//        try{
+//            for(int i = 0; i < ciphersList.length; i++){
+//                Method m = ciphersList[i].getClass().getMethod("getActionButton", null);
+//
+//                JButton actionButton = (JButton) m.invoke(ciphersList[i]);
+//                Object object = ciphersList[i];
+//                actionButton.addActionListener( new ActionListener(){
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//
+//
+//                        base64Decode.setInputText(inputText);
+//                        try {
+//                           // Method[] m = object.getClass().getMethods();
+//                           // Method ms = object.getClass().getMethod("getInputText");
+//                            //JTextArea inputText = (JTextArea) ms.invoke(object);
+//
+//                           // ms.invoke(object, inputText);
+//                        } catch (NoSuchMethodException ex) {
+//                            ex.printStackTrace();
+//                        } catch (IllegalAccessException ex) {
+//                            ex.printStackTrace();
+//                        } catch (InvocationTargetException ex) {
+//                            ex.printStackTrace();
+//                        }
+//                    }
+//                });
+//            }
+//        }
+//        catch(Exception e){
+//            //todo error handling.
+//        }
+    }
+
+
+    public void addMouseListeners(Object[] ciphersList){
+
+        try{
+            for(int i = 0; i < ciphersList.length; i++){
+                Method m = ciphersList[i].getClass().getMethod("getMainCipherTextArea", null);
+
+                JTextArea mainCipherTextArea = (JTextArea) m.invoke(ciphersList[i]);
+                mainCipherTextArea.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent evt) {
+                        jTextAreaMouseClicked(evt);
+                    }
+                });
+            }
+        }
+        catch(Exception e){
+            //todo error handling
+        }
+    }
+
+    public void addKeyListeners(Object[] ciphersList){
+
+        try{
+            for(int i = 0; i < ciphersList.length; i++){
+                Method m = ciphersList[i].getClass().getMethod("getMainCipherTextArea", null);
+
+                JTextArea mainCipherTextArea = (JTextArea) m.invoke(ciphersList[i]);
+                mainCipherTextArea.addKeyListener(new KeyAdapter() {
+                    public void keyReleased(KeyEvent evt) {
+                        jTextAreaKeyReleased(evt);
+                    }
+                });
+            }
+        }
+        catch(Exception e){
+            //todo error handling
+        }
+    }
+
+
+
+    public void addRightHandNavPanelTabs(){
+        rightHandNavPanelTab.addTab("Frequency Count", frequencyCount.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Run The Alphabet", runTheAlphabet.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Encrypt Keyword", encryptkw.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Decrypt Keyword", decryptkw.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Encrypt Pig Latin", pigLatinEncipher.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Decrypt Pig Latin", pigLatinDecipher.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Caesar Cipher", caesarcipher.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("CTC Encrypt", columnEncrypt.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("CTC Decrypt", columnDecrypt.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("BiGraphs", biGraphs.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("TriGraphs", triGraphs.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("NGraphs", nGraphs.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Affine Known Plaintext Attack", affineKnownPlaintextAttack.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Affine Encipher", affineEncipher.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Affine Decipher", affineDecipher.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Split Off Alphabets", splitOffAlphabets.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Poly/Mono Calculator", polyMonoCalculator.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Viginere Encipher", viginereEncipher.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Viginere Decipher", viginereDecipher.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Viginere Brute Force", viginereBruteForce.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("AutoKey Cyphertext Attack", autoKeyCyphertextAttack.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("AutoKey Plaintext Attack", autoKeyPlaintextAttack.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("AutoKey Decipher", autoKeyDecipher.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Hill Brute Force", hillBruteForce.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Column Transposition Worksheet", columnTranspositionWorksheet.getMainPanel());
+        rightHandNavPanelTab.addTab("GCD and Inverse", gcdAndInverse.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Base64Encode", base64Encode.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Substitution Solver", substitutionSolver.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Terms of the GPL", jPanel17);
+    }
 
     private void jButttonOpenFileActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
 
@@ -886,6 +808,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
+    private Base64Decode base64Decode;
 
     private OptionsMenu optionsMenu;
 
