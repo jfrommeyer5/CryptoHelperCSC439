@@ -19,6 +19,13 @@ public class Key {
 		initKeyInverse(key, keyInverse);
 		
 	}
+	Key(int [][] key){
+		initAdd();
+		initMult();
+		this.key = key;
+		keyInverse = new int[2][2];
+		initKeyInverse(this.key, keyInverse);
+	}
 
 	private void initKeyInverse(int[][] k, int[][] ki) {
 		int detI = multInverse.get(det);
