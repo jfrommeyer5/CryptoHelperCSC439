@@ -7,6 +7,7 @@ public class RunTheAlphabet extends BaseCipher {
     public RunTheAlphabet(){
         super();
         initializeActionBtn("Run The Alphabet");
+        setMainCipherPanelText("Run The Alphabet");
     }
 
     @Override

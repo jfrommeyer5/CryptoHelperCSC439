@@ -7,6 +7,7 @@ public class TriGraphs extends BaseCipher {
     public TriGraphs(){
         super();
         initializeActionBtn("Show TriGraphs");
+        setMainCipherPanelText("TriGraphs");
     }
 
     @Override

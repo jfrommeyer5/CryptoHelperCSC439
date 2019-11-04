@@ -23,6 +23,7 @@ public class encryptPL extends BaseCipher{
 		topPanel.setLayout(new BorderLayout());
 		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 		initializeActionBtn("Encipher");
+		setMainCipherPanelText("Encrypt Pig Latin");
 	}
 
 	@Override

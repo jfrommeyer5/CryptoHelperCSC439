@@ -14,6 +14,7 @@ public class AutoKeyDecipher extends CookieCutterViginereCiphers {
     public AutoKeyDecipher(){
         super();
         initializeActionBtn("Decipher");
+        setMainCipherPanelText("AutoKey Decipher");
     }
 
     @Override
