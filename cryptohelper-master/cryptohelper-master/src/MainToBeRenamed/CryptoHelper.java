@@ -63,7 +63,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         gcdAndInverse = new GCDAndInverse();
         substitutionSolver = new SubstitutionSolver();
         base64Encode = new Base64Encode();
-        base64Decode = new Base64Decode();
+       // base64Decode = new Base64Decode();
 
         optionsMenu = new OptionsMenu();
 
@@ -517,7 +517,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 //end Jacob's Cipher thing.
 
 //begin base64 decode
-
+/*
         base64Decode.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
@@ -535,7 +535,7 @@ public class CryptoHelper extends javax.swing.JFrame {
                 substitutionSolver.setInputText(inputText);
             }
         });
-
+*/
 //end substitution solver
         addActionButtonActionListener(ciphersList);
         addMouseListeners(ciphersList);
@@ -808,7 +808,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
-    private Base64Decode base64Decode;
+ //   private Base64Decode base64Decode;
 
     private OptionsMenu optionsMenu;
 
