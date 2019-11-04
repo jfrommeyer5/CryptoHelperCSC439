@@ -36,6 +36,7 @@ public class caesarCipher extends BaseCipher {
 		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 		
 		initializeActionBtn("Perform Caesar Cipher");
+		setMainCipherPanelText("Caesar Cipher");
 	}
 	
 	public void actionButtonActionPerformed(ActionEvent evt){
