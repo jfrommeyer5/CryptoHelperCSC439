@@ -63,7 +63,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         gcdAndInverse = new GCDAndInverse();
         substitutionSolver = new SubstitutionSolver();
         base64Encode = new Base64Encode();
-        base64Decode = new Base64Decode();
+//        base64Decode = new Base64Decode();
+        playfairEncipher = new PlayfairEncipher();
 
         optionsMenu = new OptionsMenu();
 
@@ -271,7 +272,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane33.setViewportView(caesarcipher.getMainCipherTextArea());
         caesarcipher.getMainCipherPanel().add(jScrollPane33, BorderLayout.CENTER);
 
-      //end of caesarCipher
+//end of caesarCipher
 //begin columnEncrypt
         columnEncrypt.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
         	public void keyReleased(KeyEvent evt){
@@ -374,8 +375,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         });
 
 
-        //end AffineEncipher
-        //begin AffineDecipher
+//end AffineEncipher
+//begin AffineDecipher
 
         affineDecipher.getActionButton().addActionListener( new ActionListener(){
             @Override
@@ -517,7 +518,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 //end Jacob's Cipher thing.
 
 //begin base64 decode
-
+/*
         base64Decode.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent evt) {
                 jTextAreaKeyReleased(evt);
@@ -535,7 +536,16 @@ public class CryptoHelper extends javax.swing.JFrame {
                 substitutionSolver.setInputText(inputText);
             }
         });
-
+*/
+//begin playfair Encipher
+        playfairEncipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	playfairEncipher.setInputText(inputText);
+            }
+        });
+//end playfair Encipher
+        
 //end substitution solver
         addActionButtonActionListener(ciphersList);
         addMouseListeners(ciphersList);
@@ -672,6 +682,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         rightHandNavPanelTab.addTab("GCD and Inverse", gcdAndInverse.getMainCipherPanel());
         rightHandNavPanelTab.addTab("Base64Encode", base64Encode.getMainCipherPanel());
         rightHandNavPanelTab.addTab("Substitution Solver", substitutionSolver.getMainCipherPanel());
+        rightHandNavPanelTab.addTab("Playfair Encipher", playfairEncipher.getMainCipherPanel());
         rightHandNavPanelTab.addTab("Terms of the GPL", jPanel17);
     }
 
@@ -808,7 +819,9 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
-    private Base64Decode base64Decode;
+    //private Base64Decode base64Decode;
+    private PlayfairEncipher playfairEncipher;
+
 
     private OptionsMenu optionsMenu;
 
