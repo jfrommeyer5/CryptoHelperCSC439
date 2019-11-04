@@ -7,6 +7,7 @@ public class BiGraphs extends BaseCipher{
     public BiGraphs(){
         super();
         initializeActionBtn("Show BiGraphs");
+        setMainCipherPanelText("BiGraphs");
     }
 
     @Override

@@ -58,6 +58,7 @@ public class SubstitutionSolver extends BaseCipher{
 
 
         initializeActionBtn("Go");
+        setMainCipherPanelText("Substitution Solver");
     }
 
     @Override

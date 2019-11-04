@@ -57,6 +57,7 @@ public class columnEncrypt extends BaseCipher{
 		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 		
 		initializeActionBtn("Encipher");
+		setMainCipherPanelText("CTC Encrypt");
 	}
 	
 	@Override

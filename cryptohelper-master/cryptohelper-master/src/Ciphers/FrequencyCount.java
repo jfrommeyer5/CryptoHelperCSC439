@@ -6,6 +6,7 @@ public class FrequencyCount extends BaseCipher{
     public FrequencyCount(){
         super();
         initializeActionBtn("Perform Frequency Count");
+        setMainCipherPanelText("Frequency Count");
     }
 
     @Override

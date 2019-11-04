@@ -13,6 +13,7 @@ public class HillBruteForce extends BaseCipher {
    public HillBruteForce(){
         super();
         initializeActionBtn("Go");
+        setMainCipherPanelText("Hill Brute Force");
 
         friedmanCutoffLabel = new JLabel();
         friedmanCutoffTextField = new JTextField();

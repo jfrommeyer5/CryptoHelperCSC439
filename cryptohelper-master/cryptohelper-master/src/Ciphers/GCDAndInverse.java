@@ -39,6 +39,7 @@ public class GCDAndInverse extends BaseCipher {
 
 
         initializeActionBtn("Go");
+        setMainCipherPanelText("GCD and Inverse");
 
     }
 
