@@ -17,6 +17,7 @@ public class NGraphs extends BaseCipher{
     public NGraphs(){
         super();
         initializeActionBtn("Show NGraphs");
+        setMainCipherPanelText("NGraphs");
 
         topPanel = new JPanel();
         text = new JLabel();
