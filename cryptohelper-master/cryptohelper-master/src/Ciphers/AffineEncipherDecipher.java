@@ -31,7 +31,7 @@ public class AffineEncipherDecipher extends BaseCipher {
     private JLabel multiplicativeShift;
 
 
-    public AffineEncipherDecipher(){
+    public AffineEncipherDecipher(String encipherOrDecipher){
         super();
         topPanel = new JPanel();
         gridPanel = new JPanel();
@@ -85,7 +85,18 @@ public class AffineEncipherDecipher extends BaseCipher {
         getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 
         //neeed to have constructor for a encipher and decipher button. or change the text in the main class.
-        initializeActionBtn("Encipher");
+
+        if(encipherOrDecipher == "Encipher"){
+            initializeActionBtn("Encipher");
+            setMainCipherPanelText("Affine Encipher");
+        }
+        else{
+            initializeActionBtn("Decipher");
+            setMainCipherPanelText("Affine Decipher");
+        }
+
+
+
 
     }
 

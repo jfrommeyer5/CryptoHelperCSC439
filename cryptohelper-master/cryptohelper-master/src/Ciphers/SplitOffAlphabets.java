@@ -42,6 +42,7 @@ public class SplitOffAlphabets extends BaseCipher {
 
 
         initializeActionBtn("Split off the alphabets");
+        setMainCipherPanelText("Split Off Alphabets");
     }
 
     @Override

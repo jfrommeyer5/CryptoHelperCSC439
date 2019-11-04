@@ -13,6 +13,7 @@ public class ViginereDecipher extends CookieCutterViginereCiphers {
     public ViginereDecipher(){
         super();
         initializeActionBtn("Decipher");
+        setMainCipherPanelText("Viginere Decipher");
     }
 
     @Override

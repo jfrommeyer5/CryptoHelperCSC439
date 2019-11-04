@@ -24,6 +24,7 @@ public class decryptPL extends BaseCipher {
 		topPanel.setLayout(new BorderLayout());
 		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 		initializeActionBtn("Decipher");
+		setMainCipherPanelText("Decrypt Pig Latin");
 	}
 
 	@Override
