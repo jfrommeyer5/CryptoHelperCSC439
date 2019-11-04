@@ -45,6 +45,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         gcdAndInverse = new GCDAndInverse();
         substitutionSolver = new SubstitutionSolver();
         base64Encode = new Base64Encode();
+
 //        base64Decode = new Base64Decode();
         playfairEncipher = new PlayfairEncipher();
 
@@ -315,9 +316,9 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
+
     //private Base64Decode base64Decode;
     private PlayfairEncipher playfairEncipher;
-
 
     private OptionsMenu optionsMenu;
 
