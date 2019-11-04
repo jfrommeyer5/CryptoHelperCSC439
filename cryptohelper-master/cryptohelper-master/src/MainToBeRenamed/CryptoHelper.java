@@ -46,6 +46,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         substitutionSolver = new SubstitutionSolver();
         base64Encode = new Base64Encode();
         //base64Decode = new Base64Decode();
+        baconEncipher = new BaconEncipher();
+        baconDecipher = new BaconDecipher();
 
         optionsMenu = new OptionsMenu();
 
@@ -77,7 +79,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane33 = new JScrollPane();
 
 
-        Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, columnEncrypt,
+        Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
                 viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce,
                 columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, termsOfTheGPL};
@@ -316,6 +318,8 @@ public class CryptoHelper extends javax.swing.JFrame {
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
     //private Base64Decode base64Decode;
+    private BaconEncipher baconEncipher;
+    private BaconDecipher baconDecipher;
 
     private OptionsMenu optionsMenu;
 
