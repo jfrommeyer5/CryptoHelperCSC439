@@ -28,6 +28,7 @@ public class decryptKW extends BaseCipher {
 		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 		
 		initializeActionBtn("Decipher");
+		setMainCipherPanelText("Decrypt Keyword");
 	}
 	
 	@Override
