@@ -1,3 +1,4 @@
+
 package Ciphers;
 
 import java.awt.event.ActionEvent;
@@ -167,5 +168,4 @@ public class BaconEncipher extends BaseCipher {
 		getMainCipherTextArea().append(inputString);
 		
 	}
-	
 }
