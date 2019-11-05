@@ -536,8 +536,6 @@ abstract class Rotor{
 	public void reset() {
 		this.step = 0;
 	}
-	
-	protected abstract boolean M4Only();
 
 	/*
 	 * Allows the Rotor classes to call encrypt() and pass their letter order
@@ -606,7 +604,6 @@ abstract class Rotor{
 
 class Rotor1 extends Rotor{
 	private String left = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
-	private boolean M4Only = false;
 
 	Rotor1(){
 		super();
@@ -623,15 +620,10 @@ class Rotor1 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
 
 class Rotor2 extends Rotor{
 	private String left = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
-	private boolean M4Only = false;
 
 	Rotor2(){
 		super();
@@ -648,15 +640,10 @@ class Rotor2 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
 
 class Rotor3 extends Rotor{
 	private String left = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
-	private boolean M4Only = false;
 
 	Rotor3(){
 		super();
@@ -673,15 +660,10 @@ class Rotor3 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
 
 class Rotor4 extends Rotor{
 	private String left = "ESOVPZJAYQUIRHXLNFTGKDCMWB";
-	private boolean M4Only = false;
 
 	Rotor4(){
 		super();
@@ -698,15 +680,10 @@ class Rotor4 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
 
 class Rotor5 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
-	private boolean M4Only = false;
 
 	Rotor5(){
 		super();
@@ -723,15 +700,10 @@ class Rotor5 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
 
 class Rotor6 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
-	private boolean M4Only = false;
 
 	Rotor6(){
 		super();
@@ -748,15 +720,10 @@ class Rotor6 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
 
 class Rotor7 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
-	private boolean M4Only = false;
 
 	Rotor7(){
 		super();
@@ -773,15 +740,10 @@ class Rotor7 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
 
 class Rotor8 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
-	private boolean M4Only = false;
 
 	Rotor8(){
 		super();
@@ -798,63 +760,7 @@ class Rotor8 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
-
-/* Sprint 9
-class RotorBeta extends Rotor{
-	private String left = "LEYJVCNIXWPBQMDRTAKZGFUHOS";
-	private boolean M4Only = true;
-
-	RotorBeta(){
-		super();
-	}
-
-	RotorBeta(int pos){
-		super(pos)
-	}
-
-	public char encrypt(char in) {
-		return super.encrypt(in, this.left);
-	}
-
-	public char decrypt(char in) {
-		return super.decrypt(in, this.left);
-	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
-}
-
-class RotorGamma extends Rotor{
-	private String left = "FSOKANUERHMBTIYCWLQPZXVGJD";
-	private boolean M4Only = true;
-
-	RotorGamma(){
-		super();
-	}
-
-	RotorGamma(int pos){
-		super(pos)
-	}
-
-	public char encrypt(char in) {
-		return super.encrypt(in, this.left);
-	}
-
-	public char decrypt(char in) {
-		return super.decrypt(in, this.left);
-	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
-}
-*/
 
 /*
  * Abstract class for the Reflectors
@@ -880,13 +786,10 @@ abstract class Reflector{
 	 * Allows the Reflector classes to call encrypt() and pass their character order
 	 */
 	protected abstract char encrypt(char in);
-	
-	protected abstract boolean M4Only();
 }
 
 class ReflectorB extends Reflector{
 	private String out = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
-	private boolean M4Only = false;
 
 	ReflectorB(){
 		super();
@@ -894,16 +797,11 @@ class ReflectorB extends Reflector{
 
 	public char encrypt(char in) {
 		return super.encrypt(in, out);
-	}
-	
-	public boolean M4Only() {
-		return M4Only;
 	}
 }
 
 class ReflectorC extends Reflector{
 	private String out = "FVPJIAOYEDRZXWGCTKUQSBNMHL";
-	private boolean M4Only = false;
 
 	ReflectorC(){
 		super();
@@ -912,44 +810,4 @@ class ReflectorC extends Reflector{
 	public char encrypt(char in) {
 		return super.encrypt(in, out);
 	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
 }
-
-/* Sprint 9
-class ReflectorBThin extends Reflector{
-	private String out = "ENKQAUYWJICOPBLMDXZVFTHRGS";
-	private boolean M4Only = true;
-
-	ReflectorB(){
-		super();
-	}
-
-	public char encrypt(char in) {
-		return super.encrypt(in, out);
-	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
-}
-
-class ReflectorCThin extends Reflector{
-	private String out = "RDOBJNTKVEHMLFCWZAXGYIPSUQ";
-	private boolean M4Only = true;
-
-	ReflectorC(){
-		super();
-	}
-
-	public char encrypt(char in) {
-		return super.encrypt(in, out);
-	}
-	
-	public boolean M4Only() {
-		return M4Only;
-	}
-}
-*/
