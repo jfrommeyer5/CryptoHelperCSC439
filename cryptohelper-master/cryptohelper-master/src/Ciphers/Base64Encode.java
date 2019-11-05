@@ -13,6 +13,7 @@ public class Base64Encode extends BaseCipher {
     public Base64Encode(){
         super();
         initializeActionBtn("Encode");
+        setMainCipherPanelText("Base64Encode");
     }
 
 

@@ -14,6 +14,7 @@ public class ViginereEncipher extends CookieCutterViginereCiphers {
     public ViginereEncipher(){
         super();
         initializeActionBtn("Enchiper");
+        setMainCipherPanelText("Viginere Encipher");
     }
 
     @Override
