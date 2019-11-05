@@ -45,9 +45,15 @@ public class CryptoHelper extends javax.swing.JFrame {
         gcdAndInverse = new GCDAndInverse();
         substitutionSolver = new SubstitutionSolver();
         base64Encode = new Base64Encode();
-        //base64Decode = new Base64Decode();
+
         baconEncipher = new BaconEncipher();
         baconDecipher = new BaconDecipher();
+
+
+//        base64Decode = new Base64Decode();
+        playfairEncipher = new PlayfairEncipher();
+
+
 
         optionsMenu = new OptionsMenu();
 
@@ -85,7 +91,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
                 viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce,
-                columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, termsOfTheGPL};
+                columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, termsOfTheGPL, playfairEncipher};
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
@@ -120,7 +126,6 @@ public class CryptoHelper extends javax.swing.JFrame {
 */
         jSplitPane1.setTopComponent(jScrollPane1);
         rightHandNavPanelTab.setTabPlacement(JTabbedPane.RIGHT);
-
         addActionButtonActionListener(ciphersList);
         addMouseListeners(ciphersList);
         addKeyListeners(ciphersList);
@@ -244,7 +249,6 @@ public class CryptoHelper extends javax.swing.JFrame {
 
                 JPanel mainCipherPanel = (JPanel) getMainCipherPanel.invoke(ciphersList[i]);
                 String mainCipherPanelText = (String) getMainCipherPanelText.invoke(ciphersList[i]);
-
                 rightHandNavPanelTab.addTab(mainCipherPanelText, mainCipherPanel);
             }
         }
@@ -362,9 +366,14 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
+
     //private Base64Decode base64Decode;
+
     private BaconEncipher baconEncipher;
     private BaconDecipher baconDecipher;
+
+    private PlayfairEncipher playfairEncipher;
+
 
     private OptionsMenu optionsMenu;
 
