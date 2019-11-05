@@ -16,6 +16,7 @@ public class ViginereBruteForce extends CookieCutterViginereCiphers {
     public ViginereBruteForce(){
         super();
         initializeActionBtn("Go");
+        setMainCipherPanelText("Viginere Brute Force");
     }
 
 

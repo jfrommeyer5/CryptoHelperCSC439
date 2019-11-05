@@ -22,6 +22,7 @@ public class AffineKnownPlaintextAttack extends BaseCipher {
         topPanel = new JPanel();
         label = new JLabel();
         initializeActionBtn("Execute");
+        setMainCipherPanelText("Affine Known Plaintext Attack");
 
         topPanel.setLayout(new BorderLayout());
         label.setText("Enter Keyword");

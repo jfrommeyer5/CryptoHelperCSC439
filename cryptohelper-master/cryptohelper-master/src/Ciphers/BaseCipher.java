@@ -19,6 +19,8 @@ public abstract class BaseCipher {
 
     private CipherService cipherService;
 
+    private String mainCipherPanelText;
+
 
 
     public BaseCipher(){
@@ -72,6 +74,10 @@ public abstract class BaseCipher {
         return mainCipherTextArea;
     }
 
+    public void setMainCipherTextArea(JTextArea mainCipherTextArea){
+        this.mainCipherTextArea = mainCipherTextArea;
+    }
+
     public JTextArea getInputText() {
         return inputText;
     }
@@ -88,4 +94,11 @@ public abstract class BaseCipher {
         return jScrollPane;
     }
 
+    public String getMainCipherPanelText() {
+        return mainCipherPanelText;
+    }
+
+    public void setMainCipherPanelText(String mainCipherPanelText) {
+        this.mainCipherPanelText = mainCipherPanelText;
+    }
 }
