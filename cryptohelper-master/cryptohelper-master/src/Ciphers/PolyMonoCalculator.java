@@ -42,6 +42,7 @@ public class PolyMonoCalculator extends BaseCipher {
 
 
         initializeActionBtn("Calculate");
+        setMainCipherPanelText("Poly/Mono Calculator");
     }
 
     @Override

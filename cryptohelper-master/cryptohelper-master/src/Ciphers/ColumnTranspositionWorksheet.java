@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ColumnTranspositionWorksheet {
+public class ColumnTranspositionWorksheet extends BaseCipher {
 
     private JLabel numberOfRowsJLabel;
     private JSpinner jSpinner;
@@ -74,6 +74,9 @@ public class ColumnTranspositionWorksheet {
         bottomPanel.setLayout(new BorderLayout());
 
         goButton.setText("Go");
+        setMainCipherPanelText("Column Transposition Worksheet");
+
+
         goButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 actionButtonActionPerformed(evt);

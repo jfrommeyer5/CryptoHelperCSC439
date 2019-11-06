@@ -18,6 +18,7 @@ public class AutoKeyPlaintextAttack extends CookieCutterViginereCiphers {
     public AutoKeyPlaintextAttack(){
         super();
         initializeActionBtn("Perform Attack");
+        setMainCipherPanelText("AutoKey Plaintext Attack");
     }
 
     @Override

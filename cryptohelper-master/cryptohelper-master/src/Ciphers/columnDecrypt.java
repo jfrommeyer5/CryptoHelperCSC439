@@ -38,6 +38,7 @@ public class columnDecrypt extends BaseCipher{
 		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 		
 		initializeActionBtn("Decipher");
+		setMainCipherPanelText("CTC Decrypt");
 	}
 	@Override
 	public void actionButtonActionPerformed(ActionEvent evt) {

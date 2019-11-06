@@ -28,6 +28,7 @@ public class encryptKW extends BaseCipher{
 		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
 		
 		initializeActionBtn("Encipher");
+		setMainCipherPanelText("Encrypt Keyword");
 	}
 	
 	@Override
