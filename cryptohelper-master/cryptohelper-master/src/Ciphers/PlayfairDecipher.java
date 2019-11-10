@@ -2,12 +2,12 @@ package Ciphers;
 
 import java.awt.event.ActionEvent;
 
-public class PlayfairEncipher extends BaseCipher {
+public class PlayfairDecipher extends BaseCipher {
 
-    public PlayfairEncipher(){
+    public PlayfairDecipher(){
         super();
-        initializeActionBtn("Perform Playfair Encipher");
-        setMainCipherPanelText("Playfair Encipher");
+        initializeActionBtn("Perform Playfair Decipher");
+        setMainCipherPanelText("Playfair Decipher");
     }
 
 	@Override
@@ -21,7 +21,7 @@ public class PlayfairEncipher extends BaseCipher {
 
 	private String performPlayfairEncipher(String inputString) {
 		char[] inputCharArr;
-		char[] outputCharArr;
+		char [] outputCharArr;
 		char[][] keySquare = { 			//declare KeySquare (NOTE: Key Square used is weak but simple for ease of testing and implementation
 				{'a','b','c','d','e'},
 				{'f','g','h','i','k'},
@@ -39,10 +39,7 @@ public class PlayfairEncipher extends BaseCipher {
 			inputCharArr = (inputString.concat("x")).toCharArray();
 		}
 			//Convert input string to Char Arr for manipulation/comparison of chars
-		for(int i = 1; inputCharArr.length > i; i++) {	//change all duplicate letters to x (ex. humming -> humxing) known bug if xx occurs that it will not be enciphered.
-			if(inputCharArr[i-1] == inputCharArr[i])
-				inputCharArr[i] = 'x';
-		}
+
 		outputCharArr = inputCharArr.clone();
 		for(int i = 0; inputCharArr.length > i; i= i+2)
 		{
@@ -69,46 +66,47 @@ public class PlayfairEncipher extends BaseCipher {
 							outputCharArr[i+1] = keySquare[rowB][colA];
 							}
 							if(rowA == rowB && colA != colB) {	////handle second case, take take immediate right chars
-								if(colA+1 < 5) {
-									if(colB+1 < 5) {
-										outputCharArr[i] = keySquare[rowA][colA+1];
-										outputCharArr[i+1] = keySquare[rowB][colB+1];
+								if(colA-1 >= 0) {
+									if(colB-1 >= 0) {
+									
+										outputCharArr[i] = keySquare[rowA][colA-1];
+										outputCharArr[i+1] = keySquare[rowB][colB-1];
 									}
 									else{
-										outputCharArr[i] = keySquare[rowA][colA+1];
-										outputCharArr[i+1] = keySquare[rowB][0];
+										outputCharArr[i] = keySquare[rowA][colA-1];
+										outputCharArr[i+1] = keySquare[rowB][4];
 									}
 								}
 								else {
-									if(colB+1 < 5) {
-										outputCharArr[i] = keySquare[rowA][0];
-										outputCharArr[i+1] = keySquare[rowB][colB+1];
+									if(colB-1 >= 0) {
+										outputCharArr[i] = keySquare[rowA][4];
+										outputCharArr[i+1] = keySquare[rowB][colB-1];
 									}
 									else{
-										outputCharArr[i] = keySquare[rowA][0];
-										outputCharArr[i+1] = keySquare[rowB][0];
+										outputCharArr[i] = keySquare[rowA][4];
+										outputCharArr[i+1] = keySquare[rowB][4];
 									}
 								}
 							}
 							if(colA == colB && rowA != rowB) {	////handle second case, take take immediate right chars
-								if(rowA+1 < 5) {
-									if(rowB+1 < 5) {
-										outputCharArr[i] = keySquare[rowA+1][colA];
-										outputCharArr[i+1] = keySquare[rowB+1][colB];
+								if(rowA-1 >= 0) {
+									if(rowB-1 >= 0) {
+										outputCharArr[i] = keySquare[rowA-1][colA];
+										outputCharArr[i+1] = keySquare[rowB-1][colB];
 									}
 									else{
-										outputCharArr[i] = keySquare[rowA+1][colA];
-										outputCharArr[i+1] = keySquare[0][colB];
+										outputCharArr[i] = keySquare[rowA-1][colA];
+										outputCharArr[i+1] = keySquare[4][colB];
 									}
 								}
 								else {
-									if(rowB+1 < 5) {
-										outputCharArr[i] = keySquare[0][colA];
-										outputCharArr[i+1] = keySquare[rowB+1][colB];
+									if(rowB-1 >= 0) {
+										outputCharArr[i] = keySquare[4][colA];
+										outputCharArr[i+1] = keySquare[rowB-1][colB];
 									}
 									else{
-										outputCharArr[i] = keySquare[0][colA];
-										outputCharArr[i+1] = keySquare[0][colB];
+										outputCharArr[i] = keySquare[4][colA];
+										outputCharArr[i+1] = keySquare[4][colB];
 									}
 								}
 							}
@@ -131,6 +129,13 @@ public class PlayfairEncipher extends BaseCipher {
 					colB = 0;
 				}
 
+			}
+		}
+		for(int i = 1; outputCharArr.length > i; i++) {	//change all duplicate letters back from x 
+			
+			if(outputCharArr[i] == 'x') {
+				System.out.print("Swapping an "+ outputCharArr[i] + " with a "+ outputCharArr[i-1]);
+				outputCharArr[i] = outputCharArr[i-1];
 			}
 		}
 		String returnString = new String(outputCharArr);
