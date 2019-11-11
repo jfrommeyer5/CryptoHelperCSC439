@@ -48,7 +48,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         baconEncipher = new BaconEncipher();
         baconDecipher = new BaconDecipher();
-
+        alBhedEncipher = new AlBhed();
+        alBhedDecipher = new AlBhedDecrypt();
 
 //        base64Decode = new Base64Decode();
         playfairEncipher = new PlayfairEncipher();
@@ -88,7 +89,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         scytaleDecipher = new Scytale_Decipher();
 
 
-        Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, columnEncrypt,
+        Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, alBhedEncipher, alBhedDecipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
                 viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce,
                 columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, termsOfTheGPL, playfairEncipher};
@@ -371,6 +372,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
     private BaconEncipher baconEncipher;
     private BaconDecipher baconDecipher;
+    private AlBhed alBhedEncipher;
+    private AlBhedDecrypt alBhedDecipher;
 
     private PlayfairEncipher playfairEncipher;
 
