@@ -1,7 +1,9 @@
 package Ciphers;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
-import java.util.*;
 public class Key {
 	private int key [][];
 	private int det;
@@ -19,19 +21,35 @@ public class Key {
 		initKeyInverse(key, keyInverse);
 		
 	}
-	Key(int [][] key){
+	
+	Key(int a, int b, int c, int d) {
 		initAdd();
 		initMult();
-		this.key = key;
+		initKeyWIn(a,b,c,d);
 		keyInverse = new int[2][2];
 		initKeyInverse(this.key, keyInverse);
+	}
+
+	private void initKeyWIn(int a, int b, int c, int d) {
+		key = new int[2][2];
+		int [][] k = new int[2][2];
+		key[0][0]= a;
+		key[0][1]= b;
+		key[1][0]= c;
+		key[1][1]= d;
+		for(int i = 0; i < k.length;i++ ){
+			for(int j = 0; j < k[0].length; j++){
+				k[i][j]= key[i][j];
+			}
+		}
+		det = getDet(k);
 	}
 
 	private void initKeyInverse(int[][] k, int[][] ki) {
 		int detI = multInverse.get(det);
 		ki[0][0] = k[1][1];
-		ki[0][1] = addInverse.get(k[0][1]);
-		ki[1][0] = addInverse.get(k[1][0]);
+		ki[0][1] = (k[0][1] * -1) + 26;
+		ki[1][0] = (k[1][0] * -1) + 26;
 		ki[1][1] = k[0][0];
 		
 		ki[0][0] = (ki[0][0] * detI)% 26;
@@ -70,8 +88,8 @@ public class Key {
 
 	private int getDet(int[][] k) {
 		int v, d;
-		v = k[0][0]*k[1][1] - k[0][1]*k[1][0];
-		d = Math.abs(v) % 26;
+		v = (k[0][0]*k[1][1]) - (k[0][1]*k[1][0]);
+		d = v % 26;
 		return d;
 	}
 
@@ -146,5 +164,4 @@ public class Key {
 			System.out.print("\n");
 		}
 	}
-	
 }
