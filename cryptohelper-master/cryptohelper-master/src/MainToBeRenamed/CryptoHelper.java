@@ -46,8 +46,13 @@ public class CryptoHelper extends javax.swing.JFrame {
         substitutionSolver = new SubstitutionSolver();
         base64Encode = new Base64Encode();
 
+        baconEncipher = new BaconEncipher();
+        baconDecipher = new BaconDecipher();
+
+
 //        base64Decode = new Base64Decode();
         playfairEncipher = new PlayfairEncipher();
+
 
 
         optionsMenu = new OptionsMenu();
@@ -79,8 +84,11 @@ public class CryptoHelper extends javax.swing.JFrame {
         jScrollPane32 = new JScrollPane();
         jScrollPane33 = new JScrollPane();
 
+        scytaleEncipher = new Scytale_Encipher();
+        scytaleDecipher = new Scytale_Decipher();
 
-        Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, columnEncrypt,
+
+        Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
                 viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce,
                 columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, termsOfTheGPL, playfairEncipher};
@@ -122,6 +130,48 @@ public class CryptoHelper extends javax.swing.JFrame {
         addMouseListeners(ciphersList);
         addKeyListeners(ciphersList);
         addRightHandNavPanelTabs(ciphersList);
+
+        scytaleEncipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
+                jTextAreaKeyReleased(evt);
+            }
+        });
+        scytaleEncipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                jTextAreaMouseClicked(evt);
+            }
+        });
+
+        scytaleEncipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                scytaleEncipher.setInputText(inputText);
+            }
+        });
+
+        rightHandNavPanelTab.addTab("Scytale Encipher", scytaleEncipher.getMainCipherPanel());
+//end Scytale_Encipher
+
+        scytaleDecipher.getMainCipherTextArea().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
+                jTextAreaKeyReleased(evt);
+            }
+        });
+        scytaleDecipher.getMainCipherTextArea().addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                jTextAreaMouseClicked(evt);
+            }
+        });
+
+        scytaleDecipher.getActionButton().addActionListener( new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                scytaleDecipher.setInputText(inputText);
+            }
+        });
+
+        rightHandNavPanelTab.addTab("Scytale Decipher", scytaleDecipher.getMainCipherPanel());
+//end Scytale_dDecipher
 
         jSplitPane1.setBottomComponent(rightHandNavPanelTab);
 
@@ -318,7 +368,12 @@ public class CryptoHelper extends javax.swing.JFrame {
     private Base64Encode base64Encode;
 
     //private Base64Decode base64Decode;
+
+    private BaconEncipher baconEncipher;
+    private BaconDecipher baconDecipher;
+
     private PlayfairEncipher playfairEncipher;
+
 
     private OptionsMenu optionsMenu;
 
@@ -337,6 +392,9 @@ public class CryptoHelper extends javax.swing.JFrame {
     private columnDecrypt columnDecrypt;
     private javax.swing.JScrollPane jscrollPane34;
     private javax.swing.JScrollPane jscrollPane35;
+
+    private Scytale_Encipher scytaleEncipher;
+    private Scytale_Decipher scytaleDecipher;
     
     
     private javax.swing.ButtonGroup buttonGroup1;
