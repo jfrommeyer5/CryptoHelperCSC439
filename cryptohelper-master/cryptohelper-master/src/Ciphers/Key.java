@@ -21,14 +21,17 @@ public class Key {
 		initKeyInverse(key, keyInverse);
 		
 	}
+
 	
 	Key(int a, int b, int c, int d) {
+
 		initAdd();
 		initMult();
 		initKeyWIn(a,b,c,d);
 		keyInverse = new int[2][2];
 		initKeyInverse(this.key, keyInverse);
 	}
+
 
 	private void initKeyWIn(int a, int b, int c, int d) {
 		key = new int[2][2];
@@ -44,6 +47,8 @@ public class Key {
 		}
 		det = getDet(k);
 	}
+
+
 
 	private void initKeyInverse(int[][] k, int[][] ki) {
 		int detI = multInverse.get(det);
