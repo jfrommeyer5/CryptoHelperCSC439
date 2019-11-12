@@ -3,6 +3,7 @@ package Ciphers;
 import java.awt.event.ActionEvent;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+import java.util.ArrayList;
 
 public class Enigma extends BaseCipher{
 
@@ -416,9 +417,183 @@ public class Enigma extends BaseCipher{
 		 */
 	}
 
+	/*
+	 * Input:
+	 * A:B C:D E:F G:H I:J K:L M:N O:P Q:R S:T U:V W:X Y:Z
+	 * II - IV - I
+	 * A-Z - A-Z - A-Z
+	 * 700 characters
+	 * 
+	 * Output:
+	 * 700 encrypted characters
+	 */
 	@Override
 	public void actionButtonActionPerformed(ActionEvent evt) {
-		//String input = getInputText().getText();
+		String input = getInputText().getText();
+		String lines[] = input.split("\\r?\\n");
+		String out = "";
+
+		for(int i = 0; i < 5; i++)
+			lines[i] = lines[i].toUpperCase();
+
+		String reflector = lines[0];
+		String rotors = lines[1];
+		String sPos = lines[2];
+		String plugOrder = lines[3];
+		input = lines[4];
+		String msg = input.replaceAll("\\W", "");
+
+		Reflector rf = initReflector(reflector);
+		Plugboard pb = new Plugboard(genPlugboard(plugOrder));
+		Rotor[] rotorArr = initRotors(rotors, sPos);
+
+		CharacterIterator iter = new StringCharacterIterator(msg);
+
+		while(iter.current() != CharacterIterator.DONE) {
+			if(rotorArr[0].rotate()) {
+				if(rotorArr[1].rotate()) {
+					rotorArr[2].rotate();
+				}
+			}
+			out = out +
+					pb.encrypt(
+							rotorArr[0].decrypt(
+									rotorArr[1].decrypt(
+											rotorArr[2].decrypt(
+													rf.encrypt(
+															rotorArr[2].encrypt(
+																	rotorArr[1].encrypt(
+																			rotorArr[0].encrypt(
+																					pb.encrypt(
+																							iter.current())))))))));
+			iter.next();
+		}
+		iter.first();
+
+		for(int i = 0; i < 3; i++)
+			rotorArr[i].reset();
+		
+		getMainCipherTextArea().setText("");
+		
+		out = standardize(out, input);
+		
+		getMainCipherTextArea().append(out);
+	}
+
+	private String standardize(String string, String input) {
+		char[] in = input.toCharArray();
+		String output;
+		ArrayList<Character> outputArr = new ArrayList<Character>();
+		for(char c: string.toCharArray())
+			outputArr.add(c);
+
+		for(int i = 0; i < input.length(); i++)
+			if(!(in[i] >= 'A' && in[i] <= 'Z'))
+				outputArr.add(i, in[i]);
+		
+		outputArr.add(input.length(), " ".toCharArray()[0]);
+
+		StringBuilder sb = new StringBuilder();
+		for(Character ch: outputArr)
+			sb.append(ch);
+		output = sb.toString();
+
+		return output;
+	}
+	
+	public Enigma() {
+		super();
+		initializeActionBtn("Enigma");
+	}
+
+	/*
+	 * Takes a string
+	 * Interprets the input 
+	 * Outputs a reflector according to the input string
+	 */
+	private Reflector initReflector(String reflector) {
+		switch(reflector) {
+			case "B":
+				return new ReflectorB();
+			case "C":
+				return new ReflectorC();
+			case "BThin":
+				return new ReflectorBThin();
+			case "CThin":
+				return new ReflectorCThin();
+			default:
+				return new ReflectorB(); //error case
+		}
+	}
+
+	/*
+	 * Takes the inputed plug ordering
+	 * Outputs a string that Plugboard will accept as an argument
+	 */
+	private String genPlugboard(String order) {
+		String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String[] pos = new String[26];
+		String out = "";
+
+		/*
+		 * convert plugboard data to a single string
+		 */
+		String[] pairs = order.split(" ");
+		String[][] pairArr = new String[pairs.length][2];
+		for(int i = 0; i < pairs.length; i++) {
+			pairArr[i] = pairs[i].split(":");
+			pos[alpha.indexOf(pairArr[i][0])] = pairArr[i][1];
+			pos[alpha.indexOf(pairArr[i][1])] = pairArr[i][0];
+		}
+
+		for(int i = 0; i < 26; i++) {
+			if(pos[i] == null || pos[i] == "")
+				pos[i] = ((Character)alpha.charAt(i)).toString();
+			out = out + pos[i];
+		}
+
+		return out;
+	}
+
+	/*
+	 * Takes the rotors used and their positions and what letter position they start at
+	 * Initializes the correct rotors in the proper order at the proper starting letter
+	 * Outputs the array of Rotors
+	 */
+	private Rotor[] initRotors(String order, String sPos) {
+		Rotor[] rotorArr = new Rotor[3];
+
+		/*
+		 * convert order and starting position data
+		 */
+		String[] rotors = order.split(" - ");
+		String[] pos = sPos.split(" - ");
+
+		for(int i = 0; i < 3; i++) {
+			switch(rotors[i]) {
+				case "I":
+					rotorArr[i] = new Rotor1(i);
+				case "II":
+					rotorArr[i] = new Rotor2(i);
+				case "III":
+					rotorArr[i] = new Rotor3(i);
+				case "IV":
+					rotorArr[i] = new Rotor4(i);
+				case "V":
+					rotorArr[i] = new Rotor5(i);
+				/*
+				case "VI":
+					rotorArr[i] = new Rotor6(i);
+				case "VII":
+					rotorArr[i] = new Rotor7(i);
+				case "VIII":
+					rotorArr[i] = new Rotor8(i);
+				*/
+				default:
+					//invalid input
+			}
+		}
+		return rotorArr;
 	}
 }
 
@@ -475,38 +650,36 @@ class Plugboard{
 
 /*
  * Abstract class for the rotors
- * Each rotor keeps track of its:
- * 	position in the rotor order
+ * Each rotor keeps track of:
+ * 	it position in the rotor order
  * 	how many times it's stepped away from its starting position
- * 	and
  * 	its letter order
+ * 	and
+ * 	the letter position that makes the next rotor step
  */
 abstract class Rotor{
-	private static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	private int pos, dis, step = 0;
+	protected static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private int pos, step = 0;
 
 	/*
-	 * Initializes Rotor with a position of 0
+	 * Initializes Rotor with a position of 0 and starting character of A
 	 */
 	public Rotor(){
 		this.pos = 0;
-		this.dis = 0;
 	}
 
 	/*
-	 * Initializes Rotor with a given position
+	 * Initializes Rotor with a given position and a starting character of A
 	 */
 	public Rotor(int pos){
 		this.pos = pos;
-		this.dis = 0;
 	}
 
 	/*
-	 * Not yet used
+	 * Initializes Rotor with a given position and starting character
 	 */
 	public Rotor(int pos, char start) {
 		this.pos = pos;
-		this.dis = Rotor.alpha.indexOf(start);
 	}
 
 	/*
@@ -536,6 +709,8 @@ abstract class Rotor{
 	public void reset() {
 		this.step = 0;
 	}
+	
+	protected abstract boolean M4Only();
 
 	/*
 	 * Allows the Rotor classes to call encrypt() and pass their letter order
@@ -555,7 +730,7 @@ abstract class Rotor{
 	protected char encrypt(char in, String left) {
 		//System.out.print(alpha.charAt((alpha.indexOf(in)+step)%26) + "\t>\t"); //rin
 		//System.out.print(left.charAt((alpha.indexOf(in)+step)%26) + "\t>\t"); //rout
-		int index = alpha.indexOf(left.charAt((alpha.indexOf(in)+step)%26))-step;
+		int index = (alpha.indexOf(left.charAt((alpha.indexOf(in)+step)%26))-step)%26;
 
 		//System.out.print(alpha.charAt((index + 26)%26) + "\t>\t"); //rt
 
@@ -582,7 +757,7 @@ abstract class Rotor{
 	protected char decrypt(char in, String left) {
 		//System.out.print(alpha.charAt((alpha.indexOf(in)+step)%26) + "\t>\t"); //rin
 		//System.out.print(alpha.charAt(left.indexOf(alpha.charAt((alpha.indexOf(in)+step)%26))) + "\t>\t"); //rout
-		int index = alpha.indexOf(alpha.charAt(left.indexOf(alpha.charAt((alpha.indexOf(in)+step)%26))))-step;
+		int index = (alpha.indexOf(alpha.charAt(left.indexOf(alpha.charAt((alpha.indexOf(in)+step)%26))))-step)%26;
 
 		//System.out.print(alpha.charAt((index + 26)%26) + "\t>\t"); //rt
 
@@ -590,20 +765,34 @@ abstract class Rotor{
 	}
 
 	/*
+	 * Takes two characters
 	 * Increments step
-	 * Returns true if it has stepped through the entire rotor
+	 * Returns true if it has stepped to the stepping character
 	 */
-	public boolean rotate() {
+	protected boolean rotate(int stepChar1, int stepChar2) {
+		/*
 		if(++step >= 26) {
 			step = step%26;
 			return true;
 		}
+		*/
+		int x = (++step)%26;
+		if(x == stepChar1 || x == stepChar1)
+			return true;
 		return false;
 	}
+	
+	protected boolean rotate(int stepChar) {
+		return rotate(stepChar, stepChar);
+	}
+	
+	protected abstract boolean rotate();
 }
 
 class Rotor1 extends Rotor{
 	private String left = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+	private boolean M4Only = false;
+	private int stepChar = Rotor.alpha.indexOf('R');
 
 	Rotor1(){
 		super();
@@ -620,10 +809,20 @@ class Rotor1 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
 }
 
 class Rotor2 extends Rotor{
 	private String left = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+	private boolean M4Only = false;
+	private int stepChar = Rotor.alpha.indexOf('F');
 
 	Rotor2(){
 		super();
@@ -640,10 +839,20 @@ class Rotor2 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
 }
 
 class Rotor3 extends Rotor{
 	private String left = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+	private boolean M4Only = false;
+	private int stepChar = Rotor.alpha.indexOf('W');
 
 	Rotor3(){
 		super();
@@ -660,10 +869,20 @@ class Rotor3 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
 }
 
 class Rotor4 extends Rotor{
 	private String left = "ESOVPZJAYQUIRHXLNFTGKDCMWB";
+	private boolean M4Only = false;
+	private int stepChar = Rotor.alpha.indexOf('K');
 
 	Rotor4(){
 		super();
@@ -680,10 +899,20 @@ class Rotor4 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
 }
 
 class Rotor5 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
+	private boolean M4Only = false;
+	private int stepChar = Rotor.alpha.indexOf('A');
 
 	Rotor5(){
 		super();
@@ -700,10 +929,20 @@ class Rotor5 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
 }
 
+/*
 class Rotor6 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
+	private boolean M4Only = false;
 
 	Rotor6(){
 		super();
@@ -720,10 +959,19 @@ class Rotor6 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
 }
 
 class Rotor7 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
+	private boolean M4Only = false;
 
 	Rotor7(){
 		super();
@@ -740,10 +988,19 @@ class Rotor7 extends Rotor{
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
 	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
 }
 
 class Rotor8 extends Rotor{
 	private String left = "VZBRGITYUPSDNHLXAWMJQOFECK";
+	private boolean M4Only = false;
 
 	Rotor8(){
 		super();
@@ -759,6 +1016,72 @@ class Rotor8 extends Rotor{
 
 	public char decrypt(char in) {
 		return super.decrypt(in, this.left);
+	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
+}
+
+class RotorBeta extends Rotor{
+	private String left = "LEYJVCNIXWPBQMDRTAKZGFUHOS";
+	private boolean M4Only = true;
+
+	RotorBeta(){
+		super();
+	}
+
+	RotorBeta(int pos){
+		super(pos);
+	}
+
+	public char encrypt(char in) {
+		return super.encrypt(in, this.left);
+	}
+
+	public char decrypt(char in) {
+		return super.decrypt(in, this.left);
+	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
+	}
+}
+
+class RotorGamma extends Rotor{
+	private String left = "FSOKANUERHMBTIYCWLQPZXVGJD";
+	private boolean M4Only = true;
+
+	RotorGamma(){
+		super();
+	}
+
+	RotorGamma(int pos){
+		super(pos);
+	}
+
+	public char encrypt(char in) {
+		return super.encrypt(in, this.left);
+	}
+
+	public char decrypt(char in) {
+		return super.decrypt(in, this.left);
+	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+	
+	public boolean rotate() {
+		return super.rotate(stepChar);
 	}
 }
 
@@ -786,10 +1109,13 @@ abstract class Reflector{
 	 * Allows the Reflector classes to call encrypt() and pass their character order
 	 */
 	protected abstract char encrypt(char in);
+	
+	protected abstract boolean M4Only();
 }
 
 class ReflectorB extends Reflector{
 	private String out = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+	private boolean M4Only = false;
 
 	ReflectorB(){
 		super();
@@ -798,10 +1124,15 @@ class ReflectorB extends Reflector{
 	public char encrypt(char in) {
 		return super.encrypt(in, out);
 	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
 }
 
 class ReflectorC extends Reflector{
 	private String out = "FVPJIAOYEDRZXWGCTKUQSBNMHL";
+	private boolean M4Only = false;
 
 	ReflectorC(){
 		super();
@@ -809,5 +1140,43 @@ class ReflectorC extends Reflector{
 
 	public char encrypt(char in) {
 		return super.encrypt(in, out);
+	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+}
+
+class ReflectorBThin extends Reflector{
+	private String out = "ENKQAUYWJICOPBLMDXZVFTHRGS";
+	private boolean M4Only = true;
+
+	ReflectorBThin(){
+		super();
+	}
+
+	public char encrypt(char in) {
+		return super.encrypt(in, out);
+	}
+	
+	public boolean M4Only() {
+		return M4Only;
+	}
+}
+
+class ReflectorCThin extends Reflector{
+	private String out = "RDOBJNTKVEHMLFCWZAXGYIPSUQ";
+	private boolean M4Only = true;
+
+	ReflectorCThin(){
+		super();
+	}
+
+	public char encrypt(char in) {
+		return super.encrypt(in, out);
+	}
+	
+	public boolean M4Only() {
+		return M4Only;
 	}
 }
