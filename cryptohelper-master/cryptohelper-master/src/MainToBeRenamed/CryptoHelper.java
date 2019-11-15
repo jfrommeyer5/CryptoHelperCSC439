@@ -91,11 +91,14 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         scytaleEncipher = new Scytale_Encipher();
         scytaleDecipher = new Scytale_Decipher();
+        hillencrypt = new hillEncrypt();
+        hilldecrypt = new hillDecrypt();
 
 
         Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, alBhedEncipher, alBhedDecipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
-                viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce, columnTranspositionWorksheet, gcdAndInverse, base64Encode, base64Decode, substitutionSolver, termsOfTheGPL, playfairEncipher, morseEncode};
+                viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce, columnTranspositionWorksheet, gcdAndInverse, base64Encode, base64Decode, substitutionSolver, termsOfTheGPL, playfairEncipher, morseEncode
+                , hillencrypt, hilldecrypt};
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
@@ -401,6 +404,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
     private Scytale_Encipher scytaleEncipher;
     private Scytale_Decipher scytaleDecipher;
+    private hillEncrypt hillencrypt;
+    private hillDecrypt hilldecrypt;
     
     private MorseEncode morseEncode;
     private javax.swing.ButtonGroup buttonGroup1;
