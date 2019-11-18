@@ -48,10 +48,14 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         baconEncipher = new BaconEncipher();
         baconDecipher = new BaconDecipher();
+
+        morseEncode = new MorseEncode();
+
         alBhedEncipher = new AlBhed();
         alBhedDecipher = new AlBhedDecrypt();
 
-//        base64Decode = new Base64Decode();
+
+        base64Decode = new Base64Decode();
         playfairEncipher = new PlayfairEncipher();
 
 
@@ -91,8 +95,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, alBhedEncipher, alBhedDecipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
-                viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce,
-                columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, termsOfTheGPL, playfairEncipher};
+                viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce, columnTranspositionWorksheet, gcdAndInverse, base64Encode, base64Decode, substitutionSolver, termsOfTheGPL, playfairEncipher, morseEncode};
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
@@ -368,7 +371,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
 
-    //private Base64Decode base64Decode;
+    private Base64Decode base64Decode;
 
     private BaconEncipher baconEncipher;
     private BaconDecipher baconDecipher;
@@ -399,7 +402,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private Scytale_Encipher scytaleEncipher;
     private Scytale_Decipher scytaleDecipher;
     
-    
+    private MorseEncode morseEncode;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
 
