@@ -8,6 +8,7 @@ public class BaconEncipher extends BaseCipher {
     public BaconEncipher(){
         super();
         initializeActionBtn("Perform Bacon Encipher");
+        setMainCipherPanelText("Bacon Encipher");
     }
     
     
@@ -168,4 +169,5 @@ public class BaconEncipher extends BaseCipher {
 		getMainCipherTextArea().append(inputString);
 		
 	}
+	
 }

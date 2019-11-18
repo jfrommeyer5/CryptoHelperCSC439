@@ -56,8 +56,11 @@ public class CryptoHelper extends javax.swing.JFrame {
         alBhedDecipher = new AlBhedDecrypt();
 
 
-//        base64Decode = new Base64Decode();
+        base64Decode = new Base64Decode();
         playfairEncipher = new PlayfairEncipher();
+        playfairDecipher = new PlayfairDecipher();
+        baconEncipher = new BaconEncipher();
+        baconDecipher = new BaconDecipher();
 
 
 
@@ -97,7 +100,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, alBhedEncipher, alBhedDecipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
                 viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce,
-                columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, termsOfTheGPL, playfairEncipher, morseEncode, pigMorse};
+                columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, playfairEncipher, baconEncipher, baconDecipher, playfairDecipher,morseEncode, pigMorse,  termsOfTheGPL };
+
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
@@ -372,9 +376,14 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
+
     private pigmorse pigMorse;
 
-    //private Base64Decode base64Decode;
+    private BaconEncipher baconEncipher;
+    private BaconDecipher baconDecipher;
+
+
+    private Base64Decode base64Decode;
 
     private BaconEncipher baconEncipher;
     private BaconDecipher baconDecipher;
@@ -382,6 +391,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private AlBhedDecrypt alBhedDecipher;
 
     private PlayfairEncipher playfairEncipher;
+    private PlayfairDecipher playfairDecipher;
 
 
     private OptionsMenu optionsMenu;
