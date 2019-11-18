@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CryptoHelper">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/cryptohelper-master/cryptohelper-master/src/CryptoHelper.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
