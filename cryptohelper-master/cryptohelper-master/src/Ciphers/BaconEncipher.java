@@ -161,11 +161,30 @@ public class BaconEncipher extends BaseCipher {
 		return outputString;
 	}
 
+	public String hideBaconCipher(String baconBinary) {
+		String hiddenString;
+		char[] baconBinaryChar = new char[baconBinary.length()];
+		baconBinaryChar = baconBinary.toCharArray();
+		hiddenString = "loremipsumdolorsitametconsecteturadipiscingelitvestibulumrutrumquisorciinvulputatenamrisuselitullamcorperetvestibulumadapibusposueretortorpellentesqueatmiatmiconvallisplaceratproindignissimmolestienullasitamettinciduntpurusviverraseddonecseddiamtristiquebibendummiacgravidaexaeneanvariusodioaclorempharetramollisproinpretiumeratnonvolutpategestasduismagnamipharetraatmolestienecsagittiseulectusduisnonturpismassaaeneanleoestsodalesnecmaximusatefficituraantedonecauctormagnaipsumphasellussodalescondim";
+		char[] hiddenStringArray = new char[hiddenString.length()];
+		hiddenStringArray = hiddenString.toCharArray();
+		hiddenString = "";
+		for (int x=0; x < hiddenStringArray.length; x++) {
+			if(x < baconBinaryChar.length && baconBinaryChar[x] == '1')
+			hiddenString = hiddenString + Character.toUpperCase(hiddenStringArray[x]);
+			else
+			hiddenString = hiddenString + hiddenStringArray[x];
+		}
+		return hiddenString;
+		
+	}
+
 	@Override
 	public void actionButtonActionPerformed(ActionEvent evt) {
 		String inputString = getInputText().getText();
 		getMainCipherTextArea().setText("");
 		inputString = performBaconCipher(inputString);
+		inputString = hideBaconCipher(inputString);
 		getMainCipherTextArea().append(inputString);
 		
 	}
