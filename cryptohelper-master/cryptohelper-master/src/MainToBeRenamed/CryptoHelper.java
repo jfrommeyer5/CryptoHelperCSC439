@@ -50,6 +50,7 @@ public class CryptoHelper extends javax.swing.JFrame {
         baconDecipher = new BaconDecipher();
 
         morseEncode = new MorseEncode();
+        pigMorse = new pigmorse();
 
         alBhedEncipher = new AlBhed();
         alBhedDecipher = new AlBhedDecrypt();
@@ -100,7 +101,8 @@ public class CryptoHelper extends javax.swing.JFrame {
         Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, alBhedEncipher, alBhedDecipher, ROT13Encipher, ROT13Decipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
                 viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce,
-                columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, playfairEncipher, baconEncipher, baconDecipher, playfairDecipher, termsOfTheGPL };
+                columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, playfairEncipher, baconEncipher, baconDecipher, playfairDecipher,morseEncode, pigMorse,  termsOfTheGPL };
+
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("CryptoHelper \u00a9Gary Watson 2005 (Under the terms of the GPL)");
@@ -375,6 +377,13 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
+
+    private pigmorse pigMorse;
+
+    private BaconEncipher baconEncipher;
+    private BaconDecipher baconDecipher;
+
+
 
     private Base64Decode base64Decode;
 
