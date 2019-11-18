@@ -383,6 +383,7 @@ public class CryptoHelper extends javax.swing.JFrame {
     private BaconDecipher baconDecipher;
 
 
+
     private Base64Decode base64Decode;
 
     private BaconEncipher baconEncipher;
