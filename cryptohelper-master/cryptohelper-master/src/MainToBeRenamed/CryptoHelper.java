@@ -374,8 +374,6 @@ public class CryptoHelper extends javax.swing.JFrame {
     private GCDAndInverse gcdAndInverse;
     private SubstitutionSolver substitutionSolver;
     private Base64Encode base64Encode;
-    private BaconEncipher baconEncipher;
-    private BaconDecipher baconDecipher;
 
     private Base64Decode base64Decode;
 
