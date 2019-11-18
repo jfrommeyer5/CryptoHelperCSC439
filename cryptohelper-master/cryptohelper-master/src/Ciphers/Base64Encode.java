@@ -1,6 +1,10 @@
 package Ciphers;
 
 
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,9 +13,34 @@ import java.util.Map;
 public class Base64Encode extends BaseCipher {
 
     private ArrayList<String> base64InDecimal;
+    private JLabel jLabel;
+    private JSpinner jSpinner;
+    private JPanel topPanel;
+
 
     public Base64Encode(){
         super();
+
+
+        jLabel = new JLabel();
+        jSpinner = new JSpinner();
+        topPanel = new JPanel();
+
+        jLabel.setText("Number of times encoded");
+        topPanel.add(jLabel);
+
+        jSpinner.setPreferredSize(new Dimension(50, 20));
+        jSpinner.setValue(new Integer(1));
+        jSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent evt) {
+                jSpinnerStateChanged(evt);
+            }
+        });
+        topPanel.add(jSpinner);
+
+        getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
+
         initializeActionBtn("Encode");
         setMainCipherPanelText("Base64Encode");
     }
@@ -32,61 +61,69 @@ public class Base64Encode extends BaseCipher {
     public void convertToBase64(String text){
 
         int textLength = getInputText().getText().length();
-
-        String binaryRep = "";
-        ArrayList<String> binaryRepArrayList = new ArrayList<>();
-        ArrayList<String> base64Separation = new ArrayList<>();
-        char[] textSplit = text.toCharArray();
         String encodedMessage = "";
-        int countForAddingEqualSigns = 0;
 
-        for(int i = 0; i < textLength; i++){
-            binaryRepArrayList.add(Integer.toBinaryString(textSplit[i]));
+        for(int j = 0; j < (Integer) jSpinner.getValue(); j++){
+            textLength = text.length();
+            String binaryRep = "";
+            ArrayList<String> binaryRepArrayList = new ArrayList<>();
+            ArrayList<String> base64Separation = new ArrayList<>();
+            char[] textSplit = text.toCharArray();
+            encodedMessage = "";
+            base64InDecimal = new ArrayList<>();
+            int countForAddingEqualSigns = 0;
 
-            String temp = binaryRepArrayList.get(i);
-            while(temp.length() % 8 != 0){
-                temp = "0" + temp;
+            for(int i = 0; i < textLength; i++){
+                binaryRepArrayList.add(Integer.toBinaryString(textSplit[i]));
+
+                String temp = binaryRepArrayList.get(i);
+                while(temp.length() % 8 != 0){
+                    temp = "0" + temp;
+                }
+                binaryRepArrayList.set(i, temp);
             }
-            binaryRepArrayList.set(i, temp);
-        }
 
-        for(int i = 0; i < binaryRepArrayList.size(); i++){
-            binaryRep = binaryRep + binaryRepArrayList.get(i);
-        }
+            for(int i = 0; i < binaryRepArrayList.size(); i++){
+                binaryRep = binaryRep + binaryRepArrayList.get(i);
+            }
 
-        for(int i = 0; i < binaryRep.length(); i+=6){
-            base64Separation.add(binaryRep.substring(i, Math.min(i + 6, binaryRep.length())));
-        }
+            for(int i = 0; i < binaryRep.length(); i+=6){
+                base64Separation.add(binaryRep.substring(i, Math.min(i + 6, binaryRep.length())));
+            }
 
-        for(int i = 0; i < base64Separation.size(); i++){
+            for(int i = 0; i < base64Separation.size(); i++){
 
-            while(base64Separation.get(i).length() != 6){
-                if(base64Separation.get(i).length() != 6){
-                    base64Separation.set(i, base64Separation.get(i) + "00");
-                    countForAddingEqualSigns++;
+                while(base64Separation.get(i).length() != 6){
+                    if(base64Separation.get(i).length() != 6){
+                        base64Separation.set(i, base64Separation.get(i) + "00");
+                        countForAddingEqualSigns++;
+                    }
                 }
             }
-        }
 
-        for(int i = 0; i < base64Separation.size(); i++){
-            base64InDecimal.add(Integer.toUnsignedString(Integer.parseInt((base64Separation.get(i)),2)));
-        }
-
-
-        Map<String, String> base64EncodingMap = createBase64Map();
-
-        for(int i = 0; i < base64InDecimal.size(); i++){
-
-            if(base64EncodingMap.containsKey(base64InDecimal.get(i))){
-                encodedMessage = encodedMessage + base64EncodingMap.get(base64InDecimal.get(i));
+            for(int i = 0; i < base64Separation.size(); i++){
+                base64InDecimal.add(Integer.toUnsignedString(Integer.parseInt((base64Separation.get(i)),2)));
             }
-        }
 
-        for(int i = 0; i < countForAddingEqualSigns; i++){
-            encodedMessage = encodedMessage + "=";
-        }
 
+            Map<String, String> base64EncodingMap = createBase64Map();
+
+            for(int i = 0; i < base64InDecimal.size(); i++){
+
+                if(base64EncodingMap.containsKey(base64InDecimal.get(i))){
+                    encodedMessage = encodedMessage + base64EncodingMap.get(base64InDecimal.get(i));
+                }
+            }
+
+            for(int i = 0; i < countForAddingEqualSigns; i++){
+                encodedMessage = encodedMessage + "=";
+            }
+
+            text = encodedMessage;
+            getMainCipherTextArea().setText("");
+        }
         getMainCipherTextArea().append(encodedMessage);
+
     }
 
 
@@ -160,4 +197,17 @@ public class Base64Encode extends BaseCipher {
         return base64EncodingMap;
     }
 
+    private void jSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
+        JSpinner js = (JSpinner)evt.getSource();
+
+        if (((Integer)js.getValue()).intValue() < 1) js.setValue(new Integer(1));
+    }
+
+    public JSpinner getjSpinner() {
+        return jSpinner;
+    }
+
+    public void setjSpinner(JSpinner jSpinner) {
+        this.jSpinner = jSpinner;
+    }
 }

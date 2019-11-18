@@ -51,5 +51,19 @@ class Base64DecodeTest {
         testJTextArea.setText(new String(Base64.getDecoder().decode(testJTextArea.getText().getBytes())));
 
         assertEquals(testJTextArea.getText(), base64Decode.getMainCipherTextArea().getText().substring(0, base64Decode.getMainCipherTextArea().getText().length() - 1));
+
+
+
+        testJTextArea.setText("        Vm0xMGEySXlUa2hVYWxaU1ltdEtjVnBXVmt0a1ZteHhVMjVPYTFadVFURlZWM0JEWVZkV1ZsTnVRbGhpUjFKUVdrY3hTMWRHV2xoYVJuQldUVVZ3TmxkWGNFcE5WMHB5WWtWc1ZXRnJTbkZaYkdRMFRWWmtkVmw2YkZGVlZEQTU=");
+
+        base64Decode.setInputText(testJTextArea);
+        base64Decode.getjSpinner().setValue(5);
+        base64Decode.getActionButton().doClick();
+
+        testJTextArea.setText("This is going to become a long string");
+
+        assertEquals(testJTextArea.getText(), base64Decode.getMainCipherTextArea().getText().substring(0, base64Decode.getMainCipherTextArea().getText().length() - 1));
+
+
     }
 }
