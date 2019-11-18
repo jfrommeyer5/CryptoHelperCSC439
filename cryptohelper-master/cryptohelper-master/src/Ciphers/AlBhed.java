@@ -1,7 +1,7 @@
 package Ciphers;
 
 
-public class AlBhed {
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 
