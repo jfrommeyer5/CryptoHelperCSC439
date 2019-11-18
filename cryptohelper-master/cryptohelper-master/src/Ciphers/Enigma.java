@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
+import org.junit.jupiter.api.Test;
+
+
 public class Enigma extends BaseCipher{
 
 	public static void main(String[] args) {

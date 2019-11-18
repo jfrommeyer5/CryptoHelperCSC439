@@ -8,6 +8,7 @@ public class BaconDecipher extends BaseCipher {
     public BaconDecipher(){
         super();
         initializeActionBtn("Perform Bacon Decipher");
+        setMainCipherPanelText("Bacon Decipher");
     }
     
     
