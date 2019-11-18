@@ -27,7 +27,7 @@ public class pigmorse extends BaseCipher{
             outputting = outputting + morseEncode(encryptedText.charAt(i));
         }
 
-        getMainCipherTextArea().setText(encryptedText + "\n" + outputting);
+        getMainCipherTextArea().setText(outputting);
 
 
 

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
 public class Enigma extends BaseCipher{
 
