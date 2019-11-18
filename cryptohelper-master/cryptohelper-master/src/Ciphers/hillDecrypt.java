@@ -1,17 +1,90 @@
 package Ciphers;
 
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-public class hillDecrypt {
-	private static Map<Integer, Character> numToAlpha;
-	private static Map<Character, Integer> alphaToNum;
-	private static int acceptedDet[] = {1,3,5,7,9,11,15,17,19,21,23,25};
-	public static String decrypt(String msg, int a, int b, int c, int d){
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class hillDecrypt extends BaseCipher{
+	private Map<Integer, Character> numToAlpha;
+	private Map<Character, Integer> alphaToNum;
+	private int acceptedDet[] = {1,3,5,7,9,11,15,17,19,21,23,25};
+	private Key k;
+	private JPanel topPanel;
+	private JPanel textPanel;
+	private JPanel labelPanel;
+	private JTextField a;
+	private JTextField b;
+	private JTextField c;
+	private JTextField d;
+	private JLabel keyLabel;
+	
+	public hillDecrypt(){
+		super();
+	    topPanel = new JPanel();
+		textPanel = new JPanel();
+		labelPanel = new JPanel();
+		a = new JTextField();
+		b = new JTextField();
+		c = new JTextField();
+		d = new JTextField();
+		keyLabel = new JLabel();
+		
+		a.setFont(new Font("Monospaced", 0, 12));
+		b.setFont(new Font("Monospaced", 0, 12));
+		c.setFont(new Font("Monospaced", 0, 12));
+		d.setFont(new Font("Monospaced", 0, 12));
+		a.setColumns(3);
+		b.setColumns(3);
+		c.setColumns(3);
+		d.setColumns(3);
+		
+		textPanel.setLayout(new GridLayout(1,4));
+		textPanel.add(a);
+		textPanel.add(b);
+		textPanel.add(c);
+		textPanel.add(d);
+		
+		keyLabel.setText("Key: ");
+		
+		labelPanel.setLayout(new BorderLayout());
+		labelPanel.add(keyLabel);
+		
+		topPanel.setLayout(new BorderLayout());
+		topPanel.add(labelPanel, BorderLayout.WEST);
+		topPanel.add(textPanel, BorderLayout.CENTER);
+		getMainCipherPanel().add(topPanel, BorderLayout.NORTH);
+		
+		initializeActionBtn("Decipher");
+		setMainCipherPanelText("Hill Decipher");
+	}
+	
+	@Override
+	public void actionButtonActionPerformed(ActionEvent evt){
+		getMainCipherTextArea().setText("");
+		String msg = getInputText().getText();
+		int a1 = Integer.parseInt(a.getText());
+		int b1 = Integer.parseInt(b.getText());
+		int c1 = Integer.parseInt(c.getText());
+		int d1 = Integer.parseInt(d.getText());
+		String e = decrypt(msg, a1, b1, c1, d1);
+		
+		getMainCipherTextArea().append(e);
+		
+	
+	}
+	
+	public String decrypt(String msg, int a, int b, int c, int d){
 		if(isDet(a,b,c,d) == false){
 			return "Error: Invalid Key";
 		}
-		Key k = new Key(a,b,c,d);
+		k = new Key(a,b,c,d);
 		initNumToAlpha();
 		initAlphaToNum();
 		msg = msg.replaceAll("[^a-zA-Z]", "");
@@ -60,7 +133,7 @@ public class hillDecrypt {
 		}
 		return em;
 	}
-	public static int [][] matrixMult(int [][] kI, int [][] msg){
+	public int [][] matrixMult(int [][] kI, int [][] msg){
 		int[][] enc = new int[msg.length][msg[0].length];
 		for(int i = 0; i < msg[0].length; i++){
 			for(int j = 0; j < msg.length; j++){
@@ -75,7 +148,7 @@ public class hillDecrypt {
 		
 		return enc;
 	}
-	private static void initNumToAlpha(){
+	private void initNumToAlpha(){
 		numToAlpha = new HashMap<Integer, Character>();
 		numToAlpha.put(0, 'z');
 		numToAlpha.put(1, 'a');
@@ -104,7 +177,7 @@ public class hillDecrypt {
 		numToAlpha.put(24, 'x');
 		numToAlpha.put(25, 'y');
 	}
-	private static void initAlphaToNum(){
+	private void initAlphaToNum(){
 		alphaToNum = new HashMap<Character, Integer>();
 		alphaToNum.put('z', 0);
 		alphaToNum.put('a', 1);
@@ -133,7 +206,7 @@ public class hillDecrypt {
 		alphaToNum.put('x', 24);
 		alphaToNum.put('y', 25);
 	}
-	private static Boolean isDet(int a, int b, int c, int d){ 
+	private Boolean isDet(int a, int b, int c, int d){ 
 		int v, d1;
 		v = (a*d) - (b*c);
 		d1 = v % 26;
@@ -144,13 +217,16 @@ public class hillDecrypt {
 		}
 		return false;
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String m = "YGPMN NMKGL IOAZ";
-		String d = decrypt(m, 1,2,3,4);
-		System.out.println(d);
-		//System.out.println(k.getDet());
-		
+	public void setA(String s){
+		a.setText(s);
+	}
+	public void setB(String s){
+		b.setText(s);
+	}
+	public void setC(String s){
+		c.setText(s);
+	}
+	public void setD(String s){
+		d.setText(s);
 	}
 }

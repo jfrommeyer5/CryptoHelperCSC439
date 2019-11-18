@@ -96,6 +96,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         scytaleEncipher = new Scytale_Encipher();
         scytaleDecipher = new Scytale_Decipher();
+        hillencrypt = new hillEncrypt();
+        hilldecrypt = new hillDecrypt();
 
 
         Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, alBhedEncipher, alBhedDecipher, ROT13Encipher, ROT13Decipher, columnEncrypt,
@@ -417,6 +419,8 @@ public class CryptoHelper extends javax.swing.JFrame {
 
     private Scytale_Encipher scytaleEncipher;
     private Scytale_Decipher scytaleDecipher;
+    private hillEncrypt hillencrypt;
+    private hillDecrypt hilldecrypt;
     
     private MorseEncode morseEncode;
     private javax.swing.ButtonGroup buttonGroup1;

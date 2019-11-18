@@ -1,12 +1,37 @@
 package Ciphers;
 
+import java.awt.event.ActionEvent;
 import java.util.*;
-public class hillEncrypt {
-	private static  Map <Integer, Character> numToAlpha;
-	private static  Map <Character, Integer> alphaToNum;
 
-	public static String encrypt(String msg){
-		Key k = new Key();
+public class hillEncrypt extends BaseCipher {
+	private  Map <Integer, Character> numToAlpha;
+	private  Map <Character, Integer> alphaToNum;
+	private Key k;
+	
+	public hillEncrypt(){
+		super();
+		initializeActionBtn("Encipher");
+		setMainCipherPanelText("Hill Encrypt");
+	}
+	
+	@Override
+	public void actionButtonActionPerformed(ActionEvent evt){
+		getMainCipherTextArea().setText("");
+		String msg = getInputText().getText();
+		String e = encrypt(msg);
+		getMainCipherTextArea().append("Your Key:\n");
+		int [][] key = k.getKey();
+		for(int i = 0; i < key.length; i++){
+			for(int j = 0; j < key[0].length; j++){
+				getMainCipherTextArea().append(Integer.toString(key[i][j]) + " ");
+			}
+		}
+		getMainCipherTextArea().append("\n");
+		getMainCipherTextArea().append(e);
+		
+	}
+	public String encrypt(String msg){
+		k = new Key();
 		initNumToAlpha();
 		initAlphaToNum();
 		msg = msg.replaceAll("[^a-zA-Z]", "");
@@ -55,7 +80,7 @@ public class hillEncrypt {
 		return em;
 		
 	}
-	public static int [][] matrixMult(int key [][], int msg[][]){
+	public int [][] matrixMult(int key [][], int msg[][]){
 		int[][] enc = new int[msg.length][msg[0].length];
 		for(int i = 0; i < msg[0].length; i++){
 			for(int j = 0; j < msg.length; j++){
@@ -71,7 +96,7 @@ public class hillEncrypt {
 		return enc;
 	}
 	
-	private static void initNumToAlpha(){
+	private void initNumToAlpha(){
 		numToAlpha = new HashMap<Integer, Character>();
 		numToAlpha.put(0, 'Z');
 		numToAlpha.put(1, 'A');
@@ -100,7 +125,7 @@ public class hillEncrypt {
 		numToAlpha.put(24, 'X');
 		numToAlpha.put(25, 'Y');
 	}
-	private static void initAlphaToNum(){
+	private void initAlphaToNum(){
 		alphaToNum = new HashMap<Character, Integer>();
 		alphaToNum.put('Z', 0);
 		alphaToNum.put('A', 1);
@@ -129,6 +154,6 @@ public class hillEncrypt {
 		alphaToNum.put('X', 24);
 		alphaToNum.put('Y', 25);
 	}
-
+	
 
 }
