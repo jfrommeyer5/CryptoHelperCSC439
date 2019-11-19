@@ -102,7 +102,7 @@ public class CryptoHelper extends javax.swing.JFrame {
 
         Object[] ciphersList = {frequencyCount, runTheAlphabet, encryptkw, decryptkw, pigLatinEncipher, pigLatinDecipher, caesarcipher, baconEncipher, baconDecipher, alBhedEncipher, alBhedDecipher, ROT13Encipher, ROT13Decipher, columnEncrypt,
                 columnDecrypt, biGraphs, triGraphs, nGraphs, affineKnownPlaintextAttack, affineEncipher, affineDecipher, splitOffAlphabets, polyMonoCalculator,
-                viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce,
+                viginereEncipher, viginereDecipher, viginereBruteForce, autoKeyCyphertextAttack, autoKeyPlaintextAttack, autoKeyDecipher, hillBruteForce, hillencrypt, hilldecrypt,
                 columnTranspositionWorksheet, gcdAndInverse, base64Encode, substitutionSolver, playfairEncipher, baconEncipher, baconDecipher, playfairDecipher,morseEncode, pigMorse,  termsOfTheGPL };
 
 
