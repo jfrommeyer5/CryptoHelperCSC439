@@ -13,7 +13,7 @@ public class MorseEncode extends BaseCipher{
     public void actionButtonActionPerformed(ActionEvent evt) {
 
 
-        String msg = getInputText().getText();
+        String msg = getInputText().getText().toLowerCase();
         String outputting = "";
 
         for(int i = 0; i<msg.length(); i++){

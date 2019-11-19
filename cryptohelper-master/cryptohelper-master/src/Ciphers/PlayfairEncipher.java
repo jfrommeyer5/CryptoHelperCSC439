@@ -7,6 +7,7 @@ public class PlayfairEncipher extends BaseCipher {
     public PlayfairEncipher(){
         super();
         initializeActionBtn("Perform Playfair Encipher");
+        setMainCipherPanelText("Playfair Encipher");
     }
 
 	@Override
