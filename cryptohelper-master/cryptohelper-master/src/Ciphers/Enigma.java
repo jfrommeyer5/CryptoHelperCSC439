@@ -402,13 +402,48 @@ public class Enigma extends BaseCipher{
 
 	/*
 	 * Input:
-	 * A:B C:D E:F G:H I:J K:L M:N O:P Q:R S:T U:V W:X Y:Z
-	 * II - IV - I
-	 * A-Z - A-Z - A-Z
-	 * 700 characters
+B
+II - IV - V
+B - U - L
+B - L - A
+A:V B:S C:G D:L F:U H:Z I:N K:M O:W R:X
+EDPUD NRGYS ZRCXN UYTPO MRMBO FKTBZ REZKM LXLVE FGUEY SIOZV EQMIK UBPMM YLKLT TDEIS MDICA GYKUA CTCDO MOHWX MUUIA UBSTS LRNBZ SZWNR FXWFY SSXJZ VIJHI DISHP RKLKA YUPAD TXQSP INQMA TLPIF SVKDA SCTAC DPBOP VHJK-
 	 * 
 	 * Output:
-	 * 700 encrypted characters
+	 * AUFKL XABTE ILUNG XVONX KURTI NOWAX KURTI NOWAX NORDW ESTLX SEBEZ XSEBE ZXUAF FLIEG ERSTR ASZER IQTUN GXDUB ROWKI XDUBR OWKIX OPOTS CHKAX OPOTS CHKAX UMXEI NSAQT DREIN ULLXU HRANG ETRET ENXAN GRIFF XINFX RGTX-
+	 *
+	 * Input:
+B
+II - IV - V
+B - U - L
+L - S - D
+A:V B:S C:G D:L F:U H:Z I:N K:M O:W R:X
+SFBWD NJUSE GQOBH KRTAR EEZMW KPPRB XOHDR OEQGB BGTQV PGVKB VVGBI MHUSZ YDAJQ IROAX SSSNR EHYGG RPISE ZBOVM QIEMM ZCYSG QDGRE RVBIL EKXYQ IRGIR QNRDN VRXCY YTNJR
+	 * 
+	 * Output:
+	 * DREIG EHTLA NGSAM ABERS IQERV ORWAE RTSXE INSSI EBENN ULLSE QSXUH RXROE MXEIN SXINF RGTXD REIXA UFFLI EGERS TRASZ EMITA NFANG XEINS SEQSX KMXKM XOSTW XKAME NECXK
+	 *
+	 * Input:
+Thin B
+B - II - IV - I
+A - A - A - V
+V - J - N - A
+A:T B:L D:F G:J H:M N:W O:P Q:Y R:Z V:X
+NCZW VUSX PNYM INHZ XMQX SFWX WLKJ AHSH NMCO CCAK UQPM KCSM HKSE INJU SBLK IOSX CKUB HMLL XCSJ USRR DVKO HULX WCCB GVLI YXEO AHXR HKKF VDRE WEZL XOBA FGYU JQUK GRTV UKAM EURB VEKS UHHV OYHA BCJW MAKL FKLM YFVN RIZR VVRT KOFD ANJM OLBG FFLE OPRG TFLV RHOW OPBE KVWM UQFM PWPA RMFH AGKX IIBG
+	 * 
+	 * Output: 
+	 * VONV ONJL OOKS JHFF TTTE INSE INSD REIZ WOYY QNNS NEUN INHA LTXX BEIA NGRI FFUN TERW ASSE RGED RUEC KTYW ABOS XLET ZTER GEGN ERST ANDN ULAC HTDR EINU LUHR MARQ UANT ONJO TANE UNAC HTSE YHSD REIY ZWOZ WONU LGRA DYAC HTSM YSTO SSEN ACHX EKNS VIER MBFA ELLT YNNN NNNO OOVI ERYS ICHT EINS NULL
+	 * 
+	 * Input:
+B
+III - VI - VIII
+01 - 08- 13
+U - Z - V
+A:N E:Z H:K I:J L:R M:Q O:T P:V S:W U:X
+YKAE NZAP MSCH ZBFO CUVM RMDP YCOF HADZ IZME FXTH FLOL PZLF GGBO TGOX GRET DWTJ IQHL MXVJ WKZU ASTR
+	 * 
+	 * Output:
+	 * STEU EREJ TANA FJOR DJAN STAN DORT QUAA ACCC VIER NEUN NEUN ZWOF AHRT ZWON ULSM XXSC HARN HORS THCO
 	 */
 	@Override
 	public void actionButtonActionPerformed(ActionEvent evt) {
@@ -416,19 +451,20 @@ public class Enigma extends BaseCipher{
 		String lines[] = input.split("\\r?\\n");
 		String out = "";
 
-		for(int i = 0; i < 5; i++)
+		for(int i = 0; i < 6; i++)
 			lines[i] = lines[i].toUpperCase();
 
 		String reflector = lines[0];
 		String rotors = lines[1];
-		String key = lines[2];
-		String plugOrder = lines[3];
-		input = lines[4];
+		String tempName = lines[2];
+		String key = lines[3];
+		String plugOrder = lines[4];
+		input = lines[5];
 		String msg = input.replaceAll("\\W", "");
 
 		Reflector rf = initReflector(reflector);
 		Plugboard pb = new Plugboard(genPlugboard(plugOrder));
-		Rotor[] rotorArr = initRotors(rotors, key);
+		Rotor[] rotorArr = initRotors(rotors, tempName, key);
 
 		CharacterIterator iter = new StringCharacterIterator(msg);
 
@@ -488,6 +524,7 @@ public class Enigma extends BaseCipher{
 	public Enigma() {
 		super();
 		initializeActionBtn("Enigma");
+		setMainCipherPanelText("Enigma");
 	}
 
 	/*
@@ -544,13 +581,14 @@ public class Enigma extends BaseCipher{
 	 * Initializes the correct rotors in the proper order at the proper starting letter
 	 * Outputs the array of Rotors
 	 */
-	private Rotor[] initRotors(String order, String key) {
+	private Rotor[] initRotors(String order, String tempName, String key) {
 		Rotor[] rotorArr = new Rotor[3];
 
 		/*
 		 * convert order and starting position data
 		 */
 		String[] rotors = order.split(" - ");
+		String[] tempArr = tempName.split(" - ");
 		String[] keyLetter = key.split(" - ");
 
 		for(int i = 0; i < 3; i++) {
@@ -762,6 +800,8 @@ abstract class Rotor{
 	}
 	
 	protected abstract boolean rotate();
+	
+	protected abstract int getStepChar();
 }
 
 class Rotor1 extends Rotor{
@@ -795,6 +835,11 @@ class Rotor1 extends Rotor{
 	
 	public boolean rotate() {
 		return super.rotate(stepChar);
+	}
+
+	@Override
+	public int getStepChar() {
+		return stepChar;
 	}
 }
 
@@ -830,6 +875,11 @@ class Rotor2 extends Rotor{
 	public boolean rotate() {
 		return super.rotate(stepChar);
 	}
+
+	@Override
+	public int getStepChar() {
+		return stepChar;
+	}
 }
 
 class Rotor3 extends Rotor{
@@ -863,6 +913,11 @@ class Rotor3 extends Rotor{
 	
 	public boolean rotate() {
 		return super.rotate(stepChar);
+	}
+
+	@Override
+	public int getStepChar() {
+		return stepChar;
 	}
 }
 
@@ -898,6 +953,11 @@ class Rotor4 extends Rotor{
 	public boolean rotate() {
 		return super.rotate(stepChar);
 	}
+
+	@Override
+	public int getStepChar() {
+		return stepChar;
+	}
 }
 
 class Rotor5 extends Rotor{
@@ -931,6 +991,11 @@ class Rotor5 extends Rotor{
 	
 	public boolean rotate() {
 		return super.rotate(stepChar);
+	}
+
+	@Override
+	public int getStepChar() {
+		return stepChar;
 	}
 }
 
